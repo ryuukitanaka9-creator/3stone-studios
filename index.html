@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3 Stone Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lime: #C8FF00;
+    --coral: #FF4D6D;
+    --sky: #00D4FF;
+    --violet: #7B2FFF;
+    --orange: #FF8C00;
+    --ink: #0A0A0F;
+    --offwhite: #F5F2EB;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--offwhite);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  .cursor {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--lime);
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.7;
+    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+  }
+  .cursor.hover { width: 40px; height: 40px; background: var(--coral); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 3rem;
+  }
+  nav::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(10,10,15,0.7);
+    backdrop-filter: blur(12px);
+    z-index: -1;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    color: var(--offwhite);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--lime); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--offwhite);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--lime); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: drift 8s ease-in-out infinite alternate;
+  }
+  .blob-1 { width: 600px; height: 600px; background: var(--violet); top: -100px; right: -100px; animation-delay: 0s; }
+  .blob-2 { width: 400px; height: 400px; background: var(--coral); bottom: 0; left: 20%; animation-delay: 2s; }
+  .blob-3 { width: 300px; height: 300px; background: var(--sky); top: 30%; left: -50px; animation-delay: 4s; }
+
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(40px, 30px) scale(1.1); }
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--lime);
+    background: rgba(200,255,0,0.1);
+    border: 1px solid rgba(200,255,0,0.3);
+    padding: 0.4em 1em;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s 0.2s both;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 13vw, 13rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.8s 0.4s both;
+  }
+  .hero-title .accent-coral { color: var(--coral); }
+  .hero-title .accent-sky   { color: var(--sky); }
+  .hero-title .accent-lime  { color: var(--lime); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 520px;
+    animation: fadeUp 0.8s 0.7s both;
+    position: relative; z-index: 1;
+    margin-top: 1.5rem;
+    color: rgba(245,242,235,0.75);
+  }
+
+  .hero-rep {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,242,235,0.4);
+    margin-top: 0.8rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.8s 0.85s both;
+  }
+  .hero-rep span { color: var(--lime); opacity: 0.85; }
+
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    margin-top: 2.5rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.8s 0.9s both;
+  }
+  .btn-primary {
+    background: var(--lime);
+    color: var(--ink);
+    padding: 0.9em 2em;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    cursor: none;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(200,255,0,0.35);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--offwhite);
+    padding: 0.9em 2em;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 2px solid rgba(245,242,235,0.35);
+    border-radius: 4px;
+    cursor: none;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { transform: translateY(-3px); border-color: var(--offwhite); }
+
+  .btn-model-shop {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.7em 1.5em;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sky);
+    border: 2px solid rgba(0,212,255,0.4);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: none;
+  }
+  .btn-model-shop:hover {
+    transform: translateY(-3px);
+    border-color: var(--sky);
+    box-shadow: 0 8px 24px rgba(0,212,255,0.2);
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    z-index: 1; opacity: 0.5;
+    animation: fadeUp 1s 1.2s both;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--offwhite), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .marquee-wrap {
+    overflow: hidden;
+    background: var(--lime);
+    padding: 1rem 0;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: marquee 18s linear infinite;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+  }
+  .marquee-track span { margin: 0 1.5rem; }
+  .marquee-dot { color: var(--coral); }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .services { padding: 8rem 3rem; position: relative; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1;
+    margin-bottom: 4rem;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: rgba(245,242,235,0.08);
+  }
+  .service-card {
+    background: var(--ink);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .service-card.film::before  { background: linear-gradient(135deg, rgba(255,77,109,0.12), transparent); }
+  .service-card.model::before { background: linear-gradient(135deg, rgba(0,212,255,0.12), transparent); }
+  .service-card:hover::before { opacity: 1; }
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    line-height: 1;
+    opacity: 0.08;
+    position: absolute; top: 1rem; right: 1.5rem;
+  }
+  .service-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
+  .service-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  .service-card.film h3  { color: var(--coral); }
+  .service-card.model h3 { color: var(--sky); }
+  .service-card p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(245,242,235,0.65);
+    margin-bottom: 2rem;
+  }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3em 0.8em;
+    border-radius: 3px;
+    border: 1px solid;
+  }
+  .service-card.film .tag  { color: var(--coral); border-color: rgba(255,77,109,0.4); background: rgba(255,77,109,0.07); }
+  .service-card.model .tag { color: var(--sky);   border-color: rgba(0,212,255,0.4);  background: rgba(0,212,255,0.07); }
+
+  .process { padding: 8rem 3rem; background: rgba(255,255,255,0.02); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+  .step { position: relative; }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    line-height: 1;
+    background: linear-gradient(to bottom, var(--offwhite) 0%, transparent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.15;
+    position: absolute; top: -1rem; left: -0.5rem;
+  }
+  .step-content { padding-top: 2.5rem; }
+  .step-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lime); margin-bottom: 1rem; }
+  .step h4 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; margin-bottom: 0.6rem; }
+  .step p { font-size: 0.85rem; line-height: 1.7; color: rgba(245,242,235,0.55); }
+
+  .contact { padding: 8rem 3rem; position: relative; overflow: hidden; }
+  .contact-inner { max-width: 700px; position: relative; z-index: 1; }
+  .contact-bg-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 20vw, 18rem);
+    line-height: 0.85;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    right: -2rem; top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    user-select: none;
+  }
+  .contact h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .contact h2 em { color: var(--orange); font-style: normal; }
+  .contact-form { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,242,235,0.5);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    color: var(--offwhite);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.85em 1em;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--lime);
+    background: rgba(200,255,0,0.04);
+  }
+  .form-group select option { background: #1a1a25; }
+  .submit-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .submit-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,242,235,0.35);
+  }
+
+  footer {
+    padding: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    color: var(--offwhite);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--lime); }
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,242,235,0.3);
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,242,235,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+  .footer-links a:hover { color: var(--lime); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    animation: revealFallback 0s 2s forwards;
+  }
+  .reveal.visible { opacity: 1; transform: none; animation: none; }
+  @keyframes revealFallback {
+    to { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero, .services, .process, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="#" class="nav-logo">3<span>●</span>STONE</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <p class="hero-tag">✦ Film Scriptwriting &amp; 3D Modeling Studio</p>
+  <h1 class="hero-title">
+    <span class="accent-coral">WE</span><br>
+    <span class="accent-sky">BUILD</span><br>
+    <span class="accent-lime">WORLDS.</span>
+  </h1>
+  <p class="hero-sub">映画脚本から3Dモデリングまで。個人・インディーズ規模のプロジェクトを中心に、あなたのビジョンを丁寧に形にします。</p>
+  <p class="hero-rep">代表: <span>Ryuki Tanaka</span></p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary">仕事を依頼する</a>
+    <a href="#services" class="btn-outline">サービスを見る</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>FILM SCRIPT</span><span class="marquee-dot">✦</span>
+    <span>3D MODELING</span><span class="marquee-dot">✦</span>
+    <span>CHARACTER DESIGN</span><span class="marquee-dot">✦</span>
+    <span>WORLD BUILDING</span><span class="marquee-dot">✦</span>
+    <span>VISUAL STORYTELLING</span><span class="marquee-dot">✦</span>
+    <span>FILM SCRIPT</span><span class="marquee-dot">✦</span>
+    <span>3D MODELING</span><span class="marquee-dot">✦</span>
+    <span>CHARACTER DESIGN</span><span class="marquee-dot">✦</span>
+    <span>WORLD BUILDING</span><span class="marquee-dot">✦</span>
+    <span>VISUAL STORYTELLING</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <p class="section-label reveal">— What We Do</p>
+  <h2 class="section-title reveal">OUR<br><span style="color:var(--lime)">SERVICES</span></h2>
+  <div class="services-grid reveal">
+    <div class="service-card film">
+      <span class="service-num">01</span>
+      <span class="service-icon">🎬</span>
+      <h3>Film Scriptwriting</h3>
+      <p>長編・短編映画、ドラマ、アニメシリーズまで。キャラクターに命を吹き込み、観客を釘付けにするストーリーを構築します。</p>
+      <div class="service-tags">
+        <span class="tag">長編映画</span>
+        <span class="tag">短編映画</span>
+        <span class="tag">アニメ脚本</span>
+        <span class="tag">ドラマシリーズ</span>
+        <span class="tag">リライト</span>
+      </div>
+    </div>
+    <div class="service-card model">
+      <span class="service-num">02</span>
+      <span class="service-icon">🧊</span>
+      <h3>3D Modeling</h3>
+      <p>キャラクター、プロダクト、建築ビジュアライゼーションからゲームアセットまで。精緻なモデリングとリアルなテクスチャリングで作品に深みを与えます。</p>
+      <div class="service-tags">
+        <span class="tag">キャラクター</span>
+        <span class="tag">プロップ</span>
+        <span class="tag">環境モデル</span>
+        <span class="tag">アニメーション</span>
+        <span class="tag">レンダリング</span>
+      </div>
+      <a href="https://3stonestudios.booth.pm/items/7993351" target="_blank" class="btn-model-shop">モデルを購入する →</a>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <p class="section-label reveal">— How We Work</p>
+  <h2 class="section-title reveal">THE<br><span style="color:var(--orange)">PROCESS</span></h2>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <div class="step-dot"></div>
+        <h4>ヒアリング</h4>
+        <p>プロジェクトのビジョン、ゴール、予算、スケジュールを徹底的に把握します。</p>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <div class="step-dot" style="background:var(--coral)"></div>
+        <h4>コンセプト設計</h4>
+        <p>世界観の構築からキャラクター設計まで、クリエイティブの骨格を作ります。</p>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <div class="step-dot" style="background:var(--sky)"></div>
+        <h4>制作・レビュー</h4>
+        <p>定期的にフィードバックを取り入れながら、品質を磨き込んでいきます。</p>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <div class="step-dot" style="background:var(--orange)"></div>
+        <h4>納品</h4>
+        <p>最終チェックを経て、指定フォーマットで納品。アフターサポートも対応します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-bg-text">CONTACT</div>
+  <div class="contact-inner">
+    <p class="section-label reveal">— Get In Touch</p>
+    <h2 class="reveal">LET'S<br><em>CREATE</em><br>TOGETHER.</h2>
+    <p class="reveal" style="color:rgba(245,242,235,0.6); line-height:1.75; margin-top:1rem; font-size:0.95rem;">
+      個人制作・学生映画・インディーゲームなど、小〜中規模のプロジェクトを歓迎します。大規模案件はお受けが難しい場合がありますが、まずはお気軽にご相談ください。
+    </p>
+    <form class="contact-form reveal"
+      action="https://formsubmit.co/ryukitanaka3@gmail.com"
+      method="POST">
+      <input type="hidden" name="_subject" value="3 Stone Studios - お問い合わせ">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="#">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="service">ご希望のサービス</label>
+        <select id="service" name="service" required>
+          <option value="" disabled selected>サービスを選択</option>
+          <option value="script">映画脚本制作</option>
+          <option value="3d">3Dモデリング</option>
+          <option value="both">両方</option>
+          <option value="other">その他・ご相談</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">プロジェクト概要</label>
+        <textarea id="message" name="message" rows="5" placeholder="どんなプロジェクトか、スケジュール感、予算感など、お気軽にお書きください。" required></textarea>
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="btn-primary">送信する →</button>
+        <span class="submit-note">通常2〜3営業日以内にご返信します（大規模案件はお断りする場合があります）</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">3<span>●</span>STONE STUDIOS</a>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p class="footer-copy">© 2026 3 Stone Studios. Ryuki Tanaka. All rights reserved.</p>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX - 8 + 'px';
+    cursor.style.top  = e.clientY - 8 + 'px';
+  });
+  document.querySelectorAll('a, button, input, select, textarea').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
