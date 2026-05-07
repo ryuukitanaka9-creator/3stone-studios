@@ -4,460 +4,580 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3 Stone Studios</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --lime: #C8FF00;
-    --coral: #FF4D6D;
-    --sky: #00D4FF;
-    --violet: #7B2FFF;
-    --orange: #FF8C00;
-    --ink: #0A0A0F;
-    --offwhite: #F5F2EB;
+    --green:      #6EC72D;
+    --green-dark: #4A9A18;
+    --green-glow: #A8FF5A;
+    --black:      #060808;
+    --dark:       #0D1208;
+    --card:       #111A0A;
+    --white:      #F0F5EC;
+    --muted:      rgba(240,245,236,0.55);
+    --muted-hi:   rgba(240,245,236,0.65);
+    --muted-lo:   rgba(240,245,236,0.25);
+    --border:     rgba(110,199,45,0.18);
+    --green-faint:rgba(110,199,45,0.07);
+    --green-soft: rgba(110,199,45,0.1);
+    --green-trace:rgba(110,199,45,0.03);
+    --green-glow-shadow: rgba(110,199,45,0.5);
+    --nav-bg:     rgba(6,8,8,0.92);
+    --nav-mobile-bg: rgba(6,8,8,0.97);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--ink);
-    color: var(--offwhite);
-    font-family: 'Syne', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif;
     overflow-x: hidden;
     cursor: none;
   }
 
+  /* ─── CURSOR ─── */
   .cursor {
-    width: 16px; height: 16px;
+    width: 18px; height: 18px;
     border-radius: 50%;
-    background: var(--lime);
-    position: fixed;
-    top: 0; left: 0;
+    background: var(--green);
+    position: fixed; top: 0; left: 0;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.7;
-    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+    mix-blend-mode: exclusion;
+    transition: width .2s, height .2s, background .2s;
+    box-shadow: 0 0 12px var(--green);
+    will-change: transform;
   }
-  .cursor.hover { width: 40px; height: 40px; background: var(--coral); }
+  .cursor.hover { width: 44px; height: 44px; background: var(--green-glow); }
 
+  /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 200;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.5rem 3rem;
+    padding: 2rem 3rem;
+    transition: background .4s;
   }
-  nav::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: rgba(10,10,15,0.7);
-    backdrop-filter: blur(12px);
-    z-index: -1;
+  nav.scrolled {
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    padding: 1.2rem 3rem;
+    border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    letter-spacing: 0.1em;
-    color: var(--offwhite);
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
     text-decoration: none;
+    transition: opacity .2s;
+    display: flex; align-items: center; gap: 0.2em;
   }
-  .nav-logo span { color: var(--lime); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-logo:hover { opacity: 0.75; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
-    color: var(--offwhite);
+    color: var(--muted-hi);
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    opacity: 0.7;
-    transition: opacity 0.2s, color 0.2s;
+    transition: color .2s;
   }
-  .nav-links a:hover { opacity: 1; color: var(--lime); }
+  .nav-links a:hover { color: var(--white); }
 
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: none; padding: 4px;
+    position: relative; z-index: 201;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 1px;
+    background: var(--white);
+    transition: transform .3s, opacity .3s;
+  }
+  .hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column;
-    justify-content: center; align-items: flex-start;
-    padding: 8rem 3rem 4rem;
-    position: relative;
-    overflow: hidden;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 6rem 3rem;
+    position: relative; overflow: hidden;
   }
-  .hero-bg { position: absolute; inset: 0; z-index: 0; }
-  .blob {
+  .hero-glow {
     position: absolute;
+    width: 700px; height: 700px;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.35;
-    animation: drift 8s ease-in-out infinite alternate;
+    background: radial-gradient(circle, var(--green-soft) 0%, transparent 65%);
+    top: 50%; left: -100px;
+    transform: translateY(-50%);
+    z-index: 0;
+    animation: pulse 6s ease-in-out infinite alternate;
   }
-  .blob-1 { width: 600px; height: 600px; background: var(--violet); top: -100px; right: -100px; animation-delay: 0s; }
-  .blob-2 { width: 400px; height: 400px; background: var(--coral); bottom: 0; left: 20%; animation-delay: 2s; }
-  .blob-3 { width: 300px; height: 300px; background: var(--sky); top: 30%; left: -50px; animation-delay: 4s; }
+  @keyframes pulse { from { opacity: .7; } to { opacity: 1; } }
 
-  @keyframes drift {
-    from { transform: translate(0, 0) scale(1); }
-    to   { transform: translate(40px, 30px) scale(1.1); }
-  }
-
-  .hero-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--lime);
-    background: rgba(200,255,0,0.1);
-    border: 1px solid rgba(200,255,0,0.3);
-    padding: 0.4em 1em;
-    border-radius: 999px;
-    margin-bottom: 1.5rem;
+  .hero-logo-wrap {
     position: relative; z-index: 1;
-    animation: fadeUp 0.6s 0.2s both;
+    margin-bottom: 3rem;
+    opacity: 0; animation: fadeIn 1.2s .2s forwards;
+  }
+  .hero-logo-wrap img {
+    width: clamp(240px, 38vw, 480px); height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 50px rgba(110,199,45,0.45));
+    animation: floatLogo 5s ease-in-out infinite;
+  }
+  @keyframes floatLogo {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-16px); }
   }
 
+  .hero-studio-name {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    letter-spacing: 0.12em;
+    color: var(--white);
+    position: relative; z-index: 1;
+    opacity: 0; animation: fadeIn 1s .8s forwards;
+    margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.2em; justify-content: center;
+  }
   .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 13vw, 13rem);
-    line-height: 0.9;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(3rem, 9vw, 8rem);
+    line-height: 0.95;
     letter-spacing: -0.02em;
     position: relative; z-index: 1;
-    animation: fadeUp 0.8s 0.4s both;
+    opacity: 0; animation: fadeIn 1s 1s forwards;
+    margin-bottom: 1.4rem;
   }
-  .hero-title .accent-coral { color: var(--coral); }
-  .hero-title .accent-sky   { color: var(--sky); }
-  .hero-title .accent-lime  { color: var(--lime); }
-
+  .hero-motto {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(0.95rem, 2vw, 1.3rem);
+    letter-spacing: 0.12em;
+    color: var(--green);
+    position: relative; z-index: 1;
+    opacity: 0; animation: fadeIn 1s 1.2s forwards;
+    margin-bottom: 1rem;
+  }
   .hero-sub {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    max-width: 520px;
-    animation: fadeUp 0.8s 0.7s both;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.85;
+    max-width: 420px;
+    color: var(--muted-hi);
     position: relative; z-index: 1;
-    margin-top: 1.5rem;
-    color: rgba(245,242,235,0.75);
+    opacity: 0; animation: fadeIn 1s 1.4s forwards;
+    margin: 0 auto 2.5rem;
   }
-
-  .hero-rep {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    color: rgba(245,242,235,0.4);
-    margin-top: 0.8rem;
-    position: relative; z-index: 1;
-    animation: fadeUp 0.8s 0.85s both;
-  }
-  .hero-rep span { color: var(--lime); opacity: 0.85; }
-
   .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
     position: relative; z-index: 1;
-    animation: fadeUp 0.8s 0.9s both;
+    opacity: 0; animation: fadeIn 1s 1.6s forwards;
   }
-  .btn-primary {
-    background: var(--lime);
-    color: var(--ink);
-    padding: 0.9em 2em;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 4px;
-    cursor: none;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: inline-block;
-  }
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(200,255,0,0.35);
-  }
-  .btn-outline {
-    background: transparent;
-    color: var(--offwhite);
-    padding: 0.9em 2em;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border: 2px solid rgba(245,242,235,0.35);
-    border-radius: 4px;
-    cursor: none;
-    text-decoration: none;
-    transition: transform 0.2s, border-color 0.2s;
-    display: inline-block;
-  }
-  .btn-outline:hover { transform: translateY(-3px); border-color: var(--offwhite); }
-
-  .btn-model-shop {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.7em 1.5em;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--sky);
-    border: 2px solid rgba(0,212,255,0.4);
-    border-radius: 4px;
-    text-decoration: none;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    cursor: none;
-  }
-  .btn-model-shop:hover {
-    transform: translateY(-3px);
-    border-color: var(--sky);
-    box-shadow: 0 8px 24px rgba(0,212,255,0.2);
-  }
-
   .hero-scroll {
     position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    z-index: 1; opacity: 0.5;
-    animation: fadeUp 1s 1.2s both;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    z-index: 1; opacity: 0; animation: fadeIn 1s 2s forwards;
+    font-family: 'Space Mono', monospace; font-size: .55rem;
+    letter-spacing: .3em; text-transform: uppercase; color: var(--muted-lo);
   }
   .scroll-line {
-    width: 1px; height: 50px;
-    background: linear-gradient(to bottom, var(--offwhite), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
+    width: 1px; height: 44px;
+    background: linear-gradient(to bottom, var(--green-glow-shadow), transparent);
+    animation: scrollPulse 2.5s infinite;
   }
-  @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes scrollPulse { 0%,100%{opacity:.2} 50%{opacity:.8} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
+  /* ─── BUTTONS ─── */
+  .btn {
+    padding: .85em 2.2em;
+    font-family: 'Space Mono', monospace;
+    font-size: .75rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: none; text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--green);
+    color: var(--black);
+    border: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .btn-primary:hover { opacity: .85; transform: translateY(-2px); }
+  .btn-primary.btn-sent { background: var(--green-dark); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--muted-hi);
+    border: 1px solid var(--muted-lo);
+    transition: color .2s, border-color .2s, transform .2s;
+  }
+  .btn-outline:hover { color: var(--white); border-color: rgba(240,245,236,0.5); transform: translateY(-2px); }
+
+  /* ─── MARQUEE ─── */
   .marquee-wrap {
-    overflow: hidden;
-    background: var(--lime);
-    padding: 1rem 0;
-    white-space: nowrap;
+    overflow: hidden; background: var(--green); padding: .9rem 0; white-space: nowrap;
   }
   .marquee-track {
     display: inline-block;
-    animation: marquee 18s linear infinite;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
-    color: var(--ink);
+    animation: marquee 20s linear infinite;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 1.3rem; letter-spacing: .08em; color: var(--black);
   }
   .marquee-track span { margin: 0 1.5rem; }
-  .marquee-dot { color: var(--coral); }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
+  .marquee-dot { color: rgba(0,0,0,0.4); }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-  .services { padding: 8rem 3rem; position: relative; }
+  /* ─── SHARED ─── */
   .section-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--sky);
-    margin-bottom: 1rem;
+    font-size: .68rem; letter-spacing: .35em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 1rem;
   }
   .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 1;
-    margin-bottom: 4rem;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: 1.05; margin-bottom: 1.5rem;
   }
+  .accent { color: var(--green); }
+
+  /* ─── ABOUT ─── */
+  .about { padding: 8rem 3rem; max-width: 760px; }
+  .about-motto-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .motto-ja {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 1.6rem; color: var(--green); letter-spacing: .08em;
+  }
+  .motto-en {
+    font-family: 'Space Mono', monospace;
+    font-size: .68rem; letter-spacing: .2em;
+    color: var(--muted); text-transform: uppercase; margin-top: .4rem;
+  }
+  .motto-desc {
+    font-size: .9rem; line-height: 1.75; color: var(--muted);
+    margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;
+  }
+  .about-body { font-size: .95rem; line-height: 1.8; color: var(--muted); }
+  .about-body + .about-body { margin-top: 1.2rem; }
+
+  /* ─── SERVICES ─── */
+  .services { padding: 8rem 3rem; }
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5px;
-    background: rgba(245,242,235,0.08);
+    gap: 1.5rem; margin-top: 3rem;
   }
   .service-card {
-    background: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
     padding: 3rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
+    position: relative; overflow: hidden;
+    transition: transform .3s, border-color .3s;
   }
-  .service-card::before {
+  .service-card:hover { transform: translateY(-6px); border-color: var(--green); }
+  .service-card::after {
     content: '';
-    position: absolute; inset: 0;
-    opacity: 0;
-    transition: opacity 0.4s;
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--green-dark), var(--green), var(--green-glow));
+    border-radius: 12px 12px 0 0;
+    opacity: 0; transition: opacity .3s;
   }
-  .service-card.film::before  { background: linear-gradient(135deg, rgba(255,77,109,0.12), transparent); }
-  .service-card.model::before { background: linear-gradient(135deg, rgba(0,212,255,0.12), transparent); }
-  .service-card:hover::before { opacity: 1; }
+  .service-card:hover::after { opacity: 1; }
   .service-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 5rem;
-    line-height: 1;
-    opacity: 0.08;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 5rem; line-height: 1;
+    color: var(--green-faint);
     position: absolute; top: 1rem; right: 1.5rem;
   }
   .service-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
   .service-card h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 2rem; color: var(--green); margin-bottom: 1rem; letter-spacing: .03em;
   }
-  .service-card.film h3  { color: var(--coral); }
-  .service-card.model h3 { color: var(--sky); }
-  .service-card p {
-    font-size: 0.9rem;
-    line-height: 1.75;
-    color: rgba(245,242,235,0.65);
-    margin-bottom: 2rem;
-  }
-  .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .service-card p { font-size: .9rem; line-height: 1.75; color: var(--muted); margin-bottom: 2rem; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
   .tag {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3em 0.8em;
-    border-radius: 3px;
-    border: 1px solid;
+    font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
+    padding: .3em .8em; border-radius: 4px;
+    border: 1px solid rgba(110,199,45,0.35);
+    color: var(--green); background: var(--green-faint);
   }
-  .service-card.film .tag  { color: var(--coral); border-color: rgba(255,77,109,0.4); background: rgba(255,77,109,0.07); }
-  .service-card.model .tag { color: var(--sky);   border-color: rgba(0,212,255,0.4);  background: rgba(0,212,255,0.07); }
 
-  .process { padding: 8rem 3rem; background: rgba(255,255,255,0.02); }
-  .process-steps {
+  /* ─── WORKS ─── */
+  .works { padding: 8rem 3rem; background: rgba(255,255,255,0.01); }
+  .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 3rem;
-    margin-top: 4rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .work-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--card);
+    transition: transform .3s, border-color .3s;
+  }
+  .work-card:hover { transform: translateY(-5px); border-color: var(--green); }
+  .work-card-body { padding: 2rem; }
+  .work-type {
+    font-family: 'Space Mono', monospace;
+    font-size: .62rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--green); margin-bottom: .8rem;
+  }
+  .work-title {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 2.8rem; line-height: 1;
+    letter-spacing: .04em; color: var(--white); margin-bottom: 1rem;
+  }
+  .work-badge {
+    display: inline-flex; align-items: center; gap: .4em;
+    font-family: 'Space Mono', monospace;
+    font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--black); background: var(--green);
+    padding: .35em 1em; border-radius: 999px;
+  }
+
+  /* ─── 3STONE RUNNER ─── */
+  .runner { padding: 8rem 3rem; background: var(--dark); position: relative; overflow: hidden; }
+  .runner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--green-trace) 1px, transparent 1px),
+      linear-gradient(90deg, var(--green-trace) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .runner-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .runner-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--green); background: var(--green-soft);
+    border: 1px solid rgba(110,199,45,0.3);
+    padding: .35em 1em; border-radius: 999px; margin-bottom: 1.2rem;
+  }
+  .runner h2 {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05; margin-bottom: 1.5rem;
+  }
+  .runner h2 span { color: var(--green); }
+  .runner-desc { font-size: .95rem; line-height: 1.8; color: var(--muted); margin-bottom: 2rem; }
+  .runner-note {
+    font-family: 'Space Mono', monospace;
+    font-size: .68rem; letter-spacing: .12em;
+    color: var(--green-glow-shadow); text-transform: uppercase;
+    background: var(--green-faint);
+    border: 1px solid rgba(110,199,45,0.15);
+    border-radius: 6px; padding: .8rem 1.2rem; margin-bottom: 2rem;
+  }
+  .runner-visual {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    aspect-ratio: 16/10;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .runner-visual-inner {
+    display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+  }
+  .runner-glow-text {
+    color: var(--green);
+    text-shadow: 0 0 20px var(--green-glow-shadow);
+  }
+  .runner-monogram {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 4rem;
+  }
+  .runner-title-preview {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 1.6rem; letter-spacing: .08em;
+  }
+  .runner-sub-preview {
+    font-family: 'Space Mono', monospace;
+    font-size: .65rem; letter-spacing: .2em; color: var(--muted); text-transform: uppercase;
+  }
+  .pixel-dots { display: flex; gap: .5rem; }
+  .pixel-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--green); opacity: .3;
+    animation: blink 1.2s ease-in-out infinite;
+  }
+  .pixel-dot:nth-child(2) { animation-delay: .2s; }
+  .pixel-dot:nth-child(3) { animation-delay: .4s; }
+  @keyframes blink { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+  /* ─── PROCESS ─── */
+  .process { padding: 8rem 3rem; }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem; margin-top: 4rem;
   }
   .step { position: relative; }
   .step-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 6rem;
-    line-height: 1;
-    background: linear-gradient(to bottom, var(--offwhite) 0%, transparent 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    opacity: 0.15;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 5.5rem; line-height: 1;
+    color: var(--green-faint);
     position: absolute; top: -1rem; left: -0.5rem;
   }
   .step-content { padding-top: 2.5rem; }
-  .step-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lime); margin-bottom: 1rem; }
-  .step h4 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; margin-bottom: 0.6rem; }
-  .step p { font-size: 0.85rem; line-height: 1.7; color: rgba(245,242,235,0.55); }
+  .step-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--green); margin-bottom: 1rem; box-shadow: 0 0 8px var(--green);
+    opacity: 1;
+  }
+  .step-dot.dim-2 { opacity: .6; }
+  .step-dot.dim-3 { opacity: .4; }
+  .step-dot.dim-4 { opacity: .2; }
+  .step h4 { font-weight: 900; font-size: 1rem; margin-bottom: .6rem; }
+  .step p { font-size: .85rem; line-height: 1.7; color: var(--muted); }
 
+  /* ─── FAQ ─── */
+  .faq { padding: 8rem 3rem; }
+  .faq-list { margin-top: 4rem; max-width: 760px; display: flex; flex-direction: column; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-question {
+    width: 100%; background: none; border: none;
+    color: var(--white); font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700; font-size: .98rem; text-align: left;
+    padding: 1.5rem 0; cursor: none;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    transition: color .2s; line-height: 1.4;
+  }
+  .faq-question:hover { color: var(--green); }
+  .faq-icon {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 1.5rem; color: var(--green);
+    transition: transform .3s; flex-shrink: 0;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer {
+    font-size: .88rem; line-height: 1.85; color: var(--muted);
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s ease, padding-bottom .3s;
+  }
+  .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.5rem; }
+
+  /* ─── CONTACT ─── */
   .contact { padding: 8rem 3rem; position: relative; overflow: hidden; }
-  .contact-inner { max-width: 700px; position: relative; z-index: 1; }
   .contact-bg-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 20vw, 18rem);
-    line-height: 0.85;
-    color: rgba(255,255,255,0.03);
-    position: absolute;
-    right: -2rem; top: 50%;
-    transform: translateY(-50%);
-    white-space: nowrap;
-    user-select: none;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(5rem, 18vw, 16rem);
+    line-height: .85; color: var(--green-trace);
+    position: absolute; right: -2rem; top: 50%;
+    transform: translateY(-50%); white-space: nowrap; user-select: none;
   }
+  .contact-inner { max-width: 700px; position: relative; z-index: 1; }
   .contact h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 1;
-    margin-bottom: 1.5rem;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05; margin-bottom: 1.5rem;
   }
-  .contact h2 em { color: var(--orange); font-style: normal; }
+  .contact h2 em { color: var(--green); font-style: normal; }
+  .contact-sub { color: var(--muted); line-height: 1.75; margin-top: 1rem; font-size: .95rem; }
   .contact-form { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.2rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group { display: flex; flex-direction: column; gap: .4rem; }
   .form-group label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(245,242,235,0.5);
+    font-family: 'Space Mono', monospace; font-size: .62rem;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
   }
   .form-group input,
   .form-group select,
   .form-group textarea {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 4px;
-    color: var(--offwhite);
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
-    padding: 0.85em 1em;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    resize: vertical;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif; font-size: .95rem;
+    padding: .85em 1em; outline: none;
+    transition: border-color .2s, background .2s; resize: vertical;
   }
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--lime);
-    background: rgba(200,255,0,0.04);
-  }
-  .form-group select option { background: #1a1a25; }
-  .submit-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .form-group textarea:focus { border-color: var(--green); background: rgba(110,199,45,0.05); }
+  .form-group select option { background: #111a0a; }
+  .submit-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: .5rem; }
   .submit-note {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: rgba(245,242,235,0.35);
+    font-family: 'Space Mono', monospace; font-size: .62rem;
+    letter-spacing: .1em; color: var(--muted);
   }
 
+  /* ─── FOOTER ─── */
   footer {
     padding: 3rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid var(--border);
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 1rem;
   }
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
-    color: var(--offwhite);
-    text-decoration: none;
+  .footer-logo { display: flex; align-items: center; gap: .2em; text-decoration: none; transition: opacity .2s; }
+  .footer-logo:hover { opacity: .7; }
+  .footer-logo-text {
+    font-family: 'Dela Gothic One', sans-serif; font-size: 1.1rem;
+    color: var(--white); letter-spacing: .08em;
   }
-  .footer-logo span { color: var(--lime); }
+  .dot { color: var(--green); }
   .footer-copy {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: rgba(245,242,235,0.3);
+    font-family: 'Space Mono', monospace; font-size: .62rem;
+    letter-spacing: .1em; color: var(--muted-lo);
   }
   .footer-links { display: flex; gap: 1.5rem; }
   .footer-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: rgba(245,242,235,0.4);
-    text-decoration: none;
-    transition: color 0.2s;
-    text-transform: uppercase;
+    font-family: 'Space Mono', monospace; font-size: .62rem;
+    letter-spacing: .1em; color: var(--muted);
+    text-decoration: none; transition: color .2s; text-transform: uppercase;
   }
-  .footer-links a:hover { color: var(--lime); }
+  .footer-links a:hover { color: var(--green); }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-    animation: revealFallback 0s 2s forwards;
-  }
-  .reveal.visible { opacity: 1; transform: none; animation: none; }
-  @keyframes revealFallback {
-    to { opacity: 1; transform: none; }
-  }
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
 
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .runner-inner { grid-template-columns: 1fr; }
+    .runner-visual { display: none; }
+  }
   @media (max-width: 768px) {
-    nav { padding: 1.2rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero, .services, .process, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+    nav { padding: 1.5rem; }
+    nav.scrolled { padding: 1rem 1.5rem; }
+    .hamburger { display: flex; }
+    .nav-links {
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--nav-mobile-bg);
+      align-items: center; justify-content: center;
+      gap: 2.5rem; opacity: 0; pointer-events: none;
+      transition: opacity .3s; z-index: 190;
+    }
+    .nav-links.open { opacity: 1; pointer-events: all; }
+    .nav-links a { font-size: 1rem; letter-spacing: 0.22em; }
+    .hero, .about, .services, .works, .runner,
+    .process, .faq, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
     footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
   }
 </style>
@@ -466,45 +586,35 @@
 
 <div class="cursor" id="cursor"></div>
 
-<nav>
-  <a href="#" class="nav-logo">3<span>●</span>STONE</a>
-  <ul class="nav-links">
-    <li><a href="#works">Works</a></li>
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">3<span class="dot">●</span>STONE STUDIOS</a>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#services">Services</a></li>
-    <li><a href="#process">Process</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#runner">3S Runner</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-logo-wrap">
+    <img src="logo.png" alt="3 Stone Studios">
   </div>
-  <p class="hero-tag">✦ Film Scriptwriting &amp; 3D Modeling Studio</p>
+  <p class="hero-studio-name">3<span class="dot">●</span>STONE STUDIOS</p>
   <h1 class="hero-title">
-    <span class="accent-coral">WE</span><br>
-    <span class="accent-sky">BUILD</span><br>
-    <span class="accent-lime">WORLDS.</span>
+    <span class="accent">WE</span>&nbsp;<span>BUILD</span><br><span class="accent">WORLDS.</span>
   </h1>
-  <p class="hero-sub">映画脚本から3Dモデリングまで。個人・インディーズ規模のプロジェクトを中心に、あなたのビジョンを丁寧に形にします。</p>
-  <p class="hero-rep">代表: <span>Ryuki Tanaka</span></p>
+  <p class="hero-motto">石の上にも３年。</p>
+  <p class="hero-sub">映画脚本から3Dモデリングまで。あなたのビジョンを現実に変える創造スタジオ。</p>
   <div class="hero-cta">
-    <a href="#contact" class="btn-primary">仕事を依頼する</a>
-    <a href="#services" class="btn-outline">サービスを見る</a>
-  </div>
-  <div style="margin-top:2rem; position:relative; z-index:1; animation: fadeUp 0.8s 1.05s both;">
-    <a href="https://ryuukitanaka9-creator.github.io/3-stone-runner/game.html" target="_blank"
-      style="display:inline-flex; align-items:center; gap:0.75rem; text-decoration:none; background:rgba(200,255,0,0.06); border:1px solid rgba(200,255,0,0.25); border-radius:6px; padding:0.75em 1.25em; transition:background 0.2s, border-color 0.2s;"
-      onmouseover="this.style.background='rgba(200,255,0,0.12)';this.style.borderColor='rgba(200,255,0,0.6)'"
-      onmouseout="this.style.background='rgba(200,255,0,0.06)';this.style.borderColor='rgba(200,255,0,0.25)'">
-      <span style="font-size:1.2rem;">🎮</span>
-      <span style="display:flex; flex-direction:column; gap:0.1rem;">
-        <span style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.12em; color:#C8FF00;">3STONE RUNNER</span>
-        <span style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; color:rgba(245,242,235,0.45); text-transform:uppercase;">今すぐ遊べる — ブラウザゲーム公開中 →</span>
-      </span>
-    </a>
+    <a href="#contact" class="btn btn-primary">仕事を依頼する</a>
+    <a href="#services" class="btn btn-outline">サービスを見る</a>
   </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
@@ -512,48 +622,49 @@
   </div>
 </section>
 
+<!-- ─── MARQUEE ─── -->
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span>FILM SCRIPT</span><span class="marquee-dot">✦</span>
     <span>3D MODELING</span><span class="marquee-dot">✦</span>
-    <span>GAME DEV</span><span class="marquee-dot">✦</span>
     <span>CHARACTER DESIGN</span><span class="marquee-dot">✦</span>
     <span>WORLD BUILDING</span><span class="marquee-dot">✦</span>
     <span>VISUAL STORYTELLING</span><span class="marquee-dot">✦</span>
+    <span>石の上にも３年</span><span class="marquee-dot">✦</span>
     <span>FILM SCRIPT</span><span class="marquee-dot">✦</span>
     <span>3D MODELING</span><span class="marquee-dot">✦</span>
-    <span>GAME DEV</span><span class="marquee-dot">✦</span>
     <span>CHARACTER DESIGN</span><span class="marquee-dot">✦</span>
     <span>WORLD BUILDING</span><span class="marquee-dot">✦</span>
     <span>VISUAL STORYTELLING</span><span class="marquee-dot">✦</span>
+    <span>石の上にも３年</span><span class="marquee-dot">✦</span>
   </div>
 </div>
 
-<section id="works" style="padding: 8rem 3rem; position: relative;">
-  <p class="section-label reveal">— Featured Work</p>
-  <h2 class="section-title reveal">3STONE<br><span style="color:var(--lime)">RUNNER</span></h2>
-  <div class="reveal" style="position:relative; width:100%; max-width:900px; border:1px solid rgba(200,255,0,0.2); border-radius:8px; overflow:hidden; background:#000;">
-    <iframe
-      src="https://ryuukitanaka9-creator.github.io/3-stone-runner/game.html"
-      width="100%"
-      height="540"
-      style="display:block; border:none;"
-      allow="fullscreen"
-      loading="lazy"
-      title="3Stone Runner">
-    </iframe>
+<!-- ─── ABOUT ─── -->
+<section class="about" id="about">
+  <p class="section-label reveal">— Our Philosophy</p>
+  <h2 class="section-title reveal">WHO WE<br><span class="accent">ARE.</span></h2>
+  <div class="about-motto-card reveal">
+    <div class="motto-ja">石の上にも３年。</div>
+    <div class="motto-en">Perseverance builds mastery.</div>
+    <div class="motto-desc">
+      「石の上にも三年」——冷たい石の上でも座り続ければ温まる。私たちはこの言葉を胸に、妥協なくクラフトを磨き続けています。一つひとつの作品に向き合う真摯な姿勢が、3 Stone Studios の根幹です。
+    </div>
   </div>
-  <div class="reveal" style="margin-top:1.5rem; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
-    <a href="https://ryuukitanaka9-creator.github.io/3-stone-runner/game.html" target="_blank" class="btn-primary">フルスクリーンで遊ぶ →</a>
-    <span style="font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;color:rgba(245,242,235,0.35);">BROWSER GAME · 2D ACTION · INDIE</span>
-  </div>
+  <p class="about-body reveal">
+    3 Stone Studios は、映画脚本と3Dモデリングを専門とするクリエイティブスタジオです。アイデアの種から世界観の完成まで、あなたのビジョンに寄り添い、長期的なパートナーシップで最高の成果物を届けます。
+  </p>
+  <p class="about-body reveal">
+    代表：<strong>Ryuki Tanaka</strong>
+  </p>
 </section>
 
+<!-- ─── SERVICES ─── -->
 <section class="services" id="services">
   <p class="section-label reveal">— What We Do</p>
-  <h2 class="section-title reveal">OUR<br><span style="color:var(--lime)">SERVICES</span></h2>
-  <div class="services-grid reveal">
-    <div class="service-card film">
+  <h2 class="section-title reveal">OUR<br><span class="accent">SERVICES</span></h2>
+  <div class="services-grid">
+    <div class="service-card reveal">
       <span class="service-num">01</span>
       <span class="service-icon">🎬</span>
       <h3>Film Scriptwriting</h3>
@@ -566,39 +677,72 @@
         <span class="tag">リライト</span>
       </div>
     </div>
-    <div class="service-card model">
+    <div class="service-card reveal">
       <span class="service-num">02</span>
       <span class="service-icon">🧊</span>
       <h3>3D Modeling</h3>
-      <p>キャラクター、プロダクト、建築ビジュアライゼーションからゲームアセットまで。精緻なモデリングとリアルなテクスチャリングで作品に深みを与えます。</p>
+      <p>キャラクター、プロダクト、建築ビジュアライゼーションからゲームアセットまで。<strong>Blender</strong> を使用した精緻なモデリングとリアルなテクスチャリングで作品に深みを与えます。</p>
       <div class="service-tags">
         <span class="tag">キャラクター</span>
         <span class="tag">プロップ</span>
         <span class="tag">環境モデル</span>
         <span class="tag">アニメーション</span>
         <span class="tag">レンダリング</span>
+        <span class="tag">Blender</span>
       </div>
-      <a href="https://3stonestudios.booth.pm/items/7993351" target="_blank" class="btn-model-shop">モデルを購入する →</a>
-    </div>
-    <div class="service-card" style="border-top: 3px solid var(--lime);">
-      <span class="service-num">03</span>
-      <span class="service-icon">🎮</span>
-      <h3>Game Development</h3>
-      <p>Claude Codeを活用した2Dゲーム開発。インディーズ・個人プロジェクト向けに、アイデアをプレイアブルな体験へ仕上げます。</p>
-      <div class="service-tags">
-        <span class="tag">2Dアクション</span>
-        <span class="tag">ブラウザゲーム</span>
-        <span class="tag">プロトタイプ</span>
-        <span class="tag">インディーゲーム</span>
-      </div>
-      <a href="https://ryuukitanaka9-creator.github.io/3-stone-runner/game.html" target="_blank" class="btn-model-shop" style="color:var(--lime); border-color:rgba(200,255,0,0.4);">ゲームを遊ぶ →</a>
     </div>
   </div>
 </section>
 
+<!-- ─── WORKS ─── -->
+<section class="works" id="works">
+  <p class="section-label reveal">— Works</p>
+  <h2 class="section-title reveal">OUR<br><span class="accent">PROJECTS</span></h2>
+  <div class="works-grid">
+    <div class="work-card reveal">
+      <div class="work-card-body">
+        <p class="work-type">長編映画 脚本</p>
+        <h3 class="work-title">YOMI</h3>
+        <span class="work-badge">✦ Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 3STONE RUNNER ─── -->
+<section class="runner" id="runner">
+  <div class="runner-inner">
+    <div>
+      <div class="runner-badge reveal">🎮 Original Game</div>
+      <h2 class="reveal">3STONE<br><span>RUNNER</span></h2>
+      <p class="runner-desc reveal">
+        3 Stone Studios が制作したオリジナルランナーゲーム。スタジオのクリエイティビティとゲームデザインへの情熱が詰まった作品です。クリエイターとしての実力を、ぜひプレイして体感してください。
+      </p>
+      <div class="runner-note reveal">
+        ※ 現在、ゲーム制作の外部受注は行っておりません。<br>
+        　 3Stone Runner はスタジオ自社タイトルです。
+      </div>
+      <a href="game.html" class="btn btn-primary reveal" target="_blank">ゲームをプレイする →</a>
+    </div>
+    <div class="runner-visual reveal">
+      <div class="runner-visual-inner">
+        <div class="runner-monogram runner-glow-text">3S</div>
+        <div class="runner-title-preview runner-glow-text">3STONE RUNNER</div>
+        <div class="runner-sub-preview">Original Game by 3 Stone Studios</div>
+        <div class="pixel-dots">
+          <div class="pixel-dot"></div>
+          <div class="pixel-dot"></div>
+          <div class="pixel-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
 <section class="process" id="process">
   <p class="section-label reveal">— How We Work</p>
-  <h2 class="section-title reveal">THE<br><span style="color:var(--orange)">PROCESS</span></h2>
+  <h2 class="section-title reveal">THE<br><span class="accent">PROCESS</span></h2>
   <div class="process-steps">
     <div class="step reveal">
       <div class="step-num">01</div>
@@ -611,7 +755,7 @@
     <div class="step reveal">
       <div class="step-num">02</div>
       <div class="step-content">
-        <div class="step-dot" style="background:var(--coral)"></div>
+        <div class="step-dot dim-2"></div>
         <h4>コンセプト設計</h4>
         <p>世界観の構築からキャラクター設計まで、クリエイティブの骨格を作ります。</p>
       </div>
@@ -619,7 +763,7 @@
     <div class="step reveal">
       <div class="step-num">03</div>
       <div class="step-content">
-        <div class="step-dot" style="background:var(--sky)"></div>
+        <div class="step-dot dim-3"></div>
         <h4>制作・レビュー</h4>
         <p>定期的にフィードバックを取り入れながら、品質を磨き込んでいきます。</p>
       </div>
@@ -627,7 +771,7 @@
     <div class="step reveal">
       <div class="step-num">04</div>
       <div class="step-content">
-        <div class="step-dot" style="background:var(--orange)"></div>
+        <div class="step-dot dim-4"></div>
         <h4>納品</h4>
         <p>最終チェックを経て、指定フォーマットで納品。アフターサポートも対応します。</p>
       </div>
@@ -635,163 +779,172 @@
   </div>
 </section>
 
+<!-- ─── FAQ ─── -->
+<section class="faq" id="faq">
+  <p class="section-label reveal">— FAQ</p>
+  <h2 class="section-title reveal">COMMON<br><span class="accent">QUESTIONS</span></h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        脚本と3Dモデリングを同時に依頼できますか？
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        はい、両方のご依頼を歓迎します。同一スタジオが担当するため世界観・トーンが一貫しており、相乗効果が生まれます。セットでのお見積もりも可能ですので、お気軽にご相談ください。
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ゲーム制作の依頼は受けていますか？
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        現在、ゲーム制作の外部受注は行っておりません。3Stone Runner はスタジオ自社タイトルとして制作しています。ゲームアセット（3Dモデル）の単体制作については別途ご相談ください。
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        海外からの依頼・英語での対応は可能ですか？
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        はい、英語での対応も可能です。日本語・英語どちらでもお問い合わせいただけます。
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        納品後の著作権・商業利用はどうなりますか？
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        お支払い完了・納品後、制作物の著作権はクライアント様に帰属します。映画公開、配信プラットフォームへのアップロードなど、商業利用も自由にお使いいただけます。
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        支払い方法・タイミングはどうなっていますか？
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        基本的に制作開始時に50%、納品完了時に残り50%のお支払いをお願いしています。詳細はヒアリング時にご相談ください。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
 <section class="contact" id="contact">
   <div class="contact-bg-text">CONTACT</div>
   <div class="contact-inner">
     <p class="section-label reveal">— Get In Touch</p>
     <h2 class="reveal">LET'S<br><em>CREATE</em><br>TOGETHER.</h2>
-    <p class="reveal" style="color:rgba(245,242,235,0.6); line-height:1.75; margin-top:1rem; font-size:0.95rem;">
-      個人制作・学生映画・インディーゲームなど、小〜中規模のプロジェクトを歓迎します。大規模案件はお受けが難しい場合がありますが、まずはお気軽にご相談ください。
-    </p>
-    <form class="contact-form reveal"
-      action="https://formsubmit.co/ryukitanaka3@gmail.com"
-      method="POST">
-      <input type="hidden" name="_subject" value="3 Stone Studios - お問い合わせ">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="#">
+    <p class="contact-sub reveal">プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。</p>
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
       <div class="form-row">
         <div class="form-group">
           <label for="name">お名前</label>
-          <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+          <input type="text" id="name" placeholder="山田 太郎" required>
         </div>
         <div class="form-group">
           <label for="email">メールアドレス</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          <input type="email" id="email" placeholder="your@email.com" required>
         </div>
       </div>
       <div class="form-group">
         <label for="service">ご希望のサービス</label>
-        <select id="service" name="service" required>
+        <select id="service" required>
           <option value="" disabled selected>サービスを選択</option>
           <option value="script">映画脚本制作</option>
           <option value="3d">3Dモデリング</option>
-          <option value="game">ゲーム開発</option>
-          <option value="both">両方</option>
+          <option value="both">両方（脚本＋3D）</option>
           <option value="other">その他・ご相談</option>
         </select>
       </div>
       <div class="form-group">
         <label for="message">プロジェクト概要</label>
-        <textarea id="message" name="message" rows="5" placeholder="どんなプロジェクトか、スケジュール感、予算感など、お気軽にお書きください。" required></textarea>
+        <textarea id="message" rows="5" placeholder="どんなプロジェクトか、スケジュール感、予算感など、お気軽にお書きください。" required></textarea>
       </div>
       <div class="submit-row">
-        <button type="submit" class="btn-primary">送信する →</button>
-        <span class="submit-note">通常2〜3営業日以内にご返信します（大規模案件はお断りする場合があります）</span>
+        <button type="submit" class="btn btn-primary">送信する →</button>
+        <span class="submit-note">通常2営業日以内にご返信します</span>
       </div>
     </form>
   </div>
 </section>
 
+<!-- ─── FOOTER ─── -->
 <footer>
-  <a href="#" class="footer-logo">3<span>●</span>STONE STUDIOS</a>
-  <div style="display:flex;gap:1.2rem;align-items:center;">
-    <a href="https://x.com/3stonestudioz" target="_blank"
-      style="display:flex;align-items:center;gap:0.4rem;font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:rgba(245,242,235,0.4);text-decoration:none;text-transform:uppercase;transition:color 0.2s;"
-      onmouseover="this.style.color='#C8FF00'" onmouseout="this.style.color='rgba(245,242,235,0.4)'">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.626L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      X
-    </a>
-    <a href="https://instagram.com/3stonestudios" target="_blank"
-      style="display:flex;align-items:center;gap:0.4rem;font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:rgba(245,242,235,0.4);text-decoration:none;text-transform:uppercase;transition:color 0.2s;"
-      onmouseover="this.style.color='#C8FF00'" onmouseout="this.style.color='rgba(245,242,235,0.4)'">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      Instagram
-    </a>
-  </div>
+  <a href="#" class="footer-logo">
+    <span class="footer-logo-text">3<span class="dot">●</span>STONE STUDIOS</span>
+  </a>
   <div class="footer-links">
     <a href="#services">Services</a>
+    <a href="#runner">3S Runner</a>
     <a href="#process">Process</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </div>
-  <p class="footer-copy">© 2026 3 Stone Studios. Ryuki Tanaka. All rights reserved.</p>
+  <p class="footer-copy">© 2026 3 Stone Studios. All rights reserved.</p>
 </footer>
 
 <script>
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX - 8 + 'px';
-    cursor.style.top  = e.clientY - 8 + 'px';
+    cursor.style.transform = `translate(${e.clientX - 9}px, ${e.clientY - 9}px)`;
   });
   document.querySelectorAll('a, button, input, select, textarea').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
   });
 
+  const nav = document.getElementById('nav');
+  let scrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  });
+
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+  function closeNav() {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+  }
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
         setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
 
-<div id="admin-btn" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9998;">
-  <button onclick="document.getElementById('admin-modal').style.display='flex'"
-    style="background:rgba(10,10,15,0.8);border:1px solid rgba(245,242,235,0.15);color:rgba(245,242,235,0.3);font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;padding:0.5em 1em;border-radius:4px;cursor:pointer;backdrop-filter:blur(8px);">
-    ADMIN
-  </button>
-</div>
-
-<div id="admin-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,15,0.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;">
-  <div style="background:#111118;border:1px solid rgba(200,255,0,0.2);border-radius:8px;padding:2.5rem;width:320px;max-width:90vw;">
-    <p style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:#C8FF00;margin-bottom:1.5rem;letter-spacing:0.1em;">ADMIN LOGIN</p>
-    <input type="password" id="admin-pw" placeholder="パスワードを入力"
-      style="width:100%;padding:0.8em;background:rgba(245,242,235,0.05);border:1px solid rgba(245,242,235,0.15);border-radius:4px;color:#F5F2EB;font-family:'Space Mono',monospace;font-size:0.85rem;margin-bottom:1rem;box-sizing:border-box;">
-    <div style="display:flex;gap:0.75rem;">
-      <button onclick="checkAdminPw()"
-        style="flex:1;background:#C8FF00;color:#0A0A0F;font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem;padding:0.8em;border:none;border-radius:4px;cursor:pointer;">
-        ログイン
-      </button>
-      <button onclick="document.getElementById('admin-modal').style.display='none';document.getElementById('admin-pw').value='';"
-        style="padding:0.8em 1em;background:transparent;border:1px solid rgba(245,242,235,0.2);border-radius:4px;color:rgba(245,242,235,0.5);font-family:'Syne',sans-serif;font-size:0.85rem;cursor:pointer;">
-        キャンセル
-      </button>
-    </div>
-    <p id="admin-err" style="color:#FF4D6D;font-family:'Space Mono',monospace;font-size:0.7rem;margin-top:0.75rem;display:none;">パスワードが違います</p>
-  </div>
-</div>
-
-<div id="admin-panel" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,15,0.95);backdrop-filter:blur(12px);overflow-y:auto;padding:3rem;">
-  <div style="max-width:560px;margin:0 auto;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;">
-      <p style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#C8FF00;letter-spacing:0.1em;">ADMIN PANEL</p>
-      <button onclick="document.getElementById('admin-panel').style.display='none'"
-        style="background:transparent;border:1px solid rgba(245,242,235,0.2);color:rgba(245,242,235,0.5);padding:0.5em 1em;border-radius:4px;font-family:'Syne',sans-serif;cursor:pointer;">閉じる</button>
-    </div>
-    <div style="display:grid;gap:1rem;">
-      <div style="background:rgba(245,242,235,0.04);border:1px solid rgba(245,242,235,0.1);border-radius:8px;padding:1.25rem;">
-        <p style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#C8FF00;letter-spacing:0.1em;margin-bottom:0.75rem;">QUICK LINKS</p>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <a href="https://github.com/ryuukitanaka9-creator/3stone-studios" target="_blank" style="color:rgba(245,242,235,0.6);font-family:'Space Mono',monospace;font-size:0.75rem;text-decoration:none;padding:0.5em;border:1px solid rgba(245,242,235,0.1);border-radius:4px;">→ GitHub リポジトリ</a>
-          <a href="https://x.com/3stonestudioz" target="_blank" style="color:rgba(245,242,235,0.6);font-family:'Space Mono',monospace;font-size:0.75rem;text-decoration:none;padding:0.5em;border:1px solid rgba(245,242,235,0.1);border-radius:4px;">→ X (@3stonestudioz)</a>
-          <a href="https://instagram.com/3stonestudios" target="_blank" style="color:rgba(245,242,235,0.6);font-family:'Space Mono',monospace;font-size:0.75rem;text-decoration:none;padding:0.5em;border:1px solid rgba(245,242,235,0.1);border-radius:4px;">→ Instagram (@3stonestudios)</a>
-          <a href="https://ryuukitanaka9-creator.github.io/3-stone-runner/game.html" target="_blank" style="color:rgba(245,242,235,0.6);font-family:'Space Mono',monospace;font-size:0.75rem;text-decoration:none;padding:0.5em;border:1px solid rgba(245,242,235,0.1);border-radius:4px;">→ 3Stone Runner</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-function checkAdminPw() {
-  var pw = document.getElementById('admin-pw').value;
-  if (pw === '3stone2026') {
-    document.getElementById('admin-modal').style.display = 'none';
-    document.getElementById('admin-panel').style.display = 'block';
-    document.getElementById('admin-pw').value = '';
-    document.getElementById('admin-err').style.display = 'none';
-  } else {
-    document.getElementById('admin-err').style.display = 'block';
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
   }
-}
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('admin-pw').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') checkAdminPw();
-  });
-});
-</script>
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = '送信しました ✓';
+    btn.classList.add('btn-sent');
+    btn.disabled = true;
+  }
+</script>
 </body>
 </html>
