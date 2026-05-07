@@ -130,9 +130,9 @@
     opacity: 0; animation: fadeIn 1.2s .2s forwards;
   }
   .hero-logo-wrap img {
-    width: clamp(240px, 38vw, 480px); height: auto;
+    width: clamp(320px, 52vw, 640px); height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 50px rgba(110,199,45,0.45));
+    filter: drop-shadow(0 0 80px var(--green-glow-shadow));
     animation: floatLogo 5s ease-in-out infinite;
   }
   @keyframes floatLogo {
@@ -223,7 +223,7 @@
     border: 1px solid var(--muted-lo);
     transition: color .2s, border-color .2s, transform .2s;
   }
-  .btn-outline:hover { color: var(--white); border-color: rgba(240,245,236,0.5); transform: translateY(-2px); }
+  .btn-outline:hover { color: var(--white); border-color: var(--muted-hi); transform: translateY(-2px); }
 
   /* ─── MARQUEE ─── */
   .marquee-wrap {
@@ -253,7 +253,7 @@
   .accent { color: var(--green); }
 
   /* ─── ABOUT ─── */
-  .about { padding: 8rem 3rem; max-width: 760px; }
+  .about { padding: 8rem 6rem; max-width: 900px; }
   .about-motto-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -319,7 +319,7 @@
     font-family: 'Space Mono', monospace;
     font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
     padding: .3em .8em; border-radius: 4px;
-    border: 1px solid rgba(110,199,45,0.35);
+    border: 1px solid var(--border);
     color: var(--green); background: var(--green-faint);
   }
 
@@ -349,12 +349,45 @@
     font-size: 2.8rem; line-height: 1;
     letter-spacing: .04em; color: var(--white); margin-bottom: 1rem;
   }
+  .work-synopsis {
+    font-size: .85rem; line-height: 1.8; color: var(--muted);
+    margin-top: 1rem; margin-bottom: 1.2rem;
+  }
+  .work-genre-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+
   .work-badge {
     display: inline-flex; align-items: center; gap: .4em;
     font-family: 'Space Mono', monospace;
     font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
     color: var(--black); background: var(--green);
     padding: .35em 1em; border-radius: 999px;
+  }
+
+  /* ─── WORK TBD CARDS ─── */
+  .work-card--tbd { opacity: .5; pointer-events: none; }
+  .work-title--tbd { color: var(--muted); font-size: 2rem; letter-spacing: .2em; }
+  .work-badge--tbd { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+
+  /* ─── WORKS SUPPORT BANNER ─── */
+  .works-support-banner {
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green);
+    border-radius: 12px;
+    background: var(--green-faint);
+    padding: 2rem 2.5rem;
+  }
+  .works-support-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .works-support-title {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 1.1rem; color: var(--green);
+    margin-bottom: .6rem; letter-spacing: .02em;
+  }
+  .works-support-body {
+    font-size: .88rem; line-height: 1.75; color: var(--muted); max-width: 520px;
   }
 
   /* ─── 3STONE RUNNER ─── */
@@ -369,15 +402,14 @@
   }
   .runner-inner {
     position: relative; z-index: 1;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 5rem; align-items: center;
+    max-width: 760px;
   }
   .runner-badge {
     display: inline-flex; align-items: center; gap: .5rem;
     font-family: 'Space Mono', monospace;
     font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
     color: var(--green); background: var(--green-soft);
-    border: 1px solid rgba(110,199,45,0.3);
+    border: 1px solid var(--border);
     padding: .35em 1em; border-radius: 999px; margin-bottom: 1.2rem;
   }
   .runner h2 {
@@ -392,45 +424,9 @@
     font-size: .68rem; letter-spacing: .12em;
     color: var(--green-glow-shadow); text-transform: uppercase;
     background: var(--green-faint);
-    border: 1px solid rgba(110,199,45,0.15);
+    border: 1px solid var(--green-trace);
     border-radius: 6px; padding: .8rem 1.2rem; margin-bottom: 2rem;
   }
-  .runner-visual {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    aspect-ratio: 16/10;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .runner-visual-inner {
-    display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
-  }
-  .runner-glow-text {
-    color: var(--green);
-    text-shadow: 0 0 20px var(--green-glow-shadow);
-  }
-  .runner-monogram {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 4rem;
-  }
-  .runner-title-preview {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 1.6rem; letter-spacing: .08em;
-  }
-  .runner-sub-preview {
-    font-family: 'Space Mono', monospace;
-    font-size: .65rem; letter-spacing: .2em; color: var(--muted); text-transform: uppercase;
-  }
-  .pixel-dots { display: flex; gap: .5rem; }
-  .pixel-dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--green); opacity: .3;
-    animation: blink 1.2s ease-in-out infinite;
-  }
-  .pixel-dot:nth-child(2) { animation-delay: .2s; }
-  .pixel-dot:nth-child(3) { animation-delay: .4s; }
-  @keyframes blink { 0%,100%{opacity:.3} 50%{opacity:1} }
 
   /* ─── PROCESS ─── */
   .process { padding: 8rem 3rem; }
@@ -456,32 +452,6 @@
   .step-dot.dim-4 { opacity: .2; }
   .step h4 { font-weight: 900; font-size: 1rem; margin-bottom: .6rem; }
   .step p { font-size: .85rem; line-height: 1.7; color: var(--muted); }
-
-  /* ─── FAQ ─── */
-  .faq { padding: 8rem 3rem; }
-  .faq-list { margin-top: 4rem; max-width: 760px; display: flex; flex-direction: column; }
-  .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-question {
-    width: 100%; background: none; border: none;
-    color: var(--white); font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 700; font-size: .98rem; text-align: left;
-    padding: 1.5rem 0; cursor: none;
-    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-    transition: color .2s; line-height: 1.4;
-  }
-  .faq-question:hover { color: var(--green); }
-  .faq-icon {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 1.5rem; color: var(--green);
-    transition: transform .3s; flex-shrink: 0;
-  }
-  .faq-item.open .faq-icon { transform: rotate(45deg); }
-  .faq-answer {
-    font-size: .88rem; line-height: 1.85; color: var(--muted);
-    max-height: 0; overflow: hidden;
-    transition: max-height .4s ease, padding-bottom .3s;
-  }
-  .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.5rem; }
 
   /* ─── CONTACT ─── */
   .contact { padding: 8rem 3rem; position: relative; overflow: hidden; }
@@ -518,7 +488,7 @@
   }
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--green); background: rgba(110,199,45,0.05); }
+  .form-group textarea:focus { border-color: var(--green); background: var(--green-faint); }
   .form-group select option { background: #111a0a; }
   .submit-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: .5rem; }
   .submit-note {
@@ -552,6 +522,335 @@
   }
   .footer-links a:hover { color: var(--green); }
 
+  /* ─── HERO STATS ─── */
+  .hero-stats {
+    display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 1;
+    margin-top: 1rem; margin-bottom: 3rem;
+    padding: 1.5rem 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--green-faint);
+    backdrop-filter: blur(8px);
+  }
+  .hero-stat { display: flex; flex-direction: column; align-items: center; gap: .2rem; }
+  .hero-stat-value {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: .95rem; color: var(--white); letter-spacing: .05em;
+  }
+  .hero-stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; color: var(--green);
+  }
+  .hero-stat-divider {
+    width: 1px; height: 2rem; background: var(--border);
+  }
+
+  /* ─── ABOUT META ─── */
+  .about-meta {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: .8rem 2rem; margin-top: 2rem;
+    border-top: 1px solid var(--border); padding-top: 1.5rem;
+  }
+  .about-meta-item { display: flex; flex-direction: column; gap: .2rem; }
+  .about-meta-label {
+    font-family: 'Space Mono', monospace;
+    font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--green);
+  }
+  .about-meta-value { font-size: .9rem; color: var(--muted-hi); }
+  .about-meta-email {
+    font-size: .9rem; color: var(--green);
+    text-decoration: none; transition: opacity .2s;
+    font-family: 'Space Mono', monospace;
+  }
+  .about-meta-email:hover { opacity: .7; }
+
+  /* ─── JOIN US ─── */
+  .join { padding: 8rem 3rem; background: var(--dark); }
+  .join-card {
+    margin-top: 3rem; max-width: 760px;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green);
+    border-radius: 12px;
+    background: var(--card);
+    padding: 3rem;
+  }
+  .join-lead {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--green); margin-bottom: 1.2rem;
+  }
+  .join-body {
+    font-size: .95rem; line-height: 1.85; color: var(--muted);
+    margin-bottom: 1.8rem;
+  }
+  .join-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .join-cta { margin-top: 2rem; display: inline-block; }
+  .join-learn {
+    margin-top: 2rem; padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .join-learn-title {
+    font-family: 'Space Mono', monospace;
+    font-size: .62rem; letter-spacing: .25em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 1.2rem;
+  }
+  .join-learn-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+  .join-learn-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .join-learn-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: .1rem; }
+  .join-learn-name { font-weight: 700; font-size: .95rem; margin-bottom: .3rem; }
+  .join-learn-desc { font-size: .85rem; line-height: 1.7; color: var(--muted); }
+  .join-expert {
+    margin-top: 1.5rem;
+    padding: 1.5rem 2rem;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; flex-wrap: wrap;
+    max-width: 760px;
+  }
+  .join-expert-text { font-size: .9rem; line-height: 1.75; color: var(--muted); max-width: 480px; }
+
+  /* ─── NEWS ─── */
+  .news { padding: 8rem 3rem; background: var(--dark); }
+  .news-filter {
+    display: flex; gap: .5rem; flex-wrap: wrap; margin: 2rem 0 3rem;
+  }
+  .news-filter-btn {
+    font-family: 'Space Mono', monospace; font-size: .6rem;
+    letter-spacing: .15em; text-transform: uppercase;
+    padding: .4em 1.1em; border-radius: 999px;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--muted); cursor: none; transition: all .2s;
+  }
+  .news-filter-btn:hover, .news-filter-btn.active {
+    background: var(--green); color: var(--black); border-color: var(--green);
+  }
+  .news-grid { display: flex; flex-direction: column; max-width: 760px; }
+  .news-card {
+    border-bottom: 1px solid var(--border); padding: 2.2rem 0; cursor: default;
+  }
+  .news-meta { display: flex; align-items: center; gap: .8rem; margin-bottom: .7rem; flex-wrap: wrap; }
+  .news-cat {
+    font-family: 'Space Mono', monospace; font-size: .55rem;
+    letter-spacing: .15em; text-transform: uppercase;
+    color: var(--black); padding: .2em .8em; border-radius: 999px;
+  }
+  .news-cat.cat-production { background: var(--green); }
+  .news-cat.cat-daily      { background: var(--green-dark); }
+  .news-cat.cat-film       { background: #2D6EAA; }
+  .news-cat.cat-other      { background: #6B6B6B; }
+  .news-date {
+    font-family: 'Space Mono', monospace; font-size: .6rem;
+    letter-spacing: .1em; color: var(--muted);
+  }
+  .news-title {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem); line-height: 1.2;
+    margin-bottom: .7rem;
+  }
+  .news-body {
+    font-size: .9rem; line-height: 1.85; color: var(--muted); white-space: pre-wrap;
+  }
+  .news-body.collapsed {
+    display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3;
+    -webkit-box-orient: vertical; overflow: hidden; white-space: normal;
+  }
+  .news-more {
+    margin-top: .5rem; background: none; border: none;
+    font-family: 'Space Mono', monospace; font-size: .6rem;
+    letter-spacing: .1em; color: var(--green); cursor: none;
+    text-transform: uppercase; padding: 0; transition: opacity .2s;
+  }
+  .news-more:hover { opacity: .7; }
+  .news-empty { color: var(--muted); font-size: .9rem; line-height: 1.8; padding: 2rem 0; }
+
+  /* ─── ADMIN TOGGLE ─── */
+  .admin-toggle-wrap { position: fixed; bottom: 2rem; right: 2rem; z-index: 300; }
+  .admin-toggle {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--muted); font-size: 1.2rem; cursor: none;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color .2s, color .2s;
+  }
+  .admin-toggle:hover { border-color: var(--green); color: var(--green); }
+
+  /* ─── ADMIN OVERLAY ─── */
+  .admin-overlay {
+    display: none; position: fixed; inset: 0; z-index: 400;
+    background: rgba(6,8,8,0.97); overflow-y: auto; padding: 3rem;
+  }
+  .admin-overlay.open { display: block; }
+  .admin-header {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;
+  }
+  .admin-title { font-family: 'Dela Gothic One', sans-serif; font-size: 1.6rem; color: var(--green); }
+  .admin-close {
+    background: none; border: 1px solid var(--border); border-radius: 4px;
+    color: var(--muted); font-family: 'Space Mono', monospace;
+    font-size: .68rem; letter-spacing: .1em; padding: .5em 1em;
+    cursor: none; transition: color .2s, border-color .2s;
+  }
+  .admin-close:hover { color: var(--white); border-color: var(--white); }
+  .admin-login-wrap { max-width: 400px; margin: 4rem auto; }
+  .admin-login-wrap h2 { font-family: 'Dela Gothic One', sans-serif; font-size: 1.4rem; margin-bottom: 1.5rem; }
+  .admin-login-wrap input {
+    width: 100%; background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif; font-size: .95rem;
+    padding: .85em 1em; outline: none; margin-bottom: 1rem; transition: border-color .2s;
+  }
+  .admin-login-wrap input:focus { border-color: var(--green); }
+  .admin-err { color: #ff4d4d; font-size: .82rem; margin-bottom: .8rem; display: none; }
+  .admin-content { max-width: 760px; }
+  .admin-section-title {
+    font-family: 'Dela Gothic One', sans-serif; font-size: 1.2rem;
+    color: var(--green); margin-bottom: 1.5rem;
+  }
+  .admin-form { margin-bottom: 3rem; }
+  .admin-field { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+  .admin-field label {
+    font-family: 'Space Mono', monospace; font-size: .6rem;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+  }
+  .admin-field input, .admin-field select, .admin-field textarea {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif; font-size: .95rem;
+    padding: .85em 1em; outline: none; resize: vertical; transition: border-color .2s;
+  }
+  .admin-field input:focus, .admin-field select:focus, .admin-field textarea:focus { border-color: var(--green); }
+  .admin-field select option { background: var(--card); }
+  .admin-btn-row { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: .5rem; }
+  .admin-post-item {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
+  }
+  .admin-post-info { flex: 1; min-width: 0; }
+  .admin-post-title { font-weight: 700; font-size: .95rem; margin-bottom: .2rem; }
+  .admin-post-meta { font-family: 'Space Mono', monospace; font-size: .58rem; letter-spacing: .1em; color: var(--muted); }
+  .admin-post-actions { display: flex; gap: .5rem; }
+  .btn-admin {
+    font-family: 'Space Mono', monospace; font-size: .6rem; letter-spacing: .1em;
+    text-transform: uppercase; padding: .4em 1em; border-radius: 2px;
+    cursor: none; transition: opacity .2s;
+  }
+  .btn-admin-edit { background: transparent; color: var(--green); border: 1px solid var(--border); }
+  .btn-admin-del  { background: transparent; color: #ff6b6b; border: 1px solid rgba(255,107,107,0.3); }
+  .btn-admin-edit:hover, .btn-admin-del:hover { opacity: .7; }
+  .btn-admin-post {
+    background: var(--green); color: var(--black);
+    font-family: 'Space Mono', monospace; font-size: .68rem; letter-spacing: .15em;
+    text-transform: uppercase; padding: .7em 1.6em; border-radius: 2px;
+    cursor: none; border: none; transition: opacity .2s;
+  }
+  .btn-admin-post:hover { opacity: .85; }
+  .btn-admin-cancel {
+    background: transparent; color: var(--muted-hi);
+    border: 1px solid var(--muted-lo);
+    font-family: 'Space Mono', monospace; font-size: .68rem; letter-spacing: .15em;
+    text-transform: uppercase; padding: .7em 1.6em; border-radius: 2px;
+    cursor: none; transition: color .2s;
+  }
+  .btn-admin-cancel:hover { color: var(--white); }
+
+  /* ─── ADMIN ─── */
+  .admin-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9000;
+    background: rgba(6,8,8,0.98); overflow-y: auto; padding: 3rem;
+  }
+  .admin-overlay.open { display: block; }
+  .admin-nav-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .admin-logo { font-family: 'Dela Gothic One', sans-serif; font-size: 1.2rem; color: var(--white); }
+  .admin-logo span { color: var(--green); }
+  .admin-tabs { display: flex; gap: .3rem; flex-wrap: wrap; }
+  .admin-tab {
+    font-family: 'Space Mono', monospace; font-size: .6rem; letter-spacing: .12em;
+    text-transform: uppercase; padding: .45em 1.1em; border-radius: 4px;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--muted); cursor: none; transition: all .2s;
+  }
+  .admin-tab.active { background: var(--green); color: var(--black); border-color: var(--green); }
+  .admin-close-btn {
+    font-family: 'Space Mono', monospace; font-size: .6rem; letter-spacing: .1em;
+    text-transform: uppercase; background: transparent;
+    border: 1px solid var(--border); color: var(--muted);
+    padding: .45em 1em; border-radius: 4px; cursor: none; transition: all .2s;
+  }
+  .admin-close-btn:hover { color: var(--white); border-color: var(--white); }
+  .admin-body { max-width: 820px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .admin-panel-title { font-family: 'Dela Gothic One', sans-serif; font-size: 1.4rem; color: var(--green); margin-bottom: 2rem; }
+  .admin-login-box { max-width: 400px; }
+  .admin-login-box h2 { font-family: 'Dela Gothic One', sans-serif; font-size: 1.4rem; margin-bottom: .5rem; }
+  .admin-login-box p { font-size: .85rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .admin-err { color: #ff6b6b; font-size: .82rem; margin-bottom: .8rem; display: none; }
+  .a-field { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.1rem; }
+  .a-field label {
+    font-family: 'Space Mono', monospace; font-size: .6rem;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+  }
+  .a-field input, .a-field select, .a-field textarea {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif; font-size: .92rem;
+    padding: .8em 1em; outline: none; resize: vertical; transition: border-color .2s;
+  }
+  .a-field input:focus, .a-field select:focus, .a-field textarea:focus { border-color: var(--green); }
+  .a-field select option { background: var(--card); }
+  .a-btn-row { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: .5rem; }
+  .a-btn-save {
+    background: var(--green); color: var(--black); border: none;
+    font-family: 'Space Mono', monospace; font-size: .65rem; letter-spacing: .15em;
+    text-transform: uppercase; padding: .65em 1.6em; border-radius: 2px; cursor: none; transition: opacity .2s;
+  }
+  .a-btn-save:hover { opacity: .85; }
+  .a-btn-cancel {
+    background: transparent; color: var(--muted-hi); border: 1px solid var(--muted-lo);
+    font-family: 'Space Mono', monospace; font-size: .65rem; letter-spacing: .15em;
+    text-transform: uppercase; padding: .65em 1.6em; border-radius: 2px; cursor: none; transition: color .2s;
+  }
+  .a-btn-cancel:hover { color: var(--white); }
+  .a-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2rem; margin-bottom: 1.5rem; }
+  .a-card-title { font-family: 'Dela Gothic One', sans-serif; font-size: 1rem; color: var(--green); margin-bottom: 1.5rem; }
+  .a-post-item {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
+  }
+  .a-post-info { flex: 1; }
+  .a-post-title { font-weight: 700; font-size: .92rem; margin-bottom: .2rem; }
+  .a-post-meta { font-family: 'Space Mono', monospace; font-size: .58rem; letter-spacing: .08em; color: var(--muted); }
+  .a-post-actions { display: flex; gap: .4rem; }
+  .a-btn-edit {
+    background: transparent; color: var(--green); border: 1px solid var(--border);
+    font-family: 'Space Mono', monospace; font-size: .58rem; letter-spacing: .08em;
+    text-transform: uppercase; padding: .3em .9em; border-radius: 2px; cursor: none;
+  }
+  .a-btn-del {
+    background: transparent; color: #ff6b6b; border: 1px solid rgba(255,107,107,.3);
+    font-family: 'Space Mono', monospace; font-size: .58rem; letter-spacing: .08em;
+    text-transform: uppercase; padding: .3em .9em; border-radius: 2px; cursor: none;
+  }
+  .save-ok { font-family: 'Space Mono', monospace; font-size: .6rem; color: var(--green); margin-left: .8rem; opacity: 0; transition: opacity .3s; }
+  .save-ok.show { opacity: 1; }
+
+  /* ─── SNS ─── */
+  .sns-links { display: flex; gap: 1rem; align-items: center; }
+  .sns-link {
+    display: inline-flex; align-items: center; gap: .4em;
+    font-family: 'Space Mono', monospace;
+    font-size: .62rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color .2s;
+  }
+  .sns-link:hover { color: var(--green); }
+
   /* ─── SCROLL REVEAL ─── */
   .reveal { opacity: 0; transform: translateY(36px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
@@ -576,7 +875,8 @@
     .nav-links.open { opacity: 1; pointer-events: all; }
     .nav-links a { font-size: 1rem; letter-spacing: 0.22em; }
     .hero, .about, .services, .works, .runner,
-    .process, .faq, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .process, .news, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .admin-overlay { padding: 1.5rem; }
     .form-row { grid-template-columns: 1fr; }
     footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
   }
@@ -593,6 +893,8 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#works">Works</a></li>
     <li><a href="#runner">3S Runner</a></li>
+    <li><a href="#join">Join Us</a></li>
+    <li><a href="#news">News</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="メニューを開く">
@@ -611,11 +913,33 @@
     <span class="accent">WE</span>&nbsp;<span>BUILD</span><br><span class="accent">WORLDS.</span>
   </h1>
   <p class="hero-motto">石の上にも３年。</p>
-  <p class="hero-sub">映画脚本から3Dモデリングまで。あなたのビジョンを現実に変える創造スタジオ。</p>
+  <p class="hero-sub" id="hero-sub-text">映画脚本から3Dモデリングまで。あなたのビジョンを現実に変える創造スタジオ。</p>
   <div class="hero-cta">
     <a href="#contact" class="btn btn-primary">仕事を依頼する</a>
     <a href="#services" class="btn btn-outline">サービスを見る</a>
   </div>
+  <div class="hero-stats reveal">
+    <div class="hero-stat">
+      <span class="hero-stat-value">2025.09.01</span>
+      <span class="hero-stat-label">設立</span>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">東京</span>
+      <span class="hero-stat-label">拠点</span>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">大学生 2名+</span>
+      <span class="hero-stat-label">チーム</span>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">Ryuki Tanaka</span>
+      <span class="hero-stat-label">代表 / 大学3年</span>
+    </div>
+  </div>
+
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     <span>Scroll</span>
@@ -651,12 +975,50 @@
       「石の上にも三年」——冷たい石の上でも座り続ければ温まる。私たちはこの言葉を胸に、妥協なくクラフトを磨き続けています。一つひとつの作品に向き合う真摯な姿勢が、3 Stone Studios の根幹です。
     </div>
   </div>
-  <p class="about-body reveal">
-    3 Stone Studios は、映画脚本と3Dモデリングを専門とするクリエイティブスタジオです。アイデアの種から世界観の完成まで、あなたのビジョンに寄り添い、長期的なパートナーシップで最高の成果物を届けます。
+  <p class="about-body reveal" id="about-body-1">
+    3 Stone Studios は、映画脚本と3Dモデリングを専門とするクリエイティブスタジオです。代表の Ryuki Tanaka は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。
   </p>
-  <p class="about-body reveal">
-    代表：<strong>Ryuki Tanaka</strong>
+  <p class="about-body reveal" id="about-body-2">
+    このスタジオは単なる制作スタジオではありません。大学生のうちに本物の作品をつくり、映画業界と繋がりを持てる場所を作りたい——その想いから生まれました。映画に情熱を持つ人たちが集まり、共に業界への扉を開く拠点です。
   </p>
+  <div class="about-meta reveal">
+    <div class="about-meta-item">
+      <span class="about-meta-label">代表</span>
+      <span class="about-meta-value">Ryuki Tanaka（大学3年）</span>
+    </div>
+    <div class="about-meta-item">
+      <span class="about-meta-label">設立</span>
+      <span class="about-meta-value">2025年9月1日</span>
+    </div>
+    <div class="about-meta-item">
+      <span class="about-meta-label">拠点</span>
+      <span class="about-meta-value">東京</span>
+    </div>
+    <div class="about-meta-item">
+      <span class="about-meta-label">メンバー</span>
+      <span class="about-meta-value">大学生 2名+で運営</span>
+    </div>
+    <div class="about-meta-item">
+      <span class="about-meta-label">メール</span>
+      <a href="mailto:ryukitanaka3@gmail.com" class="about-meta-email">ryukitanaka3@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NEWS ─── -->
+<section class="news" id="news">
+  <p class="section-label reveal">— Studio News</p>
+  <h2 class="section-title reveal">NEWS &amp;<br><span class="accent">UPDATES</span></h2>
+  <div class="news-filter reveal">
+    <button class="news-filter-btn active" data-cat="all">All</button>
+    <button class="news-filter-btn" data-cat="production">制作</button>
+    <button class="news-filter-btn" data-cat="daily">日常</button>
+    <button class="news-filter-btn" data-cat="film">映画</button>
+    <button class="news-filter-btn" data-cat="other">その他</button>
+  </div>
+  <div class="news-grid" id="newsGrid">
+    <p class="news-empty" id="newsEmpty">まだ投稿がありません。</p>
+  </div>
 </section>
 
 <!-- ─── SERVICES ─── -->
@@ -668,12 +1030,12 @@
       <span class="service-num">01</span>
       <span class="service-icon">🎬</span>
       <h3>Film Scriptwriting</h3>
-      <p>長編・短編映画、ドラマ、アニメシリーズまで。キャラクターに命を吹き込み、観客を釘付けにするストーリーを構築します。</p>
+      <p>「こんな映画を作りたい」というアイデアを脚本に落とし込みます。長編・短編・短編アニメまで、まずはざっくりしたイメージだけでも大丈夫です。</p>
       <div class="service-tags">
         <span class="tag">長編映画</span>
         <span class="tag">短編映画</span>
         <span class="tag">アニメ脚本</span>
-        <span class="tag">ドラマシリーズ</span>
+        <span class="tag">ストーリー相談</span>
         <span class="tag">リライト</span>
       </div>
     </div>
@@ -681,7 +1043,7 @@
       <span class="service-num">02</span>
       <span class="service-icon">🧊</span>
       <h3>3D Modeling</h3>
-      <p>キャラクター、プロダクト、建築ビジュアライゼーションからゲームアセットまで。<strong>Blender</strong> を使用した精緻なモデリングとリアルなテクスチャリングで作品に深みを与えます。</p>
+      <p>キャラクターやプロップ、背景など、イメージを3Dで形にします。<strong>Blender</strong> を使用。「こんな感じのもの」という参考画像だけでも気軽にご相談ください。</p>
       <div class="service-tags">
         <span class="tag">キャラクター</span>
         <span class="tag">プロップ</span>
@@ -703,8 +1065,38 @@
       <div class="work-card-body">
         <p class="work-type">長編映画 脚本</p>
         <h3 class="work-title">YOMI</h3>
-        <span class="work-badge">✦ Coming Soon</span>
+        <span class="work-badge" id="yomi-status">✦ 脚本執筆中</span>
+        <p class="work-synopsis" id="yomi-synopsis">高校生の久坂秋は、寂れた旧神社で謎の研究員を目撃する。その夜を境に、町では死体遺棄事件、大量の鳥の死骸、発電所事故が相次ぎ、秋は幼馴染たちと共に町の地下に隠された"黄泉へ繋がる門"の存在へ近づいていく。</p>
+        <div class="work-genre-tags">
+          <span class="tag">神話</span>
+          <span class="tag">SF</span>
+          <span class="tag">ジュブナイルホラー</span>
+          <span class="tag">長編映画</span>
+        </div>
       </div>
+    </div>
+    <div class="work-card work-card--tbd reveal">
+      <div class="work-card-body">
+        <p class="work-type">脚本</p>
+        <h3 class="work-title work-title--tbd">TBD</h3>
+        <span class="work-badge work-badge--tbd">準備中</span>
+      </div>
+    </div>
+    <div class="work-card work-card--tbd reveal">
+      <div class="work-card-body">
+        <p class="work-type">脚本</p>
+        <h3 class="work-title work-title--tbd">TBD</h3>
+        <span class="work-badge work-badge--tbd">準備中</span>
+      </div>
+    </div>
+  </div>
+  <div class="works-support-banner reveal">
+    <div class="works-support-inner">
+      <div>
+        <p class="works-support-title">🎬 脚本の映画化に向けて、支援を募集しています</p>
+        <p class="works-support-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
+      </div>
+      <a href="#contact" class="btn btn-primary">支援・協力を申し出る →</a>
     </div>
   </div>
 </section>
@@ -724,18 +1116,6 @@
       </div>
       <a href="game.html" class="btn btn-primary reveal" target="_blank">ゲームをプレイする →</a>
     </div>
-    <div class="runner-visual reveal">
-      <div class="runner-visual-inner">
-        <div class="runner-monogram runner-glow-text">3S</div>
-        <div class="runner-title-preview runner-glow-text">3STONE RUNNER</div>
-        <div class="runner-sub-preview">Original Game by 3 Stone Studios</div>
-        <div class="pixel-dots">
-          <div class="pixel-dot"></div>
-          <div class="pixel-dot"></div>
-          <div class="pixel-dot"></div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -748,87 +1128,79 @@
       <div class="step-num">01</div>
       <div class="step-content">
         <div class="step-dot"></div>
-        <h4>ヒアリング</h4>
-        <p>プロジェクトのビジョン、ゴール、予算、スケジュールを徹底的に把握します。</p>
+        <h4>まず話しましょう</h4>
+        <p>「こんなのやりたい」程度でOK。DMでもメールでも、気軽に声をかけてください。</p>
       </div>
     </div>
     <div class="step reveal">
       <div class="step-num">02</div>
       <div class="step-content">
         <div class="step-dot dim-2"></div>
-        <h4>コンセプト設計</h4>
-        <p>世界観の構築からキャラクター設計まで、クリエイティブの骨格を作ります。</p>
+        <h4>方向性を固める</h4>
+        <p>一緒にイメージを具体化します。世界観・キャラクター・トーンなど、ざっくりでも大丈夫。</p>
       </div>
     </div>
     <div class="step reveal">
       <div class="step-num">03</div>
       <div class="step-content">
         <div class="step-dot dim-3"></div>
-        <h4>制作・レビュー</h4>
-        <p>定期的にフィードバックを取り入れながら、品質を磨き込んでいきます。</p>
+        <h4>制作しながら確認</h4>
+        <p>こまめに共有しながら進めます。「違う」と思ったら遠慮なく言ってください。</p>
       </div>
     </div>
     <div class="step reveal">
       <div class="step-num">04</div>
       <div class="step-content">
         <div class="step-dot dim-4"></div>
-        <h4>納品</h4>
-        <p>最終チェックを経て、指定フォーマットで納品。アフターサポートも対応します。</p>
+        <h4>完成・お渡し</h4>
+        <p>完成したらご指定の形式でお渡しします。その後も気になることがあれば相談歓迎。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── FAQ ─── -->
-<section class="faq" id="faq">
-  <p class="section-label reveal">— FAQ</p>
-  <h2 class="section-title reveal">COMMON<br><span class="accent">QUESTIONS</span></h2>
-  <div class="faq-list reveal">
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        脚本と3Dモデリングを同時に依頼できますか？
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        はい、両方のご依頼を歓迎します。同一スタジオが担当するため世界観・トーンが一貫しており、相乗効果が生まれます。セットでのお見積もりも可能ですので、お気軽にご相談ください。
+
+<!-- ─── JOIN US ─── -->
+<section class="join" id="join">
+  <p class="section-label reveal">— Join The Crew</p>
+  <h2 class="section-title reveal">一緒に<br><span class="accent">作ろう。</span></h2>
+  <div class="join-card reveal">
+    <p class="join-lead">映画が好きな大学生、集まれ。</p>
+    <p class="join-body">
+      <span id="join-body-text">3 Stone Studios は現在、一緒に活動してくれる大学生クルーを募集しています。脚本、3D、映像編集、音楽、なんでもOK。「映画に関わりたい」という熱量があれば、経験は問いません。</span>
+    </p>
+    <div class="join-tags">
+      <span class="tag">脚本</span>
+      <span class="tag">3Dモデリング</span>
+      <span class="tag">映像編集</span>
+      <span class="tag">音楽・音響</span>
+      <span class="tag">撮影</span>
+      <span class="tag">その他</span>
+    </div>
+    <div class="join-learn">
+      <p class="join-learn-title">参加すると学べること</p>
+      <div class="join-learn-grid">
+        <div class="join-learn-item">
+          <span class="join-learn-icon">🧊</span>
+          <div>
+            <p class="join-learn-name">Blender</p>
+            <p class="join-learn-desc">3Dモデリングの基礎から実践まで。一緒に手を動かしながら学べます。</p>
+          </div>
+        </div>
+        <div class="join-learn-item">
+          <span class="join-learn-icon">🎬</span>
+          <div>
+            <p class="join-learn-name">ハリウッド式脚本術</p>
+            <p class="join-learn-desc">シド・フィールド形式をベースに、実際に使われるフォーマットで脚本を書く方法を共有します。</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        ゲーム制作の依頼は受けていますか？
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        現在、ゲーム制作の外部受注は行っておりません。3Stone Runner はスタジオ自社タイトルとして制作しています。ゲームアセット（3Dモデル）の単体制作については別途ご相談ください。
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        海外からの依頼・英語での対応は可能ですか？
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        はい、英語での対応も可能です。日本語・英語どちらでもお問い合わせいただけます。
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        納品後の著作権・商業利用はどうなりますか？
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        お支払い完了・納品後、制作物の著作権はクライアント様に帰属します。映画公開、配信プラットフォームへのアップロードなど、商業利用も自由にお使いいただけます。
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        支払い方法・タイミングはどうなっていますか？
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        基本的に制作開始時に50%、納品完了時に残り50%のお支払いをお願いしています。詳細はヒアリング時にご相談ください。
-      </div>
-    </div>
+    <a href="#contact" class="btn btn-primary join-cta">応募・相談する →</a>
+  </div>
+  <div class="join-expert reveal">
+    <p class="join-expert-text">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。</p>
+    <a href="#contact" class="btn btn-outline">知識をシェアする →</a>
   </div>
 </section>
 
@@ -839,7 +1211,7 @@
     <p class="section-label reveal">— Get In Touch</p>
     <h2 class="reveal">LET'S<br><em>CREATE</em><br>TOGETHER.</h2>
     <p class="contact-sub reveal">プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。</p>
-    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)" id="contactForm">
       <div class="form-row">
         <div class="form-group">
           <label for="name">お名前</label>
@@ -856,8 +1228,9 @@
           <option value="" disabled selected>サービスを選択</option>
           <option value="script">映画脚本制作</option>
           <option value="3d">3Dモデリング</option>
-          <option value="both">両方（脚本＋3D）</option>
+          <option value="film-support">脚本の映画化支援・制作協力</option>
           <option value="other">その他・ご相談</option>
+          <option value="crew">クルー応募（一緒に作りたい）</option>
         </select>
       </div>
       <div class="form-group">
@@ -872,6 +1245,94 @@
   </div>
 </section>
 
+<!-- ─── ADMIN OVERLAY ─── -->
+<div class="admin-overlay" id="adminOverlay">
+  <!-- LOGIN -->
+  <div id="aLogin">
+    <div class="admin-nav-bar">
+      <span class="admin-logo">3<span>●</span>SS Admin</span>
+      <button class="admin-close-btn" id="aCloseBtn">✕ 閉じる</button>
+    </div>
+    <div class="admin-login-box">
+      <h2>管理者ログイン</h2>
+      <p>このページは管理者専用です</p>
+      <p class="admin-err" id="aErr">パスワードが違います</p>
+      <div class="a-field">
+        <label>Password</label>
+        <input type="password" id="aPass" placeholder="パスワードを入力">
+      </div>
+      <div class="a-btn-row">
+        <button class="a-btn-save" id="aLoginBtn">ログイン</button>
+        <button class="a-btn-cancel" id="aCancelBtn">閉じる</button>
+      </div>
+    </div>
+  </div>
+  <!-- PANEL -->
+  <div id="aPanel" style="display:none">
+    <div class="admin-nav-bar">
+      <span class="admin-logo">3<span>●</span>SS Admin</span>
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-atab="news">ニュース</button>
+        <button class="admin-tab" data-atab="content">サイト内容</button>
+      </div>
+      <button class="admin-close-btn" id="aPanelClose">✕ 閉じる</button>
+    </div>
+    <div class="admin-body">
+      <!-- NEWS TAB -->
+      <div class="tab-panel active" id="atab-news">
+        <p class="admin-panel-title">ニュース管理</p>
+        <div class="a-card">
+          <p class="a-card-title" id="aFormTitle">新しい記事を書く</p>
+          <input type="hidden" id="aEditId">
+          <div class="a-field"><label>タイトル</label><input type="text" id="aPostTitle" placeholder="記事のタイトル"></div>
+          <div class="a-field">
+            <label>カテゴリ</label>
+            <select id="aPostCat">
+              <option value="production">制作</option>
+              <option value="daily">日常</option>
+              <option value="film">映画</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          <div class="a-field"><label>本文</label><textarea id="aPostBody" rows="7" placeholder="内容を書いてください…"></textarea></div>
+          <div class="a-btn-row">
+            <button class="a-btn-save" id="aSavePost">投稿する</button>
+            <button class="a-btn-cancel" id="aResetPost">キャンセル</button>
+          </div>
+        </div>
+        <p class="admin-panel-title" style="font-size:1.1rem">投稿一覧</p>
+        <div id="aPostList"></div>
+      </div>
+      <!-- CONTENT TAB -->
+      <div class="tab-panel" id="atab-content">
+        <p class="admin-panel-title">サイト内容の編集</p>
+        <div class="a-card">
+          <p class="a-card-title">About — スタジオ紹介文</p>
+          <div class="a-field"><label>1段落目</label><textarea id="ca-about1" rows="3"></textarea></div>
+          <div class="a-field"><label>2段落目</label><textarea id="ca-about2" rows="3"></textarea></div>
+          <div class="a-btn-row"><button class="a-btn-save" data-asave="about">保存する</button><span class="save-ok" id="sok-about">保存しました ✓</span></div>
+        </div>
+        <div class="a-card">
+          <p class="a-card-title">YOMI — あらすじ・ステータス</p>
+          <div class="a-field"><label>あらすじ</label><textarea id="ca-yomi" rows="4"></textarea></div>
+          <div class="a-field"><label>ステータス（バッジ）</label><input type="text" id="ca-yomi-status"></div>
+          <div class="a-btn-row"><button class="a-btn-save" data-asave="yomi">保存する</button><span class="save-ok" id="sok-yomi">保存しました ✓</span></div>
+        </div>
+        <div class="a-card">
+          <p class="a-card-title">Hero — サブテキスト</p>
+          <div class="a-field"><label>説明文</label><input type="text" id="ca-hero-sub"></div>
+          <div class="a-btn-row"><button class="a-btn-save" data-asave="hero">保存する</button><span class="save-ok" id="sok-hero">保存しました ✓</span></div>
+        </div>
+        <div class="a-card">
+          <p class="a-card-title">Join Us — クルー募集文</p>
+          <div class="a-field"><label>本文</label><textarea id="ca-join" rows="3"></textarea></div>
+          <div class="a-btn-row"><button class="a-btn-save" data-asave="join">保存する</button><span class="save-ok" id="sok-join">保存しました ✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ─── FOOTER ─── -->
 <footer>
   <a href="#" class="footer-logo">
@@ -880,9 +1341,19 @@
   <div class="footer-links">
     <a href="#services">Services</a>
     <a href="#runner">3S Runner</a>
-    <a href="#process">Process</a>
-    <a href="#faq">FAQ</a>
+    <a href="#join">Join Us</a>
+    <a href="#news">News</a>
     <a href="#contact">Contact</a>
+  </div>
+  <div class="sns-links">
+    <a href="https://www.instagram.com/3stonestudios" class="sns-link" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://x.com/3stonestudioz" class="sns-link" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      X
+    </a>
   </div>
   <p class="footer-copy">© 2026 3 Stone Studios. All rights reserved.</p>
 </footer>
@@ -931,17 +1402,240 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+  /* ─── NEWS ─── */
+  const NEWS_KEY = '3ss_news';
+  const CAT_LABELS = { production:'制作', daily:'日常', film:'映画', other:'その他' };
+  let newsFilter = 'all';
+
+  function getPosts() { return JSON.parse(localStorage.getItem(NEWS_KEY) || '[]'); }
+  function fmtDate(iso) {
+    const d = new Date(iso);
+    return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
   }
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function renderNews() {
+    const grid = document.getElementById('newsGrid');
+    const empty = document.getElementById('newsEmpty');
+    grid.querySelectorAll('.news-card').forEach(el => el.remove());
+    const posts = getPosts()
+      .filter(p => newsFilter === 'all' || p.cat === newsFilter)
+      .sort((a,b) => new Date(b.date) - new Date(a.date));
+    empty.style.display = posts.length ? 'none' : 'block';
+    posts.forEach(p => {
+      const isLong = p.body.length > 200;
+      const card = document.createElement('article');
+      card.className = 'news-card';
+      card.innerHTML = `
+        <div class="news-meta">
+          <span class="news-cat cat-${p.cat}">${CAT_LABELS[p.cat]}</span>
+          <span class="news-date">${fmtDate(p.date)}</span>
+        </div>
+        <h3 class="news-title">${esc(p.title)}</h3>
+        <p class="news-body${isLong?' collapsed':''}" id="nb-${p.id}">${esc(p.body)}</p>
+        ${isLong?`<button class="news-more" data-id="${p.id}">続きを読む →</button>`:''}
+      `;
+      grid.appendChild(card);
+    });
+    grid.querySelectorAll('.news-more').forEach(btn => {
+      btn.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      btn.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      btn.addEventListener('click', () => {
+        const el = document.getElementById('nb-' + btn.dataset.id);
+        const collapsed = el.classList.toggle('collapsed');
+        btn.textContent = collapsed ? '続きを読む →' : '閉じる ↑';
+      });
+    });
+  }
+
+  document.querySelectorAll('.news-filter-btn').forEach(btn => {
+    btn.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    btn.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    btn.addEventListener('click', () => {
+      newsFilter = btn.dataset.cat;
+      document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderNews();
+    });
+  });
+
+  renderNews();
+
+  /* ─── ADMIN ─── */
+  const ADMIN_PASS = '3stone0901';
+  const CONTENT_KEY = '3ss_content';
+  const CONTENT_DEFAULTS = {
+    about1: '3 Stone Studios は、映画脚本と3Dモデリングを専門とするクリエイティブスタジオです。代表の Ryuki Tanaka は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。',
+    about2: 'このスタジオは単なる制作スタジオではありません。大学生のうちに本物の作品をつくり、映画業界と繋がりを持てる場所を作りたい——その想いから生まれました。映画に情熱を持つ人たちが集まり、共に業界への扉を開く拠点です。',
+    yomi: '高校生の久坂秋は、寂れた旧神社で謎の研究員を目撃する。その夜を境に、町では死体遺棄事件、大量の鳥の死骸、発電所事故が相次ぎ、秋は幼馴染たちと共に町の地下に隠された“黄泉へ繋がる門”の存在へ近づいていく。',
+    yomiStatus: '脚本執筆中',
+    heroSub: '映画脚本から3Dモデリングまで。あなたのビジョンを現実に変える創造スタジオ。',
+    join: '3 Stone Studios は現在、一緒に活動してくれる大学生クルーを募集しています。脚本、3D、映像編集、音楽、なんでもOK。「映画に関わりたい」という熱量があれば、経験は問いません。',
+  };
+  let aLoggedIn = false;
+
+  function getContent() { return { ...CONTENT_DEFAULTS, ...JSON.parse(localStorage.getItem(CONTENT_KEY) || '{}') }; }
+  function saveContent(c) { localStorage.setItem(CONTENT_KEY, JSON.stringify(c)); }
+
+  function openAdminOverlay() {
+    document.getElementById('adminOverlay').classList.add('open');
+    if (aLoggedIn) { showAPanel(); } else { showALogin(); }
+  }
+  function closeAdminOverlay() {
+    document.getElementById('adminOverlay').classList.remove('open');
+    if (!aLoggedIn) history.replaceState(null, '', '/');
+  }
+  function showALogin() {
+    document.getElementById('aLogin').style.display = 'block';
+    document.getElementById('aPanel').style.display = 'none';
+  }
+  function showAPanel() {
+    document.getElementById('aLogin').style.display = 'none';
+    document.getElementById('aPanel').style.display = 'block';
+    loadContentFields();
+    renderAPostList();
+  }
+  function doALogin() {
+    if (document.getElementById('aPass').value === ADMIN_PASS) {
+      aLoggedIn = true;
+      document.getElementById('aErr').style.display = 'none';
+      document.getElementById('aPass').value = '';
+      showAPanel();
+    } else {
+      document.getElementById('aErr').style.display = 'block';
+    }
+  }
+
+  document.getElementById('aLoginBtn').addEventListener('click', doALogin);
+  document.getElementById('aPass').addEventListener('keydown', e => { if (e.key === 'Enter') doALogin(); });
+  document.getElementById('aCloseBtn').addEventListener('click', closeAdminOverlay);
+  document.getElementById('aCancelBtn').addEventListener('click', closeAdminOverlay);
+  document.getElementById('aPanelClose').addEventListener('click', closeAdminOverlay);
+
+  document.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('atab-' + tab.dataset.atab).classList.add('active');
+    });
+  });
+
+  // NEWS CRUD
+  document.getElementById('aSavePost').addEventListener('click', () => {
+    const title = document.getElementById('aPostTitle').value.trim();
+    const cat   = document.getElementById('aPostCat').value;
+    const body  = document.getElementById('aPostBody').value.trim();
+    const editId = document.getElementById('aEditId').value;
+    if (!title || !body) { alert('タイトルと本文を入力してください'); return; }
+    const posts = getPosts();
+    if (editId) {
+      const idx = posts.findIndex(p => p.id === editId);
+      if (idx !== -1) { posts[idx].title = title; posts[idx].cat = cat; posts[idx].body = body; }
+    } else {
+      posts.push({ id: Date.now().toString(), title, cat, body, date: new Date().toISOString() });
+    }
+    setPosts(posts); resetAPostForm(); renderAPostList(); renderNews();
+  });
+  document.getElementById('aResetPost').addEventListener('click', resetAPostForm);
+
+  function resetAPostForm() {
+    document.getElementById('aEditId').value = '';
+    document.getElementById('aPostTitle').value = '';
+    document.getElementById('aPostCat').value = 'production';
+    document.getElementById('aPostBody').value = '';
+    document.getElementById('aFormTitle').textContent = '新しい記事を書く';
+  }
+  function renderAPostList() {
+    const list = document.getElementById('aPostList');
+    const posts = [...getPosts()].sort((a,b) => new Date(b.date)-new Date(a.date));
+    if (!posts.length) { list.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:.8rem 0">まだ投稿がありません</p>'; return; }
+    list.innerHTML = posts.map(p => `
+      <div class="a-post-item">
+        <div class="a-post-info">
+          <div class="a-post-title">${esc(p.title)}</div>
+          <div class="a-post-meta">${CAT_LABELS[p.cat]} · ${fmtDate(p.date)}</div>
+        </div>
+        <div class="a-post-actions">
+          <button class="a-btn-edit" data-id="${p.id}">編集</button>
+          <button class="a-btn-del"  data-id="${p.id}">削除</button>
+        </div>
+      </div>`).join('');
+    list.querySelectorAll('.a-btn-edit').forEach(btn => btn.addEventListener('click', () => {
+      const p = getPosts().find(p => p.id === btn.dataset.id); if (!p) return;
+      document.getElementById('aEditId').value = p.id;
+      document.getElementById('aPostTitle').value = p.title;
+      document.getElementById('aPostCat').value = p.cat;
+      document.getElementById('aPostBody').value = p.body;
+      document.getElementById('aFormTitle').textContent = '記事を編集';
+      document.getElementById('adminOverlay').scrollTop = 0;
+    }));
+    list.querySelectorAll('.a-btn-del').forEach(btn => btn.addEventListener('click', () => {
+      if (!confirm('削除しますか？')) return;
+      setPosts(getPosts().filter(p => p.id !== btn.dataset.id));
+      renderAPostList(); renderNews();
+    }));
+  }
+
+  // CONTENT EDIT
+  function loadContentFields() {
+    const c = getContent();
+    document.getElementById('ca-about1').value = c.about1;
+    document.getElementById('ca-about2').value = c.about2;
+    document.getElementById('ca-yomi').value = c.yomi;
+    document.getElementById('ca-yomi-status').value = c.yomiStatus;
+    document.getElementById('ca-hero-sub').value = c.heroSub;
+    document.getElementById('ca-join').value = c.join;
+  }
+  document.querySelectorAll('[data-asave]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.asave;
+      const c = getContent();
+      if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; c.about2 = document.getElementById('ca-about2').value; }
+      else if (key === 'yomi') { c.yomi = document.getElementById('ca-yomi').value; c.yomiStatus = document.getElementById('ca-yomi-status').value; }
+      else if (key === 'hero') { c.heroSub = document.getElementById('ca-hero-sub').value; }
+      else if (key === 'join') { c.join = document.getElementById('ca-join').value; }
+      saveContent(c); applyContent();
+      const ok = document.getElementById('sok-' + key);
+      ok.classList.add('show'); setTimeout(() => ok.classList.remove('show'), 2000);
+    });
+  });
+
+  // URL trigger: /?admin or /index.html?admin
+  if (window.location.hash === '#admin') { openAdminOverlay(); }
+
+  /* ─── SITE CONTENT FROM ADMIN ─── */
+  (function applyContent() {
+    const DEFAULTS = {
+      about1: '3 Stone Studios は、映画脚本と3Dモデリングを専門とするクリエイティブスタジオです。代表の Ryuki Tanaka は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。',
+      about2: 'このスタジオは単なる制作スタジオではありません。大学生のうちに本物の作品をつくり、映画業界と繋がりを持てる場所を作りたい——その想いから生まれました。映画に情熱を持つ人たちが集まり、共に業界への扉を開く拠点です。',
+      yomi: '高校生の久坂秋は、寂れた旧神社で謎の研究員を目撃する。その夜を境に、町では死体遺棄事件、大量の鳥の死骸、発電所事故が相次ぎ、秋は幼馴染たちと共に町の地下に隠された"黄泉へ繋がる門"の存在へ近づいていく。',
+      yomiStatus: '脚本執筆中',
+      heroSub: '映画脚本から3Dモデリングまで。あなたのビジョンを現実に変える創造スタジオ。',
+      join: '3 Stone Studios は現在、一緒に活動してくれる大学生クルーを募集しています。脚本、3D、映像編集、音楽、なんでもOK。「映画に関わりたい」という熱量があれば、経験は問いません。',
+    };
+    const c = { ...DEFAULTS, ...JSON.parse(localStorage.getItem('3ss_content') || '{}') };
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    set('about-body-1', c.about1);
+    set('about-body-2', c.about2);
+    set('yomi-synopsis', c.yomi);
+    set('yomi-status', '✦ ' + c.yomiStatus);
+    set('hero-sub-text', c.heroSub);
+    set('join-body-text', c.join);
+  })();
 
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.textContent = '送信しました ✓';
+    const form = e.target;
+    const name    = form.querySelector('#name').value;
+    const email   = form.querySelector('#email').value;
+    const service = form.querySelector('#service').value;
+    const message = form.querySelector('#message').value;
+    const subject = encodeURIComponent(`【3SS お問い合わせ】${service} — ${name}`);
+    const body    = encodeURIComponent(`お名前：${name}\nメール：${email}\nご用件：${service}\n\n${message}`);
+    window.location.href = `mailto:ryukitanaka3@gmail.com?subject=${subject}&body=${body}`;
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'メールアプリを開いています…';
     btn.classList.add('btn-sent');
     btn.disabled = true;
   }
