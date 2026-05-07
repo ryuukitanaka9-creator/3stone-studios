@@ -1318,9 +1318,14 @@
   let newsFilter = 'all';
 
   function getPosts() { return JSON.parse(localStorage.getItem(NEWS_KEY) || '[]'); }
+  function setPosts(posts) { localStorage.setItem(NEWS_KEY, JSON.stringify(posts)); }
   function fmtDate(iso) {
     const d = new Date(iso);
     return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+  }
+  function fmtDateTime(iso) {
+    const d = new Date(iso);
+    return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
   }
   function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
@@ -1464,7 +1469,7 @@
       <div class="a-post-item">
         <div class="a-post-info">
           <div class="a-post-title">${esc(p.title)}</div>
-          <div class="a-post-meta">${CAT_LABELS[p.cat]} · ${fmtDate(p.date)}</div>
+          <div class="a-post-meta">${CAT_LABELS[p.cat]} · ${fmtDateTime(p.date)}</div>
         </div>
         <div class="a-post-actions">
           <button class="a-btn-edit" data-id="${p.id}">編集</button>
