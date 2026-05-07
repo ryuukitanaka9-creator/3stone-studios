@@ -1268,7 +1268,7 @@
   <p class="footer-copy">© 2026 3 Stone Studios. All rights reserved.</p>
 </footer>
 
-<script>
+<script type="module">
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.transform = `translate(${e.clientX - 9}px, ${e.clientY - 9}px)`;
@@ -1312,13 +1312,28 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  /* ─── FIREBASE ─── */
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js';
+  import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBjWngd-IsV2j0zTMUtbl51p3QrCq3t17s",
+    authDomain: "stone-studios-ae674.firebaseapp.com",
+    projectId: "stone-studios-ae674",
+    storageBucket: "stone-studios-ae674.firebasestorage.app",
+    messagingSenderId: "344944705980",
+    appId: "1:344944705980:web:d4bd35a87191d1ee1cabb9",
+    measurementId: "G-SJ2K05N1H9"
+  };
+  const fbApp = initializeApp(firebaseConfig);
+  const db = getFirestore(fbApp);
+  const newsCol = collection(db, 'news');
+
   /* ─── NEWS ─── */
-  const NEWS_KEY = '3ss_news';
   const CAT_LABELS = { production:'制作', daily:'日常', film:'映画', other:'その他' };
   let newsFilter = 'all';
+  let allPosts = [];
 
-  function getPosts() { return JSON.parse(localStorage.getItem(NEWS_KEY) || '[]'); }
-  function setPosts(posts) { localStorage.setItem(NEWS_KEY, JSON.stringify(posts)); }
   function fmtDate(iso) {
     const d = new Date(iso);
     return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
@@ -1329,13 +1344,19 @@
   }
   function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+  async function loadPosts() {
+    const q = query(newsCol, orderBy('date', 'desc'));
+    const snap = await getDocs(q);
+    allPosts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderNews();
+    if (aLoggedIn) renderAPostList();
+  }
+
   function renderNews() {
     const grid = document.getElementById('newsGrid');
     const empty = document.getElementById('newsEmpty');
     grid.querySelectorAll('.news-card').forEach(el => el.remove());
-    const posts = getPosts()
-      .filter(p => newsFilter === 'all' || p.cat === newsFilter)
-      .sort((a,b) => new Date(b.date) - new Date(a.date));
+    const posts = allPosts.filter(p => newsFilter === 'all' || p.cat === newsFilter);
     empty.style.display = posts.length ? 'none' : 'block';
     posts.forEach(p => {
       const isLong = p.body.length > 200;
@@ -1374,7 +1395,7 @@
     });
   });
 
-  renderNews();
+  loadPosts();
 
   /* ─── ADMIN ─── */
   const ADMIN_PASS = '3stone0901';
@@ -1437,20 +1458,25 @@
   });
 
   // NEWS CRUD
-  document.getElementById('aSavePost').addEventListener('click', () => {
+  document.getElementById('aSavePost').addEventListener('click', async () => {
     const title = document.getElementById('aPostTitle').value.trim();
     const cat   = document.getElementById('aPostCat').value;
     const body  = document.getElementById('aPostBody').value.trim();
     const editId = document.getElementById('aEditId').value;
-    if (!title || !body) { alert('タイトルと本文を入力してください'); return; }
-    const posts = getPosts();
-    if (editId) {
-      const idx = posts.findIndex(p => p.id === editId);
-      if (idx !== -1) { posts[idx].title = title; posts[idx].cat = cat; posts[idx].body = body; }
-    } else {
-      posts.push({ id: Date.now().toString(), title, cat, body, date: new Date().toISOString() });
+    if (!title || !body) { alert('タイトルと本文を入力してください'); return;  }
+    const btn = document.getElementById('aSavePost');
+    btn.disabled = true;
+    try {
+      if (editId) {
+        await updateDoc(doc(db, 'news', editId), { title, cat, body });
+      } else {
+        await addDoc(newsCol, { title, cat, body, date: new Date().toISOString() });
+      }
+      await loadPosts();
+      resetAPostForm();
+    } finally {
+      btn.disabled = false;
     }
-    setPosts(posts); resetAPostForm(); renderAPostList(); renderNews();
   });
   document.getElementById('aResetPost').addEventListener('click', resetAPostForm);
 
@@ -1463,7 +1489,7 @@
   }
   function renderAPostList() {
     const list = document.getElementById('aPostList');
-    const posts = [...getPosts()].sort((a,b) => new Date(b.date)-new Date(a.date));
+    const posts = [...allPosts].sort((a,b) => new Date(b.date)-new Date(a.date));
     if (!posts.length) { list.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:.8rem 0">まだ投稿がありません</p>'; return; }
     list.innerHTML = posts.map(p => `
       <div class="a-post-item">
@@ -1477,7 +1503,7 @@
         </div>
       </div>`).join('');
     list.querySelectorAll('.a-btn-edit').forEach(btn => btn.addEventListener('click', () => {
-      const p = getPosts().find(p => p.id === btn.dataset.id); if (!p) return;
+      const p = allPosts.find(p => p.id === btn.dataset.id); if (!p) return;
       document.getElementById('aEditId').value = p.id;
       document.getElementById('aPostTitle').value = p.title;
       document.getElementById('aPostCat').value = p.cat;
@@ -1485,10 +1511,10 @@
       document.getElementById('aFormTitle').textContent = '記事を編集';
       document.getElementById('adminOverlay').scrollTop = 0;
     }));
-    list.querySelectorAll('.a-btn-del').forEach(btn => btn.addEventListener('click', () => {
+    list.querySelectorAll('.a-btn-del').forEach(btn => btn.addEventListener('click', async () => {
       if (!confirm('削除しますか？')) return;
-      setPosts(getPosts().filter(p => p.id !== btn.dataset.id));
-      renderAPostList(); renderNews();
+      await deleteDoc(doc(db, 'news', btn.dataset.id));
+      await loadPosts();
     }));
   }
 
