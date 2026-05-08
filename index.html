@@ -253,7 +253,7 @@
   .accent { color: var(--green); }
 
   /* ─── ABOUT ─── */
-  .about { padding: 8rem 6rem; max-width: 900px; }
+  .about { padding: 8rem 3rem; max-width: 900px; }
   .about-motto-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -367,6 +367,41 @@
   .work-card--tbd { opacity: .5; pointer-events: none; }
   .work-title--tbd { color: var(--muted); font-size: 2rem; letter-spacing: .2em; }
   .work-badge--tbd { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+
+  .work-file-btn {
+    display: inline-flex; align-items: center; gap: .5em;
+    margin-top: 1.2rem; padding: .5em 1.1em;
+    font-family: 'Space Mono', monospace; font-size: .72rem; letter-spacing: .08em;
+    color: var(--green); border: 1px solid var(--green);
+    border-radius: 2px; text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+  .work-file-btn:hover { background: var(--green); color: var(--black); }
+  .work-video-wrap {
+    position: relative; width: 100%; margin-top: 1.2rem;
+    padding-bottom: 56.25%; /* 16:9 */
+    border-radius: 4px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .work-video-wrap iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+  }
+  .upload-progress {
+    font-size: .78rem; color: var(--muted); margin-top: .4rem; display: none;
+  }
+  .upload-progress.show { display: block; }
+  .a-field input[type="file"] {
+    background: transparent; border: 1px dashed var(--border);
+    color: var(--muted-hi); padding: .5rem; border-radius: 2px;
+    width: 100%; cursor: pointer;
+  }
+  .work-section-label {
+    font-family: 'Space Mono', monospace; font-size: .65rem;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--green); border: 1px solid var(--green);
+    padding: .25em .7em; border-radius: 2px; margin-bottom: 1.5rem;
+    display: inline-block;
+  }
 
   /* ─── WORKS SUPPORT BANNER ─── */
   .works-support-banner {
@@ -749,18 +784,6 @@
   }
   .save-ok { font-family: 'Space Mono', monospace; font-size: .8rem; color: var(--green); margin-left: .8rem; opacity: 0; transition: opacity .3s; }
 
-  /* ─── LANG TOGGLE ─── */
-  .lang-toggle {
-    background: transparent;
-    border: 1px solid var(--muted-lo);
-    color: var(--muted-hi);
-    font-family: 'Space Mono', monospace;
-    font-size: .65rem; letter-spacing: .15em;
-    padding: .4em .9em; border-radius: 2px;
-    cursor: none; transition: color .2s, border-color .2s;
-  }
-  .lang-toggle:hover { color: var(--white); border-color: var(--green); }
-  .lang-toggle.en-active { border-color: var(--green); color: var(--green); }
   .save-ok.show { opacity: 1; }
 
   /* ─── SNS ─── */
@@ -821,7 +844,6 @@
     <li><a href="#join">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
   <button class="hamburger" id="hamburger" aria-label="メニューを開く">
     <span></span><span></span><span></span>
   </button>
@@ -840,28 +862,28 @@
   <p class="hero-motto" id="hero-motto-text">石の上にも３年。</p>
   <p class="hero-sub" id="hero-sub-text">映画脚本から3Dモデリングまで。あなたのビジョンを現実に変える創造スタジオ。</p>
   <div class="hero-cta">
-    <a href="#contact" class="btn btn-primary" id="hero-cta-1" data-en="Work With Us">仕事を依頼する</a>
-    <a href="#services" class="btn btn-outline" id="hero-cta-2" data-en="Our Services">サービスを見る</a>
+    <a href="#contact" class="btn btn-primary" id="hero-cta-1">仕事を依頼する</a>
+    <a href="#services" class="btn btn-outline" id="hero-cta-2">サービスを見る</a>
   </div>
   <div class="hero-stats reveal">
     <div class="hero-stat">
       <span class="hero-stat-value">2025.09.01</span>
-      <span class="hero-stat-label" data-en="Founded">設立</span>
+      <span class="hero-stat-label">設立</span>
     </div>
     <div class="hero-stat-divider"></div>
     <div class="hero-stat">
-      <span class="hero-stat-value" data-en="Tokyo">東京</span>
-      <span class="hero-stat-label" data-en="Based in">拠点</span>
+      <span class="hero-stat-value">東京</span>
+      <span class="hero-stat-label">拠点</span>
     </div>
     <div class="hero-stat-divider"></div>
     <div class="hero-stat">
-      <span class="hero-stat-value" data-en="2+ Students">大学生 2名+</span>
-      <span class="hero-stat-label" data-en="Team">チーム</span>
+      <span class="hero-stat-value">大学生 2名+</span>
+      <span class="hero-stat-label">チーム</span>
     </div>
     <div class="hero-stat-divider"></div>
     <div class="hero-stat">
       <span class="hero-stat-value">Ryuki Tanaka</span>
-      <span class="hero-stat-label" data-en="Director / 3rd Year">代表 / 大学3年</span>
+      <span class="hero-stat-label">代表 / 大学3年</span>
     </div>
   </div>
 
@@ -907,23 +929,23 @@
   </p>
   <div class="about-meta reveal">
     <div class="about-meta-item">
-      <span class="about-meta-label" data-en="Director">代表</span>
+      <span class="about-meta-label">代表</span>
       <span class="about-meta-value" id="meta-rep">Ryuki Tanaka（大学3年）</span>
     </div>
     <div class="about-meta-item">
-      <span class="about-meta-label" data-en="Founded">設立</span>
+      <span class="about-meta-label">設立</span>
       <span class="about-meta-value" id="meta-est">2025年9月1日</span>
     </div>
     <div class="about-meta-item">
-      <span class="about-meta-label" data-en="Based in">拠点</span>
+      <span class="about-meta-label">拠点</span>
       <span class="about-meta-value" id="meta-loc">東京</span>
     </div>
     <div class="about-meta-item">
-      <span class="about-meta-label" data-en="Members">メンバー</span>
+      <span class="about-meta-label">メンバー</span>
       <span class="about-meta-value" id="meta-mem">大学生 2名+で運営</span>
     </div>
     <div class="about-meta-item">
-      <span class="about-meta-label" data-en="Email">メール</span>
+      <span class="about-meta-label">メール</span>
       <a href="mailto:ryukitanaka3@gmail.com" class="about-meta-email" id="meta-mail">ryukitanaka3@gmail.com</a>
     </div>
   </div>
@@ -934,13 +956,13 @@
   <h2 class="section-title reveal">NEWS &amp;<br><span class="accent">UPDATES</span></h2>
   <div class="news-filter reveal">
     <button class="news-filter-btn active" data-cat="all">All</button>
-    <button class="news-filter-btn" data-cat="production" data-en="Production">制作</button>
-    <button class="news-filter-btn" data-cat="daily" data-en="Daily">日常</button>
-    <button class="news-filter-btn" data-cat="film" data-en="Film">映画</button>
-    <button class="news-filter-btn" data-cat="other" data-en="Other">その他</button>
+    <button class="news-filter-btn" data-cat="production">制作</button>
+    <button class="news-filter-btn" data-cat="daily">日常</button>
+    <button class="news-filter-btn" data-cat="film">映画</button>
+    <button class="news-filter-btn" data-cat="other">その他</button>
   </div>
   <div class="news-grid" id="newsGrid">
-    <p class="news-empty" id="newsEmpty" data-en="No posts yet.">まだ投稿がありません。</p>
+    <p class="news-empty" id="newsEmpty">まだ投稿がありません。</p>
   </div>
 </section>
 
@@ -952,26 +974,26 @@
       <span class="service-num">01</span>
       <span class="service-icon">🎬</span>
       <h3>Film Scriptwriting</h3>
-      <p data-en="We turn your film idea into a full screenplay — features, shorts, and animated films. Even a rough concept is enough to get started.">「こんな映画を作りたい」というアイデアを脚本に落とし込みます。長編・短編・短編アニメまで、まずはざっくりしたイメージだけでも大丈夫です。</p>
+      <p>「こんな映画を作りたい」というアイデアを脚本に落とし込みます。長編・短編・短編アニメまで、まずはざっくりしたイメージだけでも大丈夫です。</p>
       <div class="service-tags">
-        <span class="tag" data-en="Feature Film">長編映画</span>
-        <span class="tag" data-en="Short Film">短編映画</span>
-        <span class="tag" data-en="Anime Script">アニメ脚本</span>
-        <span class="tag" data-en="Story Consulting">ストーリー相談</span>
-        <span class="tag" data-en="Rewrite">リライト</span>
+        <span class="tag">長編映画</span>
+        <span class="tag">短編映画</span>
+        <span class="tag">アニメ脚本</span>
+        <span class="tag">ストーリー相談</span>
+        <span class="tag">リライト</span>
       </div>
     </div>
     <div class="service-card reveal">
       <span class="service-num">02</span>
       <span class="service-icon">🧊</span>
       <h3>3D Modeling</h3>
-      <p data-en="We bring your vision to life in 3D — characters, props, environments and more. Using &lt;strong&gt;Blender&lt;/strong&gt;. A reference image is all you need to get started.">キャラクターやプロップ、背景など、イメージを3Dで形にします。<strong>Blender</strong> を使用。「こんな感じのもの」という参考画像だけでも気軽にご相談ください。</p>
+      <p>キャラクターやプロップ、背景など、イメージを3Dで形にします。<strong>Blender</strong> を使用。「こんな感じのもの」という参考画像だけでも気軽にご相談ください。</p>
       <div class="service-tags">
-        <span class="tag" data-en="Character">キャラクター</span>
-        <span class="tag" data-en="Props">プロップ</span>
-        <span class="tag" data-en="Environment">環境モデル</span>
-        <span class="tag" data-en="Animation">アニメーション</span>
-        <span class="tag" data-en="Rendering">レンダリング</span>
+        <span class="tag">キャラクター</span>
+        <span class="tag">プロップ</span>
+        <span class="tag">環境モデル</span>
+        <span class="tag">アニメーション</span>
+        <span class="tag">レンダリング</span>
         <span class="tag">Blender</span>
       </div>
     </div>
@@ -981,43 +1003,23 @@
 <!-- ─── WORKS ─── -->
 <section class="works" id="works">
   <h2 class="section-title reveal">OUR<br><span class="accent">PROJECTS</span></h2>
-  <div class="works-grid">
-    <div class="work-card reveal">
-      <div class="work-card-body">
-        <p class="work-type" data-en="Feature Film Script">長編映画 脚本</p>
-        <h3 class="work-title">YOMI</h3>
-        <span class="work-badge" id="yomi-status">✦ 脚本執筆中</span>
-        <p class="work-synopsis" id="yomi-synopsis">高校生の久坂秋は、寂れた旧神社で謎の研究員を目撃する。その夜を境に、町では死体遺棄事件、大量の鳥の死骸、発電所事故が相次ぎ、秋は幼馴染たちと共に町の地下に隠された"黄泉へ繋がる門"の存在へ近づいていく。</p>
-        <div class="work-genre-tags">
-          <span class="tag" data-en="Mythology">神話</span>
-          <span class="tag">SF</span>
-          <span class="tag" data-en="Juvenile Horror">ジュブナイルホラー</span>
-          <span class="tag" data-en="Feature Film">長編映画</span>
-        </div>
-      </div>
-    </div>
-    <div class="work-card work-card--tbd reveal">
-      <div class="work-card-body">
-        <p class="work-type" data-en="Script">脚本</p>
-        <h3 class="work-title work-title--tbd">TBD</h3>
-        <span class="work-badge work-badge--tbd" data-en="Coming Soon">準備中</span>
-      </div>
-    </div>
-    <div class="work-card work-card--tbd reveal">
-      <div class="work-card-body">
-        <p class="work-type" data-en="Script">脚本</p>
-        <h3 class="work-title work-title--tbd">TBD</h3>
-        <span class="work-badge work-badge--tbd" data-en="Coming Soon">準備中</span>
-      </div>
-    </div>
+
+  <p class="work-section-label">映像作品</p>
+  <div class="works-grid" id="videoGrid">
+    <p style="color:var(--muted);font-size:.9rem;padding:2rem 0">読み込み中…</p>
+  </div>
+
+  <p class="work-section-label" style="margin-top:3rem">脚本作品</p>
+  <div class="works-grid" id="worksGrid">
+    <p style="color:var(--muted);font-size:.9rem;padding:2rem 0">読み込み中…</p>
   </div>
   <div class="works-support-banner reveal">
     <div class="works-support-inner">
       <div>
-        <p class="works-support-title" data-en="🎬 Seeking supporters to bring our script to the screen">🎬 脚本の映画化に向けて、支援を募集しています</p>
-        <p class="works-support-body" data-en="Once the script is complete, we're looking for production studios, producers, and collaborators to help turn it into a real film. This is a serious student-led project.">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
+        <p class="works-support-title">🎬 脚本の映画化に向けて、支援を募集しています</p>
+        <p class="works-support-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
       </div>
-      <a href="#contact" class="btn btn-primary" data-en="Offer Support →">支援・協力を申し出る →</a>
+      <a href="#contact" class="btn btn-primary">支援・協力を申し出る →</a>
     </div>
   </div>
 </section>
@@ -1028,10 +1030,10 @@
     <div>
       <div class="runner-badge reveal">🎮 Original Game</div>
       <h2 class="reveal">3STONE<br><span>RUNNER</span></h2>
-      <p class="runner-desc reveal" data-en="An original runner game created by 3 Stone Studios — packed with our creativity and passion for game design. Play it and feel the craft firsthand.">
+      <p class="runner-desc reveal">
         3 Stone Studios が制作したオリジナルランナーゲーム。スタジオのクリエイティビティとゲームデザインへの情熱が詰まった作品です。クリエイターとしての実力を、ぜひプレイして体感してください。
       </p>
-      <div class="runner-note reveal" data-en="※ We are not currently accepting external game development commissions.<br>&nbsp;&nbsp; 3Stone Runner is an original in-house studio title.">
+      <div class="runner-note reveal">
         ※ 現在、ゲーム制作の外部受注は行っておりません。<br>
         　 3Stone Runner はスタジオ自社タイトルです。
       </div>
@@ -1048,32 +1050,32 @@
       <div class="step-num">01</div>
       <div class="step-content">
         <div class="step-dot"></div>
-        <h4 data-en="Let's Talk First">まず話しましょう</h4>
-        <p data-en="A rough idea is enough. Reach out via DM or email — no pressure.">「こんなのやりたい」程度でOK。DMでもメールでも、気軽に声をかけてください。</p>
+        <h4>まず話しましょう</h4>
+        <p>「こんなのやりたい」程度でOK。DMでもメールでも、気軽に声をかけてください。</p>
       </div>
     </div>
     <div class="step reveal">
       <div class="step-num">02</div>
       <div class="step-content">
         <div class="step-dot dim-2"></div>
-        <h4 data-en="Define the Direction">方向性を固める</h4>
-        <p data-en="We'll shape your vision together — world, characters, tone. Rough ideas are welcome.">一緒にイメージを具体化します。世界観・キャラクター・トーンなど、ざっくりでも大丈夫。</p>
+        <h4>方向性を固める</h4>
+        <p>一緒にイメージを具体化します。世界観・キャラクター・トーンなど、ざっくりでも大丈夫。</p>
       </div>
     </div>
     <div class="step reveal">
       <div class="step-num">03</div>
       <div class="step-content">
         <div class="step-dot dim-3"></div>
-        <h4 data-en="Build & Review Together">制作しながら確認</h4>
-        <p data-en="We share progress frequently. If something feels off, just say so — no hesitation needed.">こまめに共有しながら進めます。「違う」と思ったら遠慮なく言ってください。</p>
+        <h4>制作しながら確認</h4>
+        <p>こまめに共有しながら進めます。「違う」と思ったら遠慮なく言ってください。</p>
       </div>
     </div>
     <div class="step reveal">
       <div class="step-num">04</div>
       <div class="step-content">
         <div class="step-dot dim-4"></div>
-        <h4 data-en="Deliver & Done">完成・お渡し</h4>
-        <p data-en="Delivered in your preferred format. Questions after? Always welcome.">完成したらご指定の形式でお渡しします。その後も気になることがあれば相談歓迎。</p>
+        <h4>完成・お渡し</h4>
+        <p>完成したらご指定の形式でお渡しします。その後も気になることがあれば相談歓迎。</p>
       </div>
     </div>
   </div>
@@ -1082,44 +1084,44 @@
 
 <!-- ─── JOIN US ─── -->
 <section class="join" id="join">
-  <h2 class="section-title reveal" data-en="Let's&lt;br&gt;&lt;span class='accent'&gt;Create.&lt;/span&gt;">一緒に<br><span class="accent">作ろう。</span></h2>
+  <h2 class="section-title reveal">JOIN<br><span class="accent">THE CREW.</span></h2>
   <div class="join-card reveal">
-    <p class="join-lead" data-en="Film lovers in college — join us.">映画が好きな大学生、集まれ。</p>
+    <p class="join-lead">映画が好きな大学生、集まれ。</p>
     <p class="join-body">
       <span id="join-body-text">3 Stone Studios は現在、一緒に活動してくれる大学生クルーを募集しています。脚本、3D、映像編集、音楽、なんでもOK。「映画に関わりたい」という熱量があれば、経験は問いません。</span>
     </p>
     <div class="join-tags">
-      <span class="tag" data-en="Scriptwriting">脚本</span>
-      <span class="tag" data-en="3D Modeling">3Dモデリング</span>
-      <span class="tag" data-en="Video Editing">映像編集</span>
-      <span class="tag" data-en="Music / Sound">音楽・音響</span>
-      <span class="tag" data-en="Cinematography">撮影</span>
-      <span class="tag" data-en="Other">その他</span>
+      <span class="tag">脚本</span>
+      <span class="tag">3Dモデリング</span>
+      <span class="tag">映像編集</span>
+      <span class="tag">音楽・音響</span>
+      <span class="tag">撮影</span>
+      <span class="tag">その他</span>
     </div>
     <div class="join-learn">
-      <p class="join-learn-title" data-en="What You'll Learn">参加すると学べること</p>
+      <p class="join-learn-title">参加すると学べること</p>
       <div class="join-learn-grid">
         <div class="join-learn-item">
           <span class="join-learn-icon">🧊</span>
           <div>
             <p class="join-learn-name">Blender</p>
-            <p class="join-learn-desc" data-en="From the basics to hands-on 3D modeling. We learn by doing, together.">3Dモデリングの基礎から実践まで。一緒に手を動かしながら学べます。</p>
+            <p class="join-learn-desc">3Dモデリングの基礎から実践まで。一緒に手を動かしながら学べます。</p>
           </div>
         </div>
         <div class="join-learn-item">
           <span class="join-learn-icon">🎬</span>
           <div>
-            <p class="join-learn-name" data-en="Hollywood Screenwriting">ハリウッド式脚本術</p>
-            <p class="join-learn-desc" data-en="Based on Syd Field's format — we share how to write scripts the way the industry actually uses them.">シド・フィールド形式をベースに、実際に使われるフォーマットで脚本を書く方法を共有します。</p>
+            <p class="join-learn-name">ハリウッド式脚本術</p>
+            <p class="join-learn-desc">シド・フィールド形式をベースに、実際に使われるフォーマットで脚本を書く方法を共有します。</p>
           </div>
         </div>
       </div>
     </div>
-    <a href="#contact" class="btn btn-primary join-cta" data-en="Apply / Inquire →">応募・相談する →</a>
+    <a href="#contact" class="btn btn-primary join-cta">応募・相談する →</a>
   </div>
   <div class="join-expert reveal">
-    <p class="join-expert-text" data-en="To those with expertise in film, script, or 3D — please share your knowledge with us. We'd love to learn and create great work together.">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。</p>
-    <a href="#contact" class="btn btn-outline" data-en="Share Your Knowledge →">知識をシェアする →</a>
+    <p class="join-expert-text">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。</p>
+    <a href="#contact" class="btn btn-outline">知識をシェアする →</a>
   </div>
 </section>
 
@@ -1128,36 +1130,36 @@
   <div class="contact-bg-text">CONTACT</div>
   <div class="contact-inner">
     <h2 class="reveal">LET'S<br><em>CREATE</em><br>TOGETHER.</h2>
-    <p class="contact-sub reveal" data-en="No matter the scale or stage of your project — feel free to reach out.">プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。</p>
+    <p class="contact-sub reveal">プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。</p>
     <form class="contact-form reveal" onsubmit="handleSubmit(event)" id="contactForm">
       <div class="form-row">
         <div class="form-group">
-          <label for="name" data-en="Name">お名前</label>
-          <input type="text" id="name" placeholder="山田 太郎" data-en-placeholder="Yamada Taro" required>
+          <label for="name">お名前</label>
+          <input type="text" id="name" placeholder="山田 太郎" required>
         </div>
         <div class="form-group">
-          <label for="email" data-en="Email">メールアドレス</label>
+          <label for="email">メールアドレス</label>
           <input type="email" id="email" placeholder="your@email.com" required>
         </div>
       </div>
       <div class="form-group">
-        <label for="service" data-en="Service">ご希望のサービス</label>
+        <label for="service">ご希望のサービス</label>
         <select id="service" required>
-          <option value="" disabled selected data-en="Select a service">サービスを選択</option>
-          <option value="script" data-en="Film Script">映画脚本制作</option>
-          <option value="3d" data-en="3D Modeling">3Dモデリング</option>
-          <option value="film-support" data-en="Film Production Support">脚本の映画化支援・制作協力</option>
-          <option value="other" data-en="Other / Inquiry">その他・ご相談</option>
-          <option value="crew" data-en="Join the Crew">クルー応募（一緒に作りたい）</option>
+          <option value="" disabled selected>サービスを選択</option>
+          <option value="script">映画脚本制作</option>
+          <option value="3d">3Dモデリング</option>
+          <option value="film-support">脚本の映画化支援・制作協力</option>
+          <option value="other">その他・ご相談</option>
+          <option value="crew">クルー応募（一緒に作りたい）</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="message" data-en="Project Overview">プロジェクト概要</label>
-        <textarea id="message" rows="5" placeholder="どんなプロジェクトか、スケジュール感、予算感など、お気軽にお書きください。" data-en-placeholder="Tell us about your project — timeline, budget, anything helps." required></textarea>
+        <label for="message">プロジェクト概要</label>
+        <textarea id="message" rows="5" placeholder="どんなプロジェクトか、スケジュール感、予算感など、お気軽にお書きください。" required></textarea>
       </div>
       <div class="submit-row">
-        <button type="submit" class="btn btn-primary" data-en="Send →">送信する →</button>
-        <span class="submit-note" data-en="We'll reply within 2 business days.">通常2営業日以内にご返信します</span>
+        <button type="submit" class="btn btn-primary">送信する →</button>
+        <span class="submit-note">通常2営業日以内にご返信します</span>
       </div>
     </form>
   </div>
@@ -1191,6 +1193,8 @@
       <span class="admin-logo">3<span>●</span>SS Admin</span>
       <div class="admin-tabs">
         <button class="admin-tab active" data-atab="news">ニュース</button>
+        <button class="admin-tab" data-atab="videos">映像作品</button>
+        <button class="admin-tab" data-atab="scripts">脚本作品</button>
         <button class="admin-tab" data-atab="content">サイト内容</button>
       </div>
       <button class="admin-close-btn" id="aPanelClose">✕ 閉じる</button>
@@ -1221,31 +1225,93 @@
         <p class="admin-panel-title" style="font-size:1.1rem">投稿一覧</p>
         <div id="aPostList"></div>
       </div>
+      <!-- VIDEOS TAB -->
+      <div class="tab-panel" id="atab-videos">
+        <p class="admin-panel-title">映像作品管理</p>
+        <div class="a-card">
+          <p class="a-card-title" id="vFormTitle">新しい映像作品を追加</p>
+          <input type="hidden" id="vEditId">
+          <div class="a-field"><label>タイトル</label><input type="text" id="vTitle" placeholder="作品タイトル"></div>
+          <div class="a-field">
+            <label>種別</label>
+            <select id="vType">
+              <option value="映像作品">映像作品</option>
+              <option value="短編映画">短編映画</option>
+              <option value="MV・PV">MV・PV</option>
+              <option value="アニメーション">アニメーション</option>
+              <option value="3Dデモ">3Dデモ</option>
+            </select>
+          </div>
+          <div class="a-field"><label>ステータス（バッジ）</label><input type="text" id="vStatus" placeholder="例: 制作中"></div>
+          <div class="a-field"><label>説明</label><textarea id="vSynopsis" rows="3" placeholder="作品の説明…"></textarea></div>
+          <div class="a-field"><label>タグ（スペース区切り）</label><input type="text" id="vTags" placeholder="例: 3D アニメーション Blender"></div>
+          <div class="a-field"><label>表示順</label><input type="number" id="vOrder" value="0" min="0"></div>
+          <div class="a-field">
+            <label>YouTube URL</label>
+            <input type="url" id="vYoutubeUrl" placeholder="https://www.youtube.com/watch?v=XXXXXXXXXXX">
+            <p style="font-size:.75rem;color:var(--muted);margin-top:.3rem">限定公開URLも使用できます。通常のURLを貼るだけでOK。</p>
+          </div>
+          <div class="a-btn-row">
+            <button class="a-btn-save" id="vSaveBtn">保存する</button>
+            <button class="a-btn-cancel" id="vResetBtn">キャンセル</button>
+          </div>
+        </div>
+        <p class="admin-panel-title" style="font-size:1.1rem">映像作品一覧</p>
+        <div id="vList"></div>
+      </div>
+      <!-- SCRIPTS TAB -->
+      <div class="tab-panel" id="atab-scripts">
+        <p class="admin-panel-title">脚本作品管理</p>
+        <div class="a-card">
+          <p class="a-card-title" id="sFormTitle">新しい脚本を追加</p>
+          <input type="hidden" id="sEditId">
+          <div class="a-field"><label>タイトル</label><input type="text" id="sTitle" placeholder="作品タイトル"></div>
+          <div class="a-field">
+            <label>種別</label>
+            <select id="sType">
+              <option value="長編映画 脚本">長編映画 脚本</option>
+              <option value="短編映画 脚本">短編映画 脚本</option>
+              <option value="アニメ 脚本">アニメ 脚本</option>
+              <option value="脚本">脚本</option>
+            </select>
+          </div>
+          <div class="a-field"><label>ステータス（バッジ）</label><input type="text" id="sStatus" placeholder="例: 脚本執筆中"></div>
+          <div class="a-field"><label>あらすじ</label><textarea id="sSynopsis" rows="4" placeholder="作品のあらすじ…"></textarea></div>
+          <div class="a-field"><label>ジャンルタグ（スペース区切り）</label><input type="text" id="sTags" placeholder="例: SF ホラー 長編映画"></div>
+          <div class="a-field"><label>表示順</label><input type="number" id="sOrder" value="0" min="0"></div>
+          <div class="a-field">
+            <label>脚本PDF（Google DriveのリンクURL）</label>
+            <input type="url" id="sPdfUrl" placeholder="https://drive.google.com/file/d/...">
+            <p style="font-size:.75rem;color:var(--muted);margin-top:.3rem">Google Driveで「リンクを知っている全員」に共有設定したURLを貼ってください。</p>
+          </div>
+          <div class="a-btn-row">
+            <button class="a-btn-save" id="sSaveBtn">保存する</button>
+            <button class="a-btn-cancel" id="sResetBtn">キャンセル</button>
+          </div>
+        </div>
+        <p class="admin-panel-title" style="font-size:1.1rem">脚本一覧</p>
+        <div id="sList"></div>
+      </div>
       <!-- CONTENT TAB -->
       <div class="tab-panel" id="atab-content">
         <p class="admin-panel-title">サイト内容の編集</p>
         <div class="a-card">
           <p class="a-card-title">Hero — トップ画面</p>
-          <div class="a-field"><label>説明文 JA</label><input type="text" id="ca-hero-sub"></div>
-          <div class="a-field"><label>説明文 EN</label><input type="text" id="ca-hero-sub-en"></div>
-          <div class="a-field"><label>モットー JA</label><input type="text" id="ca-hero-motto"></div>
-          <div class="a-field"><label>モットー EN</label><input type="text" id="ca-hero-motto-en"></div>
+          <div class="a-field"><label>説明文</label><input type="text" id="ca-hero-sub"></div>
+          <div class="a-field"><label>モットー</label><input type="text" id="ca-hero-motto"></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="hero">保存する</button><span class="save-ok" id="sok-hero">保存しました ✓</span></div>
         </div>
         <div class="a-card">
           <p class="a-card-title">About — モットーカード</p>
           <div class="a-field"><label>モットー JA</label><input type="text" id="ca-motto-ja"></div>
-          <div class="a-field"><label>モットー EN</label><input type="text" id="ca-motto-en"></div>
-          <div class="a-field"><label>説明文 JA</label><textarea id="ca-motto-desc" rows="3"></textarea></div>
-          <div class="a-field"><label>説明文 EN</label><textarea id="ca-motto-desc-en" rows="3"></textarea></div>
+          <div class="a-field"><label>モットー EN（装飾表示）</label><input type="text" id="ca-motto-en"></div>
+          <div class="a-field"><label>説明文</label><textarea id="ca-motto-desc" rows="3"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="motto">保存する</button><span class="save-ok" id="sok-motto">保存しました ✓</span></div>
         </div>
         <div class="a-card">
           <p class="a-card-title">About — スタジオ紹介文</p>
-          <div class="a-field"><label>1段落目 JA</label><textarea id="ca-about1" rows="3"></textarea></div>
-          <div class="a-field"><label>1段落目 EN</label><textarea id="ca-about1-en" rows="3"></textarea></div>
-          <div class="a-field"><label>2段落目 JA</label><textarea id="ca-about2" rows="3"></textarea></div>
-          <div class="a-field"><label>2段落目 EN</label><textarea id="ca-about2-en" rows="3"></textarea></div>
+          <div class="a-field"><label>1段落目</label><textarea id="ca-about1" rows="3"></textarea></div>
+          <div class="a-field"><label>2段落目</label><textarea id="ca-about2" rows="3"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="about">保存する</button><span class="save-ok" id="sok-about">保存しました ✓</span></div>
         </div>
         <div class="a-card">
@@ -1258,15 +1324,8 @@
           <div class="a-btn-row"><button class="a-btn-save" data-asave="meta">保存する</button><span class="save-ok" id="sok-meta">保存しました ✓</span></div>
         </div>
         <div class="a-card">
-          <p class="a-card-title">YOMI — あらすじ・ステータス</p>
-          <div class="a-field"><label>あらすじ</label><textarea id="ca-yomi" rows="4"></textarea></div>
-          <div class="a-field"><label>ステータス（バッジ）</label><input type="text" id="ca-yomi-status"></div>
-          <div class="a-btn-row"><button class="a-btn-save" data-asave="yomi">保存する</button><span class="save-ok" id="sok-yomi">保存しました ✓</span></div>
-        </div>
-        <div class="a-card">
           <p class="a-card-title">Join Us — クルー募集文</p>
-          <div class="a-field"><label>本文 JA</label><textarea id="ca-join" rows="3"></textarea></div>
-          <div class="a-field"><label>本文 EN</label><textarea id="ca-join-en" rows="3"></textarea></div>
+          <div class="a-field"><label>本文</label><textarea id="ca-join" rows="3"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="join">保存する</button><span class="save-ok" id="sok-join">保存しました ✓</span></div>
         </div>
       </div>
@@ -1299,7 +1358,6 @@
     </a>
   </div>
   <p class="footer-copy">© 2026 3 Stone Studios. All rights reserved.</p>
-  <p class="footer-copy" style="font-size:.6rem;margin-top:.3rem;opacity:.4" id="footer-lang-credit"></p>
 </footer>
 
 <script type="module">
@@ -1437,33 +1495,25 @@
   const contentDoc = doc(db, 'config', 'content');
   const CONTENT_DEFAULTS = {
     heroSub: '映画脚本から3Dモデリングまで。あなたのビジョンを現実に変える創造スタジオ。',
-    heroSubEn: 'From film scripts to 3D modeling. A creative studio that turns your vision into reality.',
     heroMotto: '石の上にも３年。',
-    heroMottoEn: 'Three years on a stone.',
     mottoJa: '石の上にも３年。',
     mottoEn: 'Perseverance builds mastery.',
     mottoDesc: '「石の上にも三年」——冷たい石の上でも座り続ければ温まる。私たちはこの言葉を胸に、妥協なくクラフトを磨き続けています。一つひとつの作品に向き合う真摯な姿勢が、3 Stone Studios の根幹です。',
-    mottoDescEn: 'The Japanese proverb says: even a cold stone warms if you sit on it long enough. We carry this spirit — refining our craft without compromise. The sincere dedication we bring to every project is the foundation of 3 Stone Studios.',
     about1: '3 Stone Studios は、映画脚本と3Dモデリングを専門とするクリエイティブスタジオです。代表の Ryuki Tanaka は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。',
-    about1En: '3 Stone Studios is a creative studio specializing in film scriptwriting and 3D modeling. Director Ryuki Tanaka has loved film since childhood and aims to deliver his own works to the world as a filmmaker.',
     about2: 'このスタジオは単なる制作スタジオではありません。大学生のうちに本物の作品をつくり、映画業界と繋がりを持てる場所を作りたい——その想いから生まれました。映画に情熱を持つ人たちが集まり、共に業界への扉を開く拠点です。',
-    about2En: 'This is more than a production studio. It was born from the desire to create real work as students and build connections to the film industry. A base where passionate creators gather and open the door to the industry together.',
     metaRep: 'Ryuki Tanaka（大学3年）',
     metaEst: '2025年9月1日',
     metaLoc: '東京',
     metaMem: '大学生 2名+で運営',
     metaMail: 'ryukitanaka3@gmail.com',
-    yomi: '高校生の久坂秋は、寂れた旧神社で謎の研究員を目撃する。その夜を境に、町では死体遺棄事件、大量の鳥の死骸、発電所事故が相次ぎ、秋は幼馴染たちと共に町の地下に隠された”黄泉へ繋がる門”の存在へ近づいていく。',
-    yomiStatus: '脚本執筆中',
     join: '3 Stone Studios は現在、一緒に活動してくれる大学生クルーを募集しています。脚本、3D、映像編集、音楽、なんでもOK。「映画に関わりたい」という熱量があれば、経験は問いません。',
-    joinEn: '3 Stone Studios is currently looking for college students to join the crew. Scriptwriting, 3D, video editing, music — anything works. If you have passion for film, experience is not required.',
   };
   let aLoggedIn = false;
 
   function getContent() { return { ...CONTENT_DEFAULTS, ...JSON.parse(localStorage.getItem(CONTENT_KEY) || '{}') }; }
   async function saveContent(c) {
-    localStorage.setItem(CONTENT_KEY, JSON.stringify(c));
     await setDoc(contentDoc, c);
+    localStorage.setItem(CONTENT_KEY, JSON.stringify(c));
   }
   async function loadContent() {
     try {
@@ -1473,6 +1523,17 @@
         localStorage.setItem(CONTENT_KEY, JSON.stringify(data));
       }
     } catch(e) { console.warn('content load failed, using cache', e); }
+    applyContent();
+  }
+  async function fetchAndFillContentFields() {
+    try {
+      const snap = await getDoc(contentDoc);
+      if (snap.exists()) {
+        const data = snap.data();
+        localStorage.setItem(CONTENT_KEY, JSON.stringify(data));
+      }
+    } catch(e) { console.warn('content fetch failed', e); }
+    loadContentFields();
     applyContent();
   }
 
@@ -1488,11 +1549,11 @@
     document.getElementById('aLogin').style.display = 'block';
     document.getElementById('aPanel').style.display = 'none';
   }
-  function showAPanel() {
+  async function showAPanel() {
     document.getElementById('aLogin').style.display = 'none';
     document.getElementById('aPanel').style.display = 'block';
-    loadContentFields();
     renderAPostList();
+    await fetchAndFillContentFields();
   }
   function doALogin() {
     if (document.getElementById('aPass').value === ADMIN_PASS) {
@@ -1517,6 +1578,8 @@
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
       document.getElementById('atab-' + tab.dataset.atab).classList.add('active');
+      if (tab.dataset.atab === 'videos') renderVList();
+      else if (tab.dataset.atab === 'scripts') renderSList();
     });
   });
 
@@ -1585,82 +1648,43 @@
   function loadContentFields() {
     const c = getContent();
     document.getElementById('ca-hero-sub').value = c.heroSub;
-    document.getElementById('ca-hero-sub-en').value = c.heroSubEn;
     document.getElementById('ca-hero-motto').value = c.heroMotto;
-    document.getElementById('ca-hero-motto-en').value = c.heroMottoEn;
     document.getElementById('ca-motto-ja').value = c.mottoJa;
     document.getElementById('ca-motto-en').value = c.mottoEn;
     document.getElementById('ca-motto-desc').value = c.mottoDesc;
-    document.getElementById('ca-motto-desc-en').value = c.mottoDescEn;
     document.getElementById('ca-about1').value = c.about1;
-    document.getElementById('ca-about1-en').value = c.about1En;
     document.getElementById('ca-about2').value = c.about2;
-    document.getElementById('ca-about2-en').value = c.about2En;
     document.getElementById('ca-meta-rep').value = c.metaRep;
     document.getElementById('ca-meta-est').value = c.metaEst;
     document.getElementById('ca-meta-loc').value = c.metaLoc;
     document.getElementById('ca-meta-mem').value = c.metaMem;
     document.getElementById('ca-meta-mail').value = c.metaMail;
-    document.getElementById('ca-yomi').value = c.yomi;
-    document.getElementById('ca-yomi-status').value = c.yomiStatus;
     document.getElementById('ca-join').value = c.join;
-    document.getElementById('ca-join-en').value = c.joinEn;
   }
   document.querySelectorAll('[data-asave]').forEach(btn => {
     btn.addEventListener('click', async () => {
       const key = btn.dataset.asave;
       const c = getContent();
-      if (key === 'hero') { c.heroSub = document.getElementById('ca-hero-sub').value; c.heroSubEn = document.getElementById('ca-hero-sub-en').value; c.heroMotto = document.getElementById('ca-hero-motto').value; c.heroMottoEn = document.getElementById('ca-hero-motto-en').value; }
-      else if (key === 'motto') { c.mottoJa = document.getElementById('ca-motto-ja').value; c.mottoEn = document.getElementById('ca-motto-en').value; c.mottoDesc = document.getElementById('ca-motto-desc').value; c.mottoDescEn = document.getElementById('ca-motto-desc-en').value; }
-      else if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; c.about1En = document.getElementById('ca-about1-en').value; c.about2 = document.getElementById('ca-about2').value; c.about2En = document.getElementById('ca-about2-en').value; }
+      if (key === 'hero') { c.heroSub = document.getElementById('ca-hero-sub').value; c.heroMotto = document.getElementById('ca-hero-motto').value; }
+      else if (key === 'motto') { c.mottoJa = document.getElementById('ca-motto-ja').value; c.mottoEn = document.getElementById('ca-motto-en').value; c.mottoDesc = document.getElementById('ca-motto-desc').value; }
+      else if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; c.about2 = document.getElementById('ca-about2').value; }
       else if (key === 'meta') { c.metaRep = document.getElementById('ca-meta-rep').value; c.metaEst = document.getElementById('ca-meta-est').value; c.metaLoc = document.getElementById('ca-meta-loc').value; c.metaMem = document.getElementById('ca-meta-mem').value; c.metaMail = document.getElementById('ca-meta-mail').value; }
-      else if (key === 'yomi') { c.yomi = document.getElementById('ca-yomi').value; c.yomiStatus = document.getElementById('ca-yomi-status').value; }
-      else if (key === 'join') { c.join = document.getElementById('ca-join').value; c.joinEn = document.getElementById('ca-join-en').value; }
-      await saveContent(c); applyContent();
-      const ok = document.getElementById('sok-' + key);
-      ok.classList.add('show'); setTimeout(() => ok.classList.remove('show'), 2000);
+      else if (key === 'join') { c.join = document.getElementById('ca-join').value; }
+      btn.disabled = true;
+      try {
+        await saveContent(c);
+        applyContent();
+        loadContentFields();
+        const ok = document.getElementById('sok-' + key);
+        ok.classList.add('show'); setTimeout(() => ok.classList.remove('show'), 2000);
+      } catch(e) {
+        alert('保存に失敗しました。ネットワークを確認してください。');
+        console.error('saveContent error', e);
+      } finally {
+        btn.disabled = false;
+      }
     });
   });
-
-  // ─── LANGUAGE TOGGLE ───
-  let currentLang = localStorage.getItem('3ss-lang') || 'ja';
-  const origTexts = new Map();
-  const origPlaceholders = new Map();
-
-  function applyLang(lang) {
-    currentLang = lang;
-    localStorage.setItem('3ss-lang', lang);
-    const btn = document.getElementById('langToggle');
-    if (!btn) return;
-
-    document.querySelectorAll('[data-en]').forEach(el => {
-      if (lang === 'en') {
-        if (!origTexts.has(el)) origTexts.set(el, el.innerHTML);
-        el.innerHTML = el.dataset.en;
-      } else {
-        if (origTexts.has(el)) el.innerHTML = origTexts.get(el);
-      }
-    });
-
-    document.querySelectorAll('[data-en-placeholder]').forEach(el => {
-      if (lang === 'en') {
-        if (!origPlaceholders.has(el)) origPlaceholders.set(el, el.placeholder);
-        el.placeholder = el.dataset.enPlaceholder;
-      } else {
-        if (origPlaceholders.has(el)) el.placeholder = origPlaceholders.get(el);
-      }
-    });
-
-    btn.textContent = lang === 'ja' ? 'EN' : 'JA';
-    btn.classList.toggle('en-active', lang === 'en');
-    applyContent(); // refresh admin-managed bilingual fields
-  }
-
-  window.toggleLang = function() {
-    applyLang(currentLang === 'ja' ? 'en' : 'ja');
-  };
-
-  applyLang(currentLang);
 
   // URL trigger: /?admin or /index.html?admin
   if (window.location.hash === '#admin') { openAdminOverlay(); }
@@ -1668,26 +1692,287 @@
   /* ─── SITE CONTENT FROM ADMIN ─── */
   function applyContent() {
     const c = getContent();
-    const en = currentLang === 'en';
     const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
     const setHref = (id, val) => { const el = document.getElementById(id); if (el) { el.textContent = val; el.href = 'mailto:' + val; } };
-    set('hero-sub-text', en && c.heroSubEn ? c.heroSubEn : c.heroSub);
-    set('hero-motto-text', en && c.heroMottoEn ? c.heroMottoEn : c.heroMotto);
+    set('hero-sub-text', c.heroSub);
+    set('hero-motto-text', c.heroMotto);
     set('motto-ja-text', c.mottoJa);
     set('motto-en-text', c.mottoEn);
-    set('motto-desc-text', en && c.mottoDescEn ? c.mottoDescEn : c.mottoDesc);
-    set('about-body-1', en && c.about1En ? c.about1En : c.about1);
-    set('about-body-2', en && c.about2En ? c.about2En : c.about2);
+    set('motto-desc-text', c.mottoDesc);
+    set('about-body-1', c.about1);
+    set('about-body-2', c.about2);
     set('meta-rep', c.metaRep);
     set('meta-est', c.metaEst);
     set('meta-loc', c.metaLoc);
     set('meta-mem', c.metaMem);
     setHref('meta-mail', c.metaMail);
-    set('yomi-synopsis', c.yomi);
-    set('yomi-status', '✦ ' + c.yomiStatus);
-    set('join-body-text', en && c.joinEn ? c.joinEn : c.join);
+    set('join-body-text', c.join);
   }
   loadContent();
+
+  /* ─── VIDEO WORKS ─── */
+  const videosCol = collection(db, 'videos');
+  let allVideos = [];
+
+  async function loadVideos() {
+    try {
+      const snap = await getDocs(query(videosCol, orderBy('order')));
+      allVideos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    } catch(e) { console.warn('videos load failed', e); }
+    renderVideoGrid();
+    if (aLoggedIn && document.getElementById('atab-videos')?.classList.contains('active')) renderVList();
+  }
+
+  function youtubeEmbedUrl(raw) {
+    if (!raw) return '';
+    try {
+      const url = new URL(raw.trim());
+      let vid = '';
+      if (url.hostname.includes('youtu.be')) vid = url.pathname.slice(1);
+      else vid = url.searchParams.get('v') || '';
+      return vid ? `https://www.youtube.com/embed/${vid}` : '';
+    } catch { return ''; }
+  }
+
+  const TBD_VIDEO_CARD = `
+    <div class="work-card work-card--tbd reveal">
+      <div class="work-card-body">
+        <p class="work-type">映像作品</p>
+        <h3 class="work-title work-title--tbd">TBD</h3>
+        <span class="work-badge work-badge--tbd">準備中</span>
+      </div>
+    </div>`;
+
+  function renderVideoGrid() {
+    const grid = document.getElementById('videoGrid');
+    const cards = allVideos.map(v => {
+      const embed = youtubeEmbedUrl(v.youtubeUrl || '');
+      return `
+      <div class="work-card reveal">
+        <div class="work-card-body">
+          <p class="work-type">${esc(v.type)}</p>
+          <h3 class="work-title">${esc(v.title)}</h3>
+          <span class="work-badge">✦ ${esc(v.status)}</span>
+          ${v.synopsis ? `<p class="work-synopsis">${esc(v.synopsis)}</p>` : ''}
+          ${v.tags && v.tags.length ? `<div class="work-genre-tags">${v.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+          ${embed ? `<div class="work-video-wrap"><iframe src="${embed}" allowfullscreen loading="lazy"></iframe></div>` : ''}
+        </div>
+      </div>`;
+    });
+    const pad = Math.max(0, 3 - cards.length);
+    grid.innerHTML = cards.join('') + TBD_VIDEO_CARD.repeat(pad);
+    document.querySelectorAll('#videoGrid .reveal').forEach(el => observer.observe(el));
+  }
+
+  function resetVForm() {
+    document.getElementById('vEditId').value = '';
+    document.getElementById('vTitle').value = '';
+    document.getElementById('vType').value = '映像作品';
+    document.getElementById('vStatus').value = '';
+    document.getElementById('vSynopsis').value = '';
+    document.getElementById('vTags').value = '';
+    document.getElementById('vOrder').value = '0';
+    document.getElementById('vYoutubeUrl').value = '';
+    document.getElementById('vFormTitle').textContent = '新しい映像作品を追加';
+  }
+
+  function renderVList() {
+    const list = document.getElementById('vList');
+    if (!allVideos.length) { list.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:.8rem 0">映像作品がありません</p>'; return; }
+    list.innerHTML = [...allVideos].sort((a,b) => (a.order||0)-(b.order||0)).map(v => `
+      <div class="a-post-item">
+        <div class="a-post-info">
+          <div class="a-post-title">${esc(v.title)}</div>
+          <div class="a-post-meta">${esc(v.type)} · ${esc(v.status)}${v.youtubeUrl ? ' · 🎬 YouTube' : ''}</div>
+        </div>
+        <div class="a-post-actions">
+          <button class="a-btn-edit" data-vid="${v.id}">編集</button>
+          <button class="a-btn-del"  data-vid="${v.id}">削除</button>
+        </div>
+      </div>`).join('');
+    list.querySelectorAll('.a-btn-edit').forEach(btn => btn.addEventListener('click', () => {
+      const v = allVideos.find(x => x.id === btn.dataset.vid); if (!v) return;
+      document.getElementById('vEditId').value = v.id;
+      document.getElementById('vTitle').value = v.title;
+      document.getElementById('vType').value = v.type;
+      document.getElementById('vStatus').value = v.status;
+      document.getElementById('vSynopsis').value = v.synopsis || '';
+      document.getElementById('vTags').value = (v.tags || []).join(' ');
+      document.getElementById('vOrder').value = v.order || 0;
+      document.getElementById('vYoutubeUrl').value = v.youtubeUrl || '';
+      document.getElementById('vFormTitle').textContent = '映像作品を編集';
+      document.getElementById('adminOverlay').scrollTop = 0;
+    }));
+    list.querySelectorAll('.a-btn-del').forEach(btn => btn.addEventListener('click', async () => {
+      if (!confirm('削除しますか？')) return;
+      try { await deleteDoc(doc(db, 'videos', btn.dataset.vid)); } catch(e) { console.warn(e); }
+      await loadVideos();
+    }));
+  }
+
+  document.getElementById('vSaveBtn').addEventListener('click', async () => {
+    const title      = document.getElementById('vTitle').value.trim();
+    const type       = document.getElementById('vType').value;
+    const status     = document.getElementById('vStatus').value.trim();
+    const synopsis   = document.getElementById('vSynopsis').value.trim();
+    const tagsRaw    = document.getElementById('vTags').value.trim();
+    const order      = parseInt(document.getElementById('vOrder').value) || 0;
+    const youtubeUrl = document.getElementById('vYoutubeUrl').value.trim();
+    const editId     = document.getElementById('vEditId').value;
+    if (!title) { alert('タイトルを入力してください'); return; }
+    if (youtubeUrl && !youtubeEmbedUrl(youtubeUrl)) { alert('YouTubeのURLが正しくありません'); return; }
+    const tags = tagsRaw ? tagsRaw.split(/\s+/).filter(Boolean) : [];
+    const btn = document.getElementById('vSaveBtn');
+    btn.disabled = true;
+    try {
+      const data = { title, type, status, synopsis, tags, order, youtubeUrl };
+      if (editId) {
+        await updateDoc(doc(db, 'videos', editId), data);
+      } else {
+        await addDoc(videosCol, { ...data, date: new Date().toISOString() });
+      }
+      await loadVideos();
+      resetVForm();
+    } catch(e) {
+      alert('保存に失敗しました。ネットワークを確認してください。');
+      console.error('video save error', e);
+    } finally { btn.disabled = false; }
+  });
+  document.getElementById('vResetBtn').addEventListener('click', resetVForm);
+
+  /* ─── SCRIPT WORKS ─── */
+  const scriptsCol = collection(db, 'scripts');
+  let allScripts = [];
+
+  const YOMI_SEED = {
+    title: 'YOMI',
+    type: '長編映画 脚本',
+    status: '脚本執筆中',
+    synopsis: '高校生の久坂秋は、寂れた旧神社で謎の研究員を目撃する。その夜を境に、町では死体遺棄事件、大量の鳥の死骸、発電所事故が相次ぎ、秋は幼馴染たちと共に町の地下に隠された"黄泉へ繋がる門"の存在へ近づいていく。',
+    tags: ['神話', 'SF', 'ジュブナイルホラー', '長編映画'],
+    order: 0, pdfUrl: '',
+  };
+
+  async function loadScripts() {
+    try {
+      const snap = await getDocs(query(scriptsCol, orderBy('order')));
+      allScripts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      if (allScripts.length === 0) {
+        const ref = await addDoc(scriptsCol, { ...YOMI_SEED, date: new Date().toISOString() });
+        allScripts = [{ id: ref.id, ...YOMI_SEED }];
+      }
+    } catch(e) {
+      console.warn('scripts load failed', e);
+      if (!allScripts.length) allScripts = [{ id: '_seed', ...YOMI_SEED }];
+    }
+    renderScriptsGrid();
+    if (aLoggedIn && document.getElementById('atab-scripts')?.classList.contains('active')) renderSList();
+  }
+
+  const TBD_CARD = `
+    <div class="work-card work-card--tbd reveal">
+      <div class="work-card-body">
+        <p class="work-type">脚本</p>
+        <h3 class="work-title work-title--tbd">TBD</h3>
+        <span class="work-badge work-badge--tbd">準備中</span>
+      </div>
+    </div>`;
+
+  function renderScriptsGrid() {
+    const grid = document.getElementById('worksGrid');
+    const cards = allScripts.map(s => `
+      <div class="work-card reveal">
+        <div class="work-card-body">
+          <p class="work-type">${esc(s.type)}</p>
+          <h3 class="work-title">${esc(s.title)}</h3>
+          <span class="work-badge">✦ ${esc(s.status)}</span>
+          ${s.synopsis ? `<p class="work-synopsis">${esc(s.synopsis)}</p>` : ''}
+          ${s.tags && s.tags.length ? `<div class="work-genre-tags">${s.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+          ${s.pdfUrl ? `<a href="${s.pdfUrl}" class="work-file-btn" target="_blank" rel="noopener">📄 脚本PDFを開く</a>` : ''}
+        </div>
+      </div>`);
+    const pad = Math.max(0, 3 - cards.length);
+    grid.innerHTML = cards.join('') + TBD_CARD.repeat(pad);
+    document.querySelectorAll('#worksGrid .reveal').forEach(el => observer.observe(el));
+  }
+
+  function resetSForm() {
+    document.getElementById('sEditId').value = '';
+    document.getElementById('sTitle').value = '';
+    document.getElementById('sType').value = '長編映画 脚本';
+    document.getElementById('sStatus').value = '';
+    document.getElementById('sSynopsis').value = '';
+    document.getElementById('sTags').value = '';
+    document.getElementById('sOrder').value = '0';
+    document.getElementById('sPdfUrl').value = '';
+    document.getElementById('sFormTitle').textContent = '新しい脚本を追加';
+  }
+
+  function renderSList() {
+    const list = document.getElementById('sList');
+    if (!allScripts.length) { list.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:.8rem 0">脚本がありません</p>'; return; }
+    list.innerHTML = [...allScripts].sort((a,b) => (a.order||0)-(b.order||0)).map(s => `
+      <div class="a-post-item">
+        <div class="a-post-info">
+          <div class="a-post-title">${esc(s.title)}</div>
+          <div class="a-post-meta">${esc(s.type)} · ${esc(s.status)}${s.pdfUrl ? ' · 📄 PDFあり' : ''}</div>
+        </div>
+        <div class="a-post-actions">
+          <button class="a-btn-edit" data-sid="${s.id}">編集</button>
+          <button class="a-btn-del"  data-sid="${s.id}">削除</button>
+        </div>
+      </div>`).join('');
+    list.querySelectorAll('.a-btn-edit').forEach(btn => btn.addEventListener('click', () => {
+      const s = allScripts.find(x => x.id === btn.dataset.sid); if (!s) return;
+      document.getElementById('sEditId').value = s.id;
+      document.getElementById('sTitle').value = s.title;
+      document.getElementById('sType').value = s.type;
+      document.getElementById('sStatus').value = s.status;
+      document.getElementById('sSynopsis').value = s.synopsis || '';
+      document.getElementById('sTags').value = (s.tags || []).join(' ');
+      document.getElementById('sOrder').value = s.order || 0;
+      document.getElementById('sPdfUrl').value = s.pdfUrl || '';
+      document.getElementById('sFormTitle').textContent = '脚本を編集';
+      document.getElementById('adminOverlay').scrollTop = 0;
+    }));
+    list.querySelectorAll('.a-btn-del').forEach(btn => btn.addEventListener('click', async () => {
+      if (!confirm('削除しますか？')) return;
+      try { await deleteDoc(doc(db, 'scripts', btn.dataset.sid)); } catch(e) { console.warn(e); }
+      await loadScripts();
+    }));
+  }
+
+  document.getElementById('sSaveBtn').addEventListener('click', async () => {
+    const title    = document.getElementById('sTitle').value.trim();
+    const type     = document.getElementById('sType').value;
+    const status   = document.getElementById('sStatus').value.trim();
+    const synopsis = document.getElementById('sSynopsis').value.trim();
+    const tagsRaw  = document.getElementById('sTags').value.trim();
+    const order    = parseInt(document.getElementById('sOrder').value) || 0;
+    const editId = document.getElementById('sEditId').value;
+    const pdfUrl = document.getElementById('sPdfUrl').value.trim();
+    if (!title) { alert('タイトルを入力してください'); return; }
+    const tags = tagsRaw ? tagsRaw.split(/\s+/).filter(Boolean) : [];
+    const btn = document.getElementById('sSaveBtn');
+    btn.disabled = true;
+    try {
+      const data = { title, type, status, synopsis, tags, order, pdfUrl };
+      if (editId) {
+        await updateDoc(doc(db, 'scripts', editId), data);
+      } else {
+        await addDoc(scriptsCol, { ...data, date: new Date().toISOString() });
+      }
+      await loadScripts();
+      resetSForm();
+    } catch(e) {
+      alert('保存に失敗しました。ネットワークを確認してください。');
+      console.error('script save error', e);
+    } finally { btn.disabled = false; }
+  });
+  document.getElementById('sResetBtn').addEventListener('click', resetSForm);
+
+  loadVideos();
+  loadScripts();
 
   function handleSubmit(e) {
     e.preventDefault();
