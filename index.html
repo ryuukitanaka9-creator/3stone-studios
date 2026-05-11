@@ -323,6 +323,75 @@
     color: var(--green); background: var(--green-faint);
   }
 
+  /* ─── SERVICE SECTION LABEL ─── */
+  .service-section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: .65rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--green); border: 1px solid var(--green);
+    padding: .25em .8em; border-radius: 2px;
+    display: inline-block; margin-bottom: 1.5rem;
+  }
+
+  .jisseki-empty {
+    font-family: 'Space Mono', monospace;
+    font-size: .78rem; letter-spacing: .1em;
+    color: var(--muted); padding: 2rem 0;
+  }
+
+  /* ─── ACHIEVEMENTS ─── */
+  .achievements-grid { display: flex; flex-direction: column; gap: .6rem; max-width: 820px; }
+  .ac-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    border-radius: 6px;
+    padding: 1.2rem 1.8rem;
+    transition: border-color .3s, background .3s;
+  }
+  .ac-card:hover { background: var(--green-faint); border-color: var(--green); }
+  .ac-type-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: .58rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--black); background: var(--green);
+    padding: .3em .8em; border-radius: 3px;
+    white-space: nowrap;
+  }
+  .ac-main { display: flex; flex-direction: column; gap: .25rem; }
+  .ac-title { font-size: .95rem; font-weight: 700; color: var(--white); line-height: 1.4; }
+  .ac-desc  { font-size: .82rem; line-height: 1.7; color: var(--muted); }
+  .ac-meta  {
+    font-family: 'Space Mono', monospace;
+    font-size: .6rem; letter-spacing: .08em; color: var(--muted-lo);
+    white-space: nowrap; text-align: right;
+  }
+
+  /* ─── BOOTH BANNER ─── */
+  .booth-banner {
+    margin-top: 2.5rem;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 1.8rem 2.5rem;
+  }
+  .booth-banner-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .booth-label {
+    font-family: 'Space Mono', monospace;
+    font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+    color: var(--green); display: block; margin-bottom: .6rem;
+  }
+  .booth-title {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 1.15rem; color: var(--white); margin-bottom: .5rem;
+  }
+  .booth-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+  .booth-btn { white-space: nowrap; }
+
   /* ─── WORKS ─── */
   .works { padding: 8rem 3rem; background: rgba(255,255,255,0.01); }
   .works-grid {
@@ -927,6 +996,8 @@
 <!-- ─── SERVICES ─── -->
 <section class="services" id="services">
   <h2 class="section-title reveal">OUR<br><span class="accent">SERVICES</span></h2>
+
+  <p class="service-section-label reveal">受　託</p>
   <div class="services-grid">
     <div class="service-card reveal">
       <span class="service-num">01</span>
@@ -956,33 +1027,25 @@
       </div>
     </div>
   </div>
-</section>
 
-<!-- ─── WORKS ─── -->
-<section class="works" id="works">
-  <h2 class="section-title reveal">OUR<br><span class="accent">PROJECTS</span></h2>
-
-  <p class="work-section-label">映像作品</p>
-  <div class="works-grid" id="videoGrid">
-    <p style="color:var(--muted);font-size:.9rem;padding:2rem 0">読み込み中…</p>
-  </div>
-
-  <p class="work-section-label" style="margin-top:3rem">脚本作品</p>
-  <div class="works-grid" id="worksGrid">
-    <p style="color:var(--muted);font-size:.9rem;padding:2rem 0">読み込み中…</p>
-  </div>
-  <div class="works-support-banner reveal">
-    <div class="works-support-inner">
-      <div>
-        <p class="works-support-title">🎬 脚本の映画化に向けて、支援を募集しています</p>
-        <p class="works-support-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
+  <p class="service-section-label reveal" style="margin-top:3.5rem">販　売</p>
+  <div class="booth-banner reveal">
+    <div class="booth-banner-inner">
+      <div class="booth-banner-left">
+        <span class="booth-label">BOOTH SHOP</span>
+        <p class="booth-title">VRChat向け 3Dモデルを販売中</p>
+        <p class="booth-desc">受託制作とは別に、すぐに使えるモデルをBOOTHで販売しています。</p>
       </div>
-      <a href="#contact" class="btn btn-primary">支援・協力を申し出る →</a>
+      <a href="https://3stonestudios.booth.pm/" class="btn btn-outline booth-btn" target="_blank" rel="noopener">ショップを見る →</a>
     </div>
   </div>
+
+  <p class="service-section-label reveal" style="margin-top:3.5rem">実　績</p>
+  <div id="achievementsGrid" class="achievements-grid reveal">
+    <p class="jisseki-empty" id="acEmpty">受託・納品した実績をここに掲載予定です。</p>
+  </div>
 </section>
 
-<!-- ─── 3STONE RUNNER ─── -->
 <!-- ─── PROCESS ─── -->
 <section class="process" id="process">
   <h2 class="section-title reveal">THE<br><span class="accent">PROCESS</span></h2>
@@ -1022,6 +1085,29 @@
   </div>
 </section>
 
+<!-- ─── WORKS ─── -->
+<section class="works" id="works">
+  <h2 class="section-title reveal">OUR<br><span class="accent">PROJECTS</span></h2>
+
+  <p class="work-section-label">映像作品</p>
+  <div class="works-grid" id="videoGrid">
+    <p style="color:var(--muted);font-size:.9rem;padding:2rem 0">読み込み中…</p>
+  </div>
+
+  <p class="work-section-label" style="margin-top:3rem">脚本作品</p>
+  <div class="works-grid" id="worksGrid">
+    <p style="color:var(--muted);font-size:.9rem;padding:2rem 0">読み込み中…</p>
+  </div>
+  <div class="works-support-banner reveal">
+    <div class="works-support-inner">
+      <div>
+        <p class="works-support-title">🎬 脚本の映画化に向けて、支援を募集しています</p>
+        <p class="works-support-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
+      </div>
+      <a href="#contact" class="btn btn-primary">支援・協力を申し出る →</a>
+    </div>
+  </div>
+</section>
 
 <!-- ─── JOIN US ─── -->
 <section class="join" id="join">
@@ -1136,6 +1222,7 @@
         <button class="admin-tab active" data-atab="news">ニュース</button>
         <button class="admin-tab" data-atab="videos">映像作品</button>
         <button class="admin-tab" data-atab="scripts">脚本作品</button>
+        <button class="admin-tab" data-atab="achievements">実績</button>
         <button class="admin-tab" data-atab="content">サイト内容</button>
       </div>
       <button class="admin-close-btn" id="aPanelClose">✕ 閉じる</button>
@@ -1233,6 +1320,33 @@
         <p class="admin-panel-title" style="font-size:1.1rem">脚本一覧</p>
         <div id="sList"></div>
       </div>
+      <!-- ACHIEVEMENTS TAB -->
+      <div class="tab-panel" id="atab-achievements">
+        <p class="admin-panel-title">実績管理</p>
+        <div class="a-card">
+          <p class="a-card-title" id="acFormTitle">新しい実績を追加</p>
+          <input type="hidden" id="acEditId">
+          <div class="a-field"><label>案件名</label><input type="text" id="acTitle" placeholder="例: 短編映画「〇〇」脚本制作"></div>
+          <div class="a-field">
+            <label>種別</label>
+            <select id="acType">
+              <option value="脚本制作">脚本制作</option>
+              <option value="3Dモデリング">3Dモデリング</option>
+              <option value="アニメーション">アニメーション</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+          <div class="a-field"><label>概要</label><textarea id="acDesc" rows="3" placeholder="どんな案件だったか…"></textarea></div>
+          <div class="a-field"><label>納品時期（例: 2026年6月）</label><input type="text" id="acPeriod" placeholder="2026年6月"></div>
+          <div class="a-field"><label>クライアント名（任意・非公開も可）</label><input type="text" id="acClient" placeholder="非公開 / 個人クライアント など"></div>
+          <div class="a-btn-row">
+            <button class="a-btn-save" id="acSaveBtn">保存する</button>
+            <button class="a-btn-cancel" id="acResetBtn">キャンセル</button>
+          </div>
+        </div>
+        <p class="admin-panel-title" style="font-size:1.1rem">実績一覧</p>
+        <div id="acList"></div>
+      </div>
       <!-- CONTENT TAB -->
       <div class="tab-panel" id="atab-content">
         <p class="admin-panel-title">サイト内容の編集</p>
@@ -1284,7 +1398,7 @@
     <a href="#news">News</a>
     <a href="#services">Services</a>
     <a href="#works">Works</a>
-<a href="#join">Join Us</a>
+    <a href="#join">Join Us</a>
     <a href="#contact">Contact</a>
   </div>
   <div class="sns-links">
@@ -1520,6 +1634,7 @@
       document.getElementById('atab-' + tab.dataset.atab).classList.add('active');
       if (tab.dataset.atab === 'videos') renderVList();
       else if (tab.dataset.atab === 'scripts') renderSList();
+      else if (tab.dataset.atab === 'achievements') renderAcList();
     });
   });
 
@@ -1911,8 +2026,112 @@
   });
   document.getElementById('sResetBtn').addEventListener('click', resetSForm);
 
+  // ─── ACHIEVEMENTS ───────────────────────────────
+  const achievementsCol = collection(db, 'achievements');
+
+  async function loadAchievements() {
+    const grid = document.getElementById('achievementsGrid');
+    const empty = document.getElementById('acEmpty');
+    try {
+      const snap = await getDocs(query(achievementsCol, orderBy('date', 'desc')));
+      grid.querySelectorAll('.ac-card').forEach(el => el.remove());
+      if (snap.empty) { if (empty) empty.style.display = 'block'; return; }
+      if (empty) empty.style.display = 'none';
+      snap.forEach(d => {
+        const ac = d.data();
+        const card = document.createElement('div');
+        card.className = 'ac-card';
+        card.innerHTML = `
+          <span class="ac-type-badge">${ac.type || ''}</span>
+          <div class="ac-main">
+            <p class="ac-title">${ac.title || ''}</p>
+            ${ac.desc ? `<p class="ac-desc">${ac.desc}</p>` : ''}
+          </div>
+          <p class="ac-meta">${ac.period || ''}${ac.client ? '<br>' + ac.client : ''}</p>`;
+        grid.appendChild(card);
+      });
+    } catch(e) { console.warn(e); }
+  }
+
+  function renderAcList() {
+    const list = document.getElementById('acList');
+    if (!list) return;
+    list.innerHTML = '';
+    getDocs(query(achievementsCol, orderBy('date', 'desc'))).then(snap => {
+      snap.forEach(d => {
+        const ac = d.data();
+        const item = document.createElement('div');
+        item.className = 'a-post-item';
+        item.innerHTML = `
+          <div class="a-post-info">
+            <p class="a-post-title">${ac.title}</p>
+            <p class="a-post-meta">${ac.type}　${ac.period || ''}${ac.client ? '　|　' + ac.client : ''}</p>
+          </div>
+          <div class="a-post-actions">
+            <button class="a-btn-edit" data-acid="${d.id}">編集</button>
+            <button class="a-btn-del" data-acid="${d.id}">削除</button>
+          </div>`;
+        item.querySelector('.a-btn-del').addEventListener('click', async btn => {
+          if (!confirm('削除しますか？')) return;
+          await deleteDoc(doc(db, 'achievements', btn.target.dataset.acid));
+          loadAchievements(); renderAcList();
+        });
+        item.querySelector('.a-btn-edit').addEventListener('click', async btn => {
+          const sd = (await getDocs(query(achievementsCol))).docs.find(x => x.id === btn.target.dataset.acid);
+          if (!sd) return;
+          const ac = sd.data();
+          document.getElementById('acEditId').value = sd.id;
+          document.getElementById('acTitle').value  = ac.title || '';
+          document.getElementById('acType').value   = ac.type  || '脚本制作';
+          document.getElementById('acDesc').value   = ac.desc  || '';
+          document.getElementById('acPeriod').value = ac.period|| '';
+          document.getElementById('acClient').value = ac.client|| '';
+          document.getElementById('acFormTitle').textContent = '実績を編集';
+        });
+        list.appendChild(item);
+      });
+    });
+  }
+
+  function resetAcForm() {
+    document.getElementById('acEditId').value = '';
+    document.getElementById('acTitle').value  = '';
+    document.getElementById('acType').value   = '脚本制作';
+    document.getElementById('acDesc').value   = '';
+    document.getElementById('acPeriod').value = '';
+    document.getElementById('acClient').value = '';
+    document.getElementById('acFormTitle').textContent = '新しい実績を追加';
+  }
+
+  document.getElementById('acSaveBtn').addEventListener('click', async () => {
+    const title  = document.getElementById('acTitle').value.trim();
+    if (!title) { alert('案件名を入力してください'); return; }
+    const data = {
+      title,
+      type:   document.getElementById('acType').value,
+      desc:   document.getElementById('acDesc').value.trim(),
+      period: document.getElementById('acPeriod').value.trim(),
+      client: document.getElementById('acClient').value.trim(),
+    };
+    const editId = document.getElementById('acEditId').value;
+    const btn = document.getElementById('acSaveBtn');
+    btn.textContent = '保存中…'; btn.disabled = true;
+    try {
+      if (editId) {
+        await updateDoc(doc(db, 'achievements', editId), data);
+      } else {
+        await addDoc(achievementsCol, { ...data, date: new Date().toISOString() });
+      }
+      resetAcForm(); loadAchievements(); renderAcList();
+    } catch(e) { alert('保存に失敗しました: ' + e.message); }
+    btn.textContent = '保存する'; btn.disabled = false;
+  });
+
+  document.getElementById('acResetBtn').addEventListener('click', resetAcForm);
+
   loadVideos();
   loadScripts();
+  loadAchievements();
 
   function handleSubmit(e) {
     e.preventDefault();
