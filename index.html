@@ -1168,7 +1168,7 @@
   <div class="contact-inner">
     <h2 class="reveal">LET'S<br><em>CREATE</em><br>TOGETHER.</h2>
     <p class="contact-sub reveal">プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。</p>
-    <form class="contact-form reveal" onsubmit="handleSubmit(event)" id="contactForm">
+    <form class="contact-form reveal" id="contactForm">
       <div class="form-row">
         <div class="form-group">
           <label for="name">お名前</label>
@@ -2141,7 +2141,7 @@
   loadScripts();
   loadAchievements();
 
-  function handleSubmit(e) {
+  document.getElementById('contactForm').addEventListener('submit', e => {
     e.preventDefault();
     const form = e.target;
     const name    = form.querySelector('#name').value;
@@ -2155,7 +2155,7 @@
     btn.textContent = 'メールアプリを開いています…';
     btn.classList.add('btn-sent');
     btn.disabled = true;
-  }
+  });
 </script>
 </body>
 </html>
