@@ -108,9 +108,9 @@
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
+    justify-content: flex-start; align-items: center;
     text-align: center;
-    padding: 6rem 3rem;
+    padding: 5.5rem 3rem 4rem;
     position: relative; overflow: hidden;
   }
   .hero-glow {
@@ -127,11 +127,11 @@
 
   .hero-logo-wrap {
     position: relative; z-index: 1;
-    margin-bottom: 3rem;
+    margin-bottom: 0.6rem;
     opacity: 0; animation: fadeIn 1.2s .2s forwards;
   }
   .hero-logo-wrap img {
-    width: clamp(320px, 52vw, 640px); height: auto;
+    width: clamp(270px, 39vw, 500px); height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 80px var(--green-glow-shadow));
     animation: floatLogo 5s ease-in-out infinite;
@@ -143,17 +143,18 @@
 
   .hero-studio-name {
     font-family: 'Dela Gothic One', sans-serif;
-    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-    letter-spacing: 0.12em;
+    font-size: clamp(0.9rem, 2.54vw, 2.03rem);
+    letter-spacing: 0.14em;
     color: var(--white);
     position: relative; z-index: 1;
     opacity: 0; animation: fadeIn 1s .8s forwards;
-    margin-bottom: 0.6rem;
-    display: flex; align-items: center; gap: 0.2em; justify-content: center;
+    margin-bottom: 9rem;
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 0.25em; justify-content: center;
   }
   .hero-title {
     font-family: 'Dela Gothic One', sans-serif;
-    font-size: clamp(3rem, 9vw, 8rem);
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
     position: relative; z-index: 1;
@@ -891,7 +892,8 @@
   <p class="hero-sub" id="hero-sub-text">映画業界を目指す大学生が運営するクリエイティブスタジオ。3Dモデリングと脚本制作を軸に活動中。</p>
   <div class="hero-cta">
     <a href="#contact" class="btn btn-primary" id="hero-cta-1">仕事を依頼する</a>
-    <a href="#services" class="btn btn-outline" id="hero-cta-2">サービスを見る</a>
+    <a href="#services" class="btn btn-primary" id="hero-cta-2">サービスを見る</a>
+    <a href="#works" class="btn btn-primary">作品を見る</a>
   </div>
   <div class="hero-stats reveal">
     <div class="hero-stat">
@@ -905,12 +907,12 @@
     </div>
     <div class="hero-stat-divider"></div>
     <div class="hero-stat">
-      <span class="hero-stat-value">大学生 2名+</span>
+      <span class="hero-stat-value">メンバー 2名+</span>
       <span class="hero-stat-label">チーム</span>
     </div>
     <div class="hero-stat-divider"></div>
     <div class="hero-stat">
-      <span class="hero-stat-value">Ryuki Tanaka</span>
+      <span class="hero-stat-value">田中琉暉</span>
       <span class="hero-stat-label">代表 / 大学3年</span>
     </div>
   </div>
@@ -950,7 +952,7 @@
     </div>
   </div>
   <p class="about-body reveal" id="about-body-1">
-    映画業界を目指す大学生が運営するクリエイティブスタジオです。3Dモデリングと脚本制作を軸に活動中。代表の Ryuki Tanaka は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。
+    映画業界を目指す大学生が運営するクリエイティブスタジオです。3Dモデリングと脚本制作を軸に活動中。代表の 田中琉暉 は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。
   </p>
   <p class="about-body reveal" id="about-body-2">
     このスタジオは単なる制作スタジオではありません。大学生のうちに本物の作品をつくり、映画業界と繋がりを持てる場所を作りたい——その想いから生まれました。映画に情熱を持つ人たちが集まり、共に業界への扉を開く拠点です。
@@ -958,7 +960,7 @@
   <div class="about-meta reveal">
     <div class="about-meta-item">
       <span class="about-meta-label">代表</span>
-      <span class="about-meta-value" id="meta-rep">Ryuki Tanaka（大学3年）</span>
+      <span class="about-meta-value" id="meta-rep">田中琉暉（大学3年）</span>
     </div>
     <div class="about-meta-item">
       <span class="about-meta-label">設立</span>
@@ -970,7 +972,7 @@
     </div>
     <div class="about-meta-item">
       <span class="about-meta-label">メンバー</span>
-      <span class="about-meta-value" id="meta-mem">大学生 2名+で運営</span>
+      <span class="about-meta-value" id="meta-mem">メンバー 2名+</span>
     </div>
     <div class="about-meta-item">
       <span class="about-meta-label">メール</span>
@@ -1141,6 +1143,13 @@
           <div>
             <p class="join-learn-name">ハリウッド式脚本術</p>
             <p class="join-learn-desc">シド・フィールド形式をベースに、実際に使われるフォーマットで脚本を書く方法を共有します。</p>
+          </div>
+        </div>
+        <div class="join-learn-item">
+          <span class="join-learn-icon">📝</span>
+          <div>
+            <p class="join-learn-name">日本式脚本術</p>
+            <p class="join-learn-desc">ト書きの簡潔さ・間の使い方・日本独自の情景描写など、日本映画・ドラマに根ざした脚本の書き方を一緒に学べます。</p>
           </div>
         </div>
       </div>
@@ -1554,12 +1563,12 @@
     mottoJa: '石の上にも３年。',
     mottoEn: 'Perseverance builds mastery.',
     mottoDesc: '「石の上にも三年」——冷たい石の上でも座り続ければ温まる。私たちはこの言葉を胸に、妥協なくクラフトを磨き続けています。一つひとつの作品に向き合う真摯な姿勢が、3 Stone Studios の根幹です。',
-    about1: '映画業界を目指す大学生が運営するクリエイティブスタジオです。3Dモデリングと脚本制作を軸に活動中。代表の Ryuki Tanaka は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。',
+    about1: '映画業界を目指す大学生が運営するクリエイティブスタジオです。3Dモデリングと脚本制作を軸に活動中。代表の 田中琉暉 は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。',
     about2: 'このスタジオは単なる制作スタジオではありません。大学生のうちに本物の作品をつくり、映画業界と繋がりを持てる場所を作りたい——その想いから生まれました。映画に情熱を持つ人たちが集まり、共に業界への扉を開く拠点です。',
-    metaRep: 'Ryuki Tanaka（大学3年）',
+    metaRep: '田中琉暉（大学3年）',
     metaEst: '2025年9月1日',
     metaLoc: '東京',
-    metaMem: '大学生 2名+で運営',
+    metaMem: 'メンバー 2名+',
     metaMail: 'ryukitanaka3@gmail.com',
     join: '3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。',
   };
@@ -2078,12 +2087,14 @@
           loadAchievements(); renderAcList();
         });
         item.querySelector('.a-btn-edit').addEventListener('click', async () => {
+          document.getElementById('acEditId').value = d.id;
           document.getElementById('acTitle').value  = ac.title || '';
           document.getElementById('acType').value   = ac.type  || '脚本制作';
           document.getElementById('acDesc').value   = ac.desc  || '';
           document.getElementById('acPeriod').value = ac.period|| '';
           document.getElementById('acClient').value = ac.client|| '';
           document.getElementById('acFormTitle').textContent = '実績を編集';
+          document.getElementById('adminOverlay').scrollTop = 0;
         });
         list.appendChild(item);
       });
