@@ -1020,7 +1020,7 @@
       <span class="service-num">01</span>
       <span class="service-icon">🎬</span>
       <h3>脚本執筆 / Film Scriptwriting</h3>
-      <p>短編映画（〜60分前後）の脚本執筆を承ります。ざっくりしたあらすじや世界観のメモだけでも大丈夫。長編・アニメ、その他の形式もご相談ください。</p>
+      <p id="svc-script-desc">短編映画・中編映画の脚本執筆を承ります。ざっくりしたあらすじや世界観のメモだけでも大丈夫。長編・アニメ、その他の形式もご相談ください。</p>
       <div style="margin-bottom:1rem;display:flex;flex-direction:column;gap:.6rem">
         <span style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green)">PRICE</span>
         <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:6px;padding:.7rem 1rem">
@@ -1044,7 +1044,7 @@
       <span class="service-num">02</span>
       <span class="service-icon">🧊</span>
       <h3>3Dモデリング受注 / 3D Modeling</h3>
-      <p>キャラクター・アバター・プロップ等の受注制作を承ります。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。</p>
+      <p id="svc-3d-desc">キャラクター・アバター・プロップ等の受注制作を承ります。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。</p>
       <div style="margin-bottom:1rem;display:flex;flex-direction:column;gap:.6rem">
         <span style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green)">PRICE</span>
         <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:6px;padding:.7rem 1rem">
@@ -1070,7 +1070,7 @@
       <span class="service-num">03</span>
       <span class="service-icon">🛒</span>
       <h3>3Dモデル販売 / 3D Model Sales</h3>
-      <p>BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。</p>
+      <p id="svc-booth-desc">BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。</p>
       <a href="https://3stonestudios.booth.pm/" class="btn btn-outline" target="_blank" rel="noopener" style="display:inline-block;margin-top:.5rem">BOOTHショップを見る →</a>
     </div>
   </div>
@@ -1089,32 +1089,32 @@
       <div class="step-num">01</div>
       <div class="step-content">
         <div class="step-dot"></div>
-        <h4>まず話しましょう</h4>
-        <p>「こんなのやりたい」程度でOK。DMでもメールでも、気軽に声をかけてください。</p>
+        <h4 id="proc-1-title">まず話しましょう</h4>
+        <p id="proc-1-desc">「こんなのやりたい」程度でOK。DMでもメールでも、気軽に声をかけてください。</p>
       </div>
     </div>
     <div class="step reveal">
       <div class="step-num">02</div>
       <div class="step-content">
         <div class="step-dot dim-2"></div>
-        <h4>方向性を固める</h4>
-        <p>一緒にイメージを具体化します。世界観・キャラクター・トーンなど、ざっくりでも大丈夫。</p>
+        <h4 id="proc-2-title">方向性を固める</h4>
+        <p id="proc-2-desc">一緒にイメージを具体化します。世界観・キャラクター・トーンなど、ざっくりでも大丈夫。</p>
       </div>
     </div>
     <div class="step reveal">
       <div class="step-num">03</div>
       <div class="step-content">
         <div class="step-dot dim-3"></div>
-        <h4>制作しながら確認</h4>
-        <p>こまめに共有しながら進めます。「違う」と思ったら遠慮なく言ってください。</p>
+        <h4 id="proc-3-title">制作しながら確認</h4>
+        <p id="proc-3-desc">こまめに共有しながら進めます。「違う」と思ったら遠慮なく言ってください。</p>
       </div>
     </div>
     <div class="step reveal">
       <div class="step-num">04</div>
       <div class="step-content">
         <div class="step-dot dim-4"></div>
-        <h4>完成・お渡し</h4>
-        <p>完成したらご指定の形式でお渡しします。その後も気になることがあれば相談歓迎。</p>
+        <h4 id="proc-4-title">完成・お渡し</h4>
+        <p id="proc-4-desc">完成したらご指定の形式でお渡しします。その後も気になることがあれば相談歓迎。</p>
       </div>
     </div>
   </div>
@@ -1136,8 +1136,8 @@
   <div class="works-support-banner reveal">
     <div class="works-support-inner">
       <div>
-        <p class="works-support-title">🎬 脚本の映画化に向けて、支援を募集しています</p>
-        <p class="works-support-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
+        <p class="works-support-title" id="works-banner-title">🎬 脚本の映画化に向けて、支援を募集しています</p>
+        <p class="works-support-body" id="works-banner-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
         <p class="works-support-body" style="margin-top:.8rem;font-size:.82rem;color:var(--muted-lo)">※ オリジナル作品（脚本・映像）の販売は行っておりません。</p>
       </div>
       <a href="#contact" class="btn btn-primary">支援・協力を申し出る →</a>
@@ -1200,7 +1200,7 @@
   <div class="contact-bg-text">CONTACT</div>
   <div class="contact-inner">
     <h2 class="reveal">LET'S<br><em>CREATE</em><br>TOGETHER.</h2>
-    <p class="contact-sub reveal">プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。</p>
+    <p class="contact-sub reveal" id="contact-sub-text">プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。</p>
     <form class="contact-form reveal" id="contactForm">
       <div class="form-row">
         <div class="form-group">
@@ -1427,6 +1427,36 @@
           <div class="a-field"><label>本文</label><textarea id="ca-join" rows="3"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="join">保存する</button><span class="save-ok" id="sok-join">保存しました ✓</span></div>
         </div>
+        <div class="a-card">
+          <p class="a-card-title">Services — サービス説明文</p>
+          <div class="a-field"><label>脚本執筆</label><textarea id="ca-svc-script" rows="2"></textarea></div>
+          <div class="a-field"><label>3Dモデリング受注</label><textarea id="ca-svc-3d" rows="2"></textarea></div>
+          <div class="a-field"><label>3Dモデル販売（BOOTH）</label><textarea id="ca-svc-booth" rows="2"></textarea></div>
+          <div class="a-btn-row"><button class="a-btn-save" data-asave="services">保存する</button><span class="save-ok" id="sok-services">保存しました ✓</span></div>
+        </div>
+        <div class="a-card">
+          <p class="a-card-title">制作フロー — 4ステップ</p>
+          <div class="a-field"><label>STEP 01 タイトル</label><input type="text" id="ca-proc-1-title"></div>
+          <div class="a-field"><label>STEP 01 説明</label><input type="text" id="ca-proc-1-desc"></div>
+          <div class="a-field"><label>STEP 02 タイトル</label><input type="text" id="ca-proc-2-title"></div>
+          <div class="a-field"><label>STEP 02 説明</label><input type="text" id="ca-proc-2-desc"></div>
+          <div class="a-field"><label>STEP 03 タイトル</label><input type="text" id="ca-proc-3-title"></div>
+          <div class="a-field"><label>STEP 03 説明</label><input type="text" id="ca-proc-3-desc"></div>
+          <div class="a-field"><label>STEP 04 タイトル</label><input type="text" id="ca-proc-4-title"></div>
+          <div class="a-field"><label>STEP 04 説明</label><input type="text" id="ca-proc-4-desc"></div>
+          <div class="a-btn-row"><button class="a-btn-save" data-asave="process">保存する</button><span class="save-ok" id="sok-process">保存しました ✓</span></div>
+        </div>
+        <div class="a-card">
+          <p class="a-card-title">Contact — サブテキスト</p>
+          <div class="a-field"><label>説明文</label><input type="text" id="ca-contact-sub"></div>
+          <div class="a-btn-row"><button class="a-btn-save" data-asave="contact">保存する</button><span class="save-ok" id="sok-contact">保存しました ✓</span></div>
+        </div>
+        <div class="a-card">
+          <p class="a-card-title">Projects — サポートバナー</p>
+          <div class="a-field"><label>タイトル</label><input type="text" id="ca-works-banner-title"></div>
+          <div class="a-field"><label>本文</label><textarea id="ca-works-banner-body" rows="3"></textarea></div>
+          <div class="a-btn-row"><button class="a-btn-save" data-asave="works-banner">保存する</button><span class="save-ok" id="sok-works-banner">保存しました ✓</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1605,6 +1635,20 @@
     metaMem: 'メンバー 2名+',
     metaMail: 'ryukitanaka3@gmail.com',
     join: '3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。',
+    svcScriptDesc: '短編映画・中編映画の脚本執筆を承ります。ざっくりしたあらすじや世界観のメモだけでも大丈夫。長編・アニメ、その他の形式もご相談ください。',
+    svc3dDesc: 'キャラクター・アバター・プロップ等の受注制作を承ります。使用ソフトは Blender。参考画像や雰囲気の説明だけでも気軽にどうぞ。',
+    svcBoothDesc: 'BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。',
+    proc1Title: 'まず話しましょう',
+    proc1Desc: '「こんなのやりたい」程度でOK。DMでもメールでも、気軽に声をかけてください。',
+    proc2Title: '方向性を固める',
+    proc2Desc: '一緒にイメージを具体化します。世界観・キャラクター・トーンなど、ざっくりでも大丈夫。',
+    proc3Title: '制作しながら確認',
+    proc3Desc: 'こまめに共有しながら進めます。「違う」と思ったら遠慮なく言ってください。',
+    proc4Title: '完成・お渡し',
+    proc4Desc: '完成したらご指定の形式でお渡しします。その後も気になることがあれば相談歓迎。',
+    contactSub: 'プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。',
+    worksBannerTitle: '🎬 脚本の映画化に向けて、支援を募集しています',
+    worksBannerBody: '脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。',
   };
   let aLoggedIn = false;
 
@@ -1759,6 +1803,20 @@
     document.getElementById('ca-meta-mem').value = c.metaMem;
     document.getElementById('ca-meta-mail').value = c.metaMail;
     document.getElementById('ca-join').value = c.join;
+    document.getElementById('ca-svc-script').value = c.svcScriptDesc;
+    document.getElementById('ca-svc-3d').value = c.svc3dDesc;
+    document.getElementById('ca-svc-booth').value = c.svcBoothDesc;
+    document.getElementById('ca-proc-1-title').value = c.proc1Title;
+    document.getElementById('ca-proc-1-desc').value = c.proc1Desc;
+    document.getElementById('ca-proc-2-title').value = c.proc2Title;
+    document.getElementById('ca-proc-2-desc').value = c.proc2Desc;
+    document.getElementById('ca-proc-3-title').value = c.proc3Title;
+    document.getElementById('ca-proc-3-desc').value = c.proc3Desc;
+    document.getElementById('ca-proc-4-title').value = c.proc4Title;
+    document.getElementById('ca-proc-4-desc').value = c.proc4Desc;
+    document.getElementById('ca-contact-sub').value = c.contactSub;
+    document.getElementById('ca-works-banner-title').value = c.worksBannerTitle;
+    document.getElementById('ca-works-banner-body').value = c.worksBannerBody;
   }
   document.querySelectorAll('[data-asave]').forEach(btn => {
     btn.addEventListener('click', async () => {
@@ -1769,6 +1827,10 @@
       else if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; c.about2 = document.getElementById('ca-about2').value; }
       else if (key === 'meta') { c.metaRep = document.getElementById('ca-meta-rep').value; c.metaEst = document.getElementById('ca-meta-est').value; c.metaLoc = document.getElementById('ca-meta-loc').value; c.metaMem = document.getElementById('ca-meta-mem').value; c.metaMail = document.getElementById('ca-meta-mail').value; }
       else if (key === 'join') { c.join = document.getElementById('ca-join').value; }
+      else if (key === 'services') { c.svcScriptDesc = document.getElementById('ca-svc-script').value; c.svc3dDesc = document.getElementById('ca-svc-3d').value; c.svcBoothDesc = document.getElementById('ca-svc-booth').value; }
+      else if (key === 'process') { c.proc1Title = document.getElementById('ca-proc-1-title').value; c.proc1Desc = document.getElementById('ca-proc-1-desc').value; c.proc2Title = document.getElementById('ca-proc-2-title').value; c.proc2Desc = document.getElementById('ca-proc-2-desc').value; c.proc3Title = document.getElementById('ca-proc-3-title').value; c.proc3Desc = document.getElementById('ca-proc-3-desc').value; c.proc4Title = document.getElementById('ca-proc-4-title').value; c.proc4Desc = document.getElementById('ca-proc-4-desc').value; }
+      else if (key === 'contact') { c.contactSub = document.getElementById('ca-contact-sub').value; }
+      else if (key === 'works-banner') { c.worksBannerTitle = document.getElementById('ca-works-banner-title').value; c.worksBannerBody = document.getElementById('ca-works-banner-body').value; }
       btn.disabled = true;
       try {
         await saveContent(c);
@@ -1806,6 +1868,21 @@
     set('meta-mem', c.metaMem);
     setHref('meta-mail', c.metaMail);
     set('join-body-text', c.join);
+    const setHTML = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
+    setHTML('svc-script-desc', c.svcScriptDesc);
+    setHTML('svc-3d-desc', c.svc3dDesc);
+    setHTML('svc-booth-desc', c.svcBoothDesc);
+    set('proc-1-title', c.proc1Title);
+    set('proc-1-desc', c.proc1Desc);
+    set('proc-2-title', c.proc2Title);
+    set('proc-2-desc', c.proc2Desc);
+    set('proc-3-title', c.proc3Title);
+    set('proc-3-desc', c.proc3Desc);
+    set('proc-4-title', c.proc4Title);
+    set('proc-4-desc', c.proc4Desc);
+    set('contact-sub-text', c.contactSub);
+    set('works-banner-title', c.worksBannerTitle);
+    set('works-banner-body', c.worksBannerBody);
   }
   loadContent();
 
