@@ -52,6 +52,11 @@
     will-change: transform;
   }
   .cursor.hover { width: 44px; height: 44px; background: var(--green-glow); }
+  @media (hover: none) and (pointer: coarse) {
+    .cursor { display: none; }
+    body { cursor: auto; }
+    a, button, input, select, textarea { cursor: auto; }
+  }
 
   /* ─── NAV ─── */
   nav {
@@ -131,7 +136,7 @@
     opacity: 0; animation: fadeIn 1.2s .2s forwards;
   }
   .hero-logo-wrap img {
-    width: clamp(270px, 39vw, 500px); height: auto;
+    width: clamp(280px, 41vw, 525px); height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 80px var(--green-glow-shadow));
     animation: floatLogo 5s ease-in-out infinite;
@@ -143,7 +148,7 @@
 
   .hero-studio-name {
     font-family: 'Dela Gothic One', sans-serif;
-    font-size: clamp(0.9rem, 2.54vw, 2.03rem);
+    font-size: clamp(1rem, 2.84vw, 2.27rem);
     letter-spacing: 0.14em;
     color: var(--white);
     position: relative; z-index: 1;
@@ -255,7 +260,13 @@
   .accent { color: var(--green); }
 
   /* ─── ABOUT ─── */
-  .about { padding: 8rem 3rem; max-width: 900px; }
+  .about { padding: 8rem 3rem; }
+  .about-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
   .about-motto-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -278,7 +289,6 @@
     margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;
   }
   .about-body { font-size: .95rem; line-height: 1.8; color: var(--muted); }
-  .about-body + .about-body { margin-top: 1.2rem; }
 
   /* ─── SERVICES ─── */
   .services { padding: 8rem 3rem; }
@@ -371,28 +381,6 @@
     white-space: nowrap; text-align: right;
   }
 
-  /* ─── BOOTH BANNER ─── */
-  .booth-banner {
-    margin-top: 2.5rem;
-    border: 1px dashed var(--border);
-    border-radius: 10px;
-    padding: 1.8rem 2.5rem;
-  }
-  .booth-banner-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 2rem; flex-wrap: wrap;
-  }
-  .booth-label {
-    font-family: 'Space Mono', monospace;
-    font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
-    color: var(--green); display: block; margin-bottom: .6rem;
-  }
-  .booth-title {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 1.15rem; color: var(--white); margin-bottom: .5rem;
-  }
-  .booth-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; }
-  .booth-btn { white-space: nowrap; }
 
   /* ─── WORKS ─── */
   .works { padding: 8rem 3rem; background: rgba(255,255,255,0.01); }
@@ -432,6 +420,18 @@
     font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
     color: var(--black); background: var(--green);
     padding: .35em 1em; border-radius: 999px;
+  }
+
+  /* ─── ORIGINAL BADGE ─── */
+  .work-badge--original {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--green);
+    font-family: 'Space Mono', monospace;
+    font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+    padding: .3em .9em; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: .3em;
+    margin-left: .5rem;
   }
 
   /* ─── WORK TBD CARDS ─── */
@@ -843,18 +843,24 @@
     .nav-links {
       display: flex; flex-direction: column;
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--nav-mobile-bg);
+      background: #060808;
       align-items: center; justify-content: center;
       gap: 2.5rem; opacity: 0; pointer-events: none;
       transition: opacity .3s; z-index: 190;
     }
     .nav-links.open { opacity: 1; pointer-events: all; }
-    .nav-links a { font-size: 1rem; letter-spacing: 0.22em; }
+    .nav-links a { font-size: 1.1rem; letter-spacing: 0.22em; }
     .hero, .about, .services, .works,
     .process, .news, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about-meta { grid-template-columns: 1fr; }
+    .works-support-inner { flex-direction: column; }
     .admin-overlay { padding: 1.5rem; }
     .form-row { grid-template-columns: 1fr; }
     footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    .footer-links { flex-wrap: wrap; gap: 1rem; }
+    .hero-stats { padding: 1.2rem 1.5rem; gap: 1.2rem; }
+    .hero-stat-divider { display: none; }
   }
 </style>
 </head>
@@ -869,7 +875,7 @@
     <li><a href="#about">Profile</a></li>
     <li><a href="#news">News</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#works">Works</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#join">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -893,7 +899,7 @@
   <div class="hero-cta">
     <a href="#contact" class="btn btn-primary" id="hero-cta-1">仕事を依頼する</a>
     <a href="#services" class="btn btn-primary" id="hero-cta-2">サービスを見る</a>
-    <a href="#works" class="btn btn-primary">作品を見る</a>
+    <a href="#projects" class="btn btn-primary">作品を見る</a>
   </div>
   <div class="hero-stats reveal">
     <div class="hero-stat">
@@ -944,40 +950,49 @@
 <!-- ─── ABOUT ─── -->
 <section class="about" id="about">
   <h2 class="section-title reveal">WHO WE<br><span class="accent">ARE.</span></h2>
-  <div class="about-motto-card reveal">
-    <div class="motto-ja" id="motto-ja-text">石の上にも３年。</div>
-    <div class="motto-en" id="motto-en-text">Perseverance builds mastery.</div>
-    <div class="motto-desc" id="motto-desc-text">
-      「石の上にも三年」——冷たい石の上でも座り続ければ温まる。私たちはこの言葉を胸に、妥協なくクラフトを磨き続けています。一つひとつの作品に向き合う真摯な姿勢が、3 Stone Studios の根幹です。
+  <div class="about-inner">
+
+    <div class="about-left">
+      <div class="about-motto-card reveal">
+        <div class="motto-ja" id="motto-ja-text">石の上にも３年。</div>
+        <div class="motto-en" id="motto-en-text"></div>
+        <div class="motto-desc" id="motto-desc-text">
+          冷たい石の上でも座り続ければ温まる。妥協なくクラフトを磨き続けること——それが 3 Stone Studios の根幹です。
+        </div>
+      </div>
     </div>
-  </div>
-  <p class="about-body reveal" id="about-body-1">
-    映画業界を目指す大学生が運営するクリエイティブスタジオです。3Dモデリングと脚本制作を軸に活動中。代表の 田中琉暉 は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。
-  </p>
-  <p class="about-body reveal" id="about-body-2">
-    このスタジオは単なる制作スタジオではありません。大学生のうちに本物の作品をつくり、映画業界と繋がりを持てる場所を作りたい——その想いから生まれました。映画に情熱を持つ人たちが集まり、共に業界への扉を開く拠点です。
-  </p>
-  <div class="about-meta reveal">
-    <div class="about-meta-item">
-      <span class="about-meta-label">代表</span>
-      <span class="about-meta-value" id="meta-rep">田中琉暉（大学3年）</span>
+
+    <div class="about-right">
+      <p class="about-body reveal" id="about-body-1">
+        映画業界を目指す大学生が運営するクリエイティブスタジオ。脚本執筆・3Dモデリングを軸に活動中。
+      </p>
+      <p class="about-body reveal" id="about-body-2">
+        代表・田中琉暉は幼い頃から映画を愛し、将来は映画監督として自身の作品を世界へ届けることを目指している。このスタジオはその第一歩として、映画に情熱を持つ仲間と共に業界への扉を開く拠点です。
+      </p>
+      <div class="about-meta reveal">
+        <div class="about-meta-item">
+          <span class="about-meta-label">代表</span>
+          <span class="about-meta-value" id="meta-rep">田中琉暉（大学3年）</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-label">設立</span>
+          <span class="about-meta-value" id="meta-est">2025年9月1日</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-label">拠点</span>
+          <span class="about-meta-value" id="meta-loc">東京</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-label">メンバー</span>
+          <span class="about-meta-value" id="meta-mem">メンバー 2名+</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-label">メール</span>
+          <a href="mailto:ryukitanaka3@gmail.com" class="about-meta-email" id="meta-mail">ryukitanaka3@gmail.com</a>
+        </div>
+      </div>
     </div>
-    <div class="about-meta-item">
-      <span class="about-meta-label">設立</span>
-      <span class="about-meta-value" id="meta-est">2025年9月1日</span>
-    </div>
-    <div class="about-meta-item">
-      <span class="about-meta-label">拠点</span>
-      <span class="about-meta-value" id="meta-loc">東京</span>
-    </div>
-    <div class="about-meta-item">
-      <span class="about-meta-label">メンバー</span>
-      <span class="about-meta-value" id="meta-mem">メンバー 2名+</span>
-    </div>
-    <div class="about-meta-item">
-      <span class="about-meta-label">メール</span>
-      <a href="mailto:ryukitanaka3@gmail.com" class="about-meta-email" id="meta-mail">ryukitanaka3@gmail.com</a>
-    </div>
+
   </div>
 </section>
 
@@ -1005,8 +1020,9 @@
     <div class="service-card reveal">
       <span class="service-num">01</span>
       <span class="service-icon">🎬</span>
-      <h3>脚本制作 / Film Scriptwriting</h3>
-      <p>「こんな映画を作りたい」というアイデアを脚本に落とし込みます。ざっくりしたあらすじや世界観のメモだけでも大丈夫。長編・短編・アニメ、どの形式でもご相談ください。</p>
+      <h3>脚本執筆 / Film Scriptwriting</h3>
+      <p>短編映画（〜60分前後）の脚本執筆を承ります。ざっくりしたあらすじや世界観のメモだけでも大丈夫。長編・アニメ、その他の形式もご相談ください。</p>
+      <p style="font-size:.82rem;color:var(--green);margin-bottom:1rem;line-height:2">30分以内：<strong>15,000円〜</strong><br>31〜60分：<strong>30,000円〜</strong><br><span style="color:var(--muted);font-size:.75rem">※内容により変動あり</span></p>
       <div class="service-tags">
         <span class="tag">長編映画</span>
         <span class="tag">短編映画</span>
@@ -1018,28 +1034,28 @@
     <div class="service-card reveal">
       <span class="service-num">02</span>
       <span class="service-icon">🧊</span>
-      <h3>3Dモデリング受託 / 3D Modeling</h3>
-      <p>キャラクター・プロップ・背景モデルなど、イメージを3Dで形にします。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。</p>
+      <h3>3Dモデリング受注 / 3D Modeling</h3>
+      <p>キャラクター・アバター・プロップ等の受注制作を承ります。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。</p>
+      <p style="font-size:.82rem;color:var(--green);margin-bottom:1rem;line-height:1.7">料金：内容により異なります。<br><span style="color:var(--muted);font-size:.75rem">まずはお気軽にご相談ください</span></p>
       <div class="service-tags">
         <span class="tag">キャラクター</span>
+        <span class="tag">アバター</span>
         <span class="tag">プロップ</span>
         <span class="tag">環境モデル</span>
         <span class="tag">アニメーション</span>
-        <span class="tag">レンダリング</span>
         <span class="tag">Blender</span>
       </div>
     </div>
   </div>
 
   <p class="service-section-label reveal" style="margin-top:3.5rem">販　売</p>
-  <div class="booth-banner reveal">
-    <div class="booth-banner-inner">
-      <div class="booth-banner-left">
-        <span class="booth-label">BOOTH SHOP</span>
-        <p class="booth-title">VRChat向け 3Dモデルを販売中</p>
-        <p class="booth-desc">受託制作とは別に、すぐに使えるモデルをBOOTHで販売しています。</p>
-      </div>
-      <a href="https://3stonestudios.booth.pm/" class="btn btn-outline booth-btn" target="_blank" rel="noopener">ショップを見る →</a>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">03</span>
+      <span class="service-icon">🛒</span>
+      <h3>3Dモデル販売 / 3D Model Sales</h3>
+      <p>BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。</p>
+      <a href="https://3stonestudios.booth.pm/" class="btn btn-outline" target="_blank" rel="noopener" style="display:inline-block;margin-top:.5rem">BOOTHショップを見る →</a>
     </div>
   </div>
 
@@ -1089,7 +1105,7 @@
 </section>
 
 <!-- ─── WORKS ─── -->
-<section class="works" id="works">
+<section class="works" id="projects">
   <h2 class="section-title reveal">OUR<br><span class="accent">PROJECTS</span></h2>
 
   <p class="work-section-label">映像作品</p>
@@ -1106,6 +1122,7 @@
       <div>
         <p class="works-support-title">🎬 脚本の映画化に向けて、支援を募集しています</p>
         <p class="works-support-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
+        <p class="works-support-body" style="margin-top:.8rem;font-size:.82rem;color:var(--muted-lo)">※ オリジナル作品（脚本・映像）の販売は行っておりません。</p>
       </div>
       <a href="#contact" class="btn btn-primary">支援・協力を申し出る →</a>
     </div>
@@ -1407,7 +1424,7 @@
     <a href="#about">Profile</a>
     <a href="#news">News</a>
     <a href="#services">Services</a>
-    <a href="#works">Works</a>
+    <a href="#projects">Projects</a>
     <a href="#join">Join Us</a>
     <a href="#contact">Contact</a>
   </div>
@@ -1554,14 +1571,14 @@
   loadPosts();
 
   /* ─── ADMIN ─── */
-  const ADMIN_PASS = '3stone0901';
+  const ADMIN_PASS = 'On3stone0901-0917';
   const CONTENT_KEY = '3ss_content';
   const contentDoc = doc(db, 'config', 'content');
   const CONTENT_DEFAULTS = {
     heroSub: '映画業界を目指す大学生が運営するクリエイティブスタジオ。3Dモデリングと脚本制作を軸に活動中。',
     heroMotto: '石の上にも３年。',
     mottoJa: '石の上にも３年。',
-    mottoEn: 'Perseverance builds mastery.',
+    mottoEn: '',
     mottoDesc: '「石の上にも三年」——冷たい石の上でも座り続ければ温まる。私たちはこの言葉を胸に、妥協なくクラフトを磨き続けています。一つひとつの作品に向き合う真摯な姿勢が、3 Stone Studios の根幹です。',
     about1: '映画業界を目指す大学生が運営するクリエイティブスタジオです。3Dモデリングと脚本制作を軸に活動中。代表の 田中琉暉 は幼い頃から映画を愛し、将来は映画監督として自分の作品を世界に届けることを目指しています。',
     about2: 'このスタジオは単なる制作スタジオではありません。大学生のうちに本物の作品をつくり、映画業界と繋がりを持てる場所を作りたい——その想いから生まれました。映画に情熱を持つ人たちが集まり、共に業界への扉を開く拠点です。',
@@ -1817,7 +1834,7 @@
         <div class="work-card-body">
           <p class="work-type">${esc(v.type)}</p>
           <h3 class="work-title">${esc(v.title)}</h3>
-          <span class="work-badge">✦ ${esc(v.status)}</span>
+          <span class="work-badge">✦ ${esc(v.status)}</span><span class="work-badge--original">◈ Original</span>
           ${v.synopsis ? `<p class="work-synopsis">${esc(v.synopsis)}</p>` : ''}
           ${v.tags && v.tags.length ? `<div class="work-genre-tags">${v.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
           ${embed ? `<div class="work-video-wrap"><iframe src="${embed}" allowfullscreen loading="lazy"></iframe></div>` : ''}
@@ -1950,7 +1967,7 @@
         <div class="work-card-body">
           <p class="work-type">${esc(s.type)}</p>
           <h3 class="work-title">${esc(s.title)}</h3>
-          <span class="work-badge">✦ ${esc(s.status)}</span>
+          <span class="work-badge">✦ ${esc(s.status)}</span><span class="work-badge--original">◈ Original</span>
           ${s.synopsis ? `<p class="work-synopsis">${esc(s.synopsis)}</p>` : ''}
           ${s.tags && s.tags.length ? `<div class="work-genre-tags">${s.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
           ${s.pdfUrl ? `<a href="${s.pdfUrl}" class="work-file-btn" target="_blank" rel="noopener">📄 脚本PDFを開く</a>` : ''}
