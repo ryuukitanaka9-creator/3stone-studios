@@ -638,7 +638,7 @@
   /* ─── JOIN US ─── */
   .join { padding: 8rem 3rem; background: var(--dark); }
   .join-card {
-    margin-top: 3rem; max-width: 760px;
+    margin-top: 3rem;
     border: 1px solid var(--border);
     border-left: 4px solid var(--green);
     border-radius: 12px;
@@ -677,9 +677,8 @@
     border-radius: 10px;
     display: flex; align-items: center; justify-content: space-between;
     gap: 1.5rem; flex-wrap: wrap;
-    max-width: 760px;
   }
-  .join-expert-text { font-size: .9rem; line-height: 1.75; color: var(--muted); max-width: 480px; }
+  .join-expert-text { font-size: .9rem; line-height: 1.75; color: var(--muted); }
 
   /* ─── NEWS ─── */
   .news { padding: 8rem 3rem; background: var(--dark); }
@@ -1022,11 +1021,21 @@
       <span class="service-icon">🎬</span>
       <h3>脚本執筆 / Film Scriptwriting</h3>
       <p>短編映画（〜60分前後）の脚本執筆を承ります。ざっくりしたあらすじや世界観のメモだけでも大丈夫。長編・アニメ、その他の形式もご相談ください。</p>
-      <p style="font-size:.82rem;color:var(--green);margin-bottom:1rem;line-height:2">30分以内：<strong>15,000円〜</strong><br>31〜60分：<strong>30,000円〜</strong><br><span style="color:var(--muted);font-size:.75rem">※内容により変動あり</span></p>
+      <div style="margin-bottom:1rem;display:flex;flex-direction:column;gap:.6rem">
+        <span style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green)">PRICE</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:6px;padding:.7rem 1rem">
+          <span style="font-size:.82rem;color:var(--muted)">短編（〜30分）</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.85rem;color:var(--green);font-weight:700">15,000円〜</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:6px;padding:.7rem 1rem">
+          <span style="font-size:.82rem;color:var(--muted)">中編（〜60分）</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.85rem;color:var(--green);font-weight:700">30,000円〜</span>
+        </div>
+        <span style="font-size:.72rem;color:var(--muted-lo)">※内容により変動あり</span>
+      </div>
       <div class="service-tags">
-        <span class="tag">長編映画</span>
-        <span class="tag">短編映画</span>
-        <span class="tag">アニメ脚本</span>
+        <span class="tag">短編</span>
+        <span class="tag">中編</span>
         <span class="tag">ストーリー相談</span>
         <span class="tag">リライト</span>
       </div>
@@ -1036,7 +1045,14 @@
       <span class="service-icon">🧊</span>
       <h3>3Dモデリング受注 / 3D Modeling</h3>
       <p>キャラクター・アバター・プロップ等の受注制作を承ります。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。</p>
-      <p style="font-size:.82rem;color:var(--green);margin-bottom:1rem;line-height:1.7">料金：内容により異なります。<br><span style="color:var(--muted);font-size:.75rem">まずはお気軽にご相談ください</span></p>
+      <div style="margin-bottom:1rem;display:flex;flex-direction:column;gap:.6rem">
+        <span style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green)">PRICE</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:6px;padding:.7rem 1rem">
+          <span style="font-size:.82rem;color:var(--muted)">内容により異なります</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.85rem;color:var(--green);font-weight:700">要相談</span>
+        </div>
+        <span style="font-size:.72rem;color:var(--muted-lo)">まずはお気軽にご相談ください</span>
+      </div>
       <div class="service-tags">
         <span class="tag">キャラクター</span>
         <span class="tag">アバター</span>
