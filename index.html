@@ -955,8 +955,8 @@
     <div class="about-left reveal">
       <div class="about-name-block">
         <p class="about-name-ja" id="meta-rep">田中 琉暉</p>
-        <p class="about-name-en">Ryuki Tanaka</p>
-        <p class="about-name-role">代表</p>
+        <p class="about-name-en" id="meta-name-en">Ryuki Tanaka</p>
+        <p class="about-name-role" id="meta-role">代表</p>
       </div>
       <div class="about-name-meta">
         <div class="about-meta-item">
@@ -981,10 +981,10 @@
     <!-- 右：本文テキスト -->
     <div class="about-right">
       <p class="about-body reveal" id="about-body-1">
-        2005年生まれ、20歳。幼少期から映画に親しみ、気づけば「作る側」に立ちたいと思うようになっていた。映画に情熱を持つ学生が、業界とのつながりを持てる場所——そんな拠点を作りたいという想いから、3 Stone Studios を立ち上げた。
+        2005年生まれ、20歳。物心ついた頃から映画が生活の中心にあった。大学に入り、同じ熱量を持つ仲間が業界とつながれる場所の少なさを感じ、自分でその場をつくろうと決めた。
       </p>
       <p class="about-body reveal" id="about-body-2">
-        ここは、映画に情熱を持つ人たちが集まり、共に業界への扉を開く場所。スタジオ名の由来は「石の上にも三年」。どんな困難も粘り強く向き合い続け、いつか日本を代表する映画を作ることを目指している。
+        3 Stone Studios は、映画への情熱を持つ人たちが集まり、共に業界への扉を開く拠点だ。名前の由来は「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。
       </p>
       <a href="#contact" class="btn btn-outline reveal" style="margin-top:2rem;display:inline-block">連絡する →</a>
     </div>
@@ -1035,8 +1035,8 @@
   <!-- 募集バナー（1枚目スタイル） -->
   <div class="service-recruit-card reveal">
     <span class="service-icon" style="font-size:2rem;display:block;margin-bottom:1rem">🎬</span>
-    <p class="works-support-title" style="font-size:1.15rem;margin-bottom:.8rem">オリジナル脚本の映画化に向けて、制作仲間を募集しています</p>
-    <p class="works-support-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
+    <p class="works-support-title" id="svc-recruit-title" style="font-size:1.15rem;margin-bottom:.8rem">オリジナル脚本の映画化に向けて、制作仲間を募集しています</p>
+    <p class="works-support-body" id="svc-recruit-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
     <p style="font-size:.78rem;color:var(--muted-lo);margin-top:.6rem">※ 脚本の執筆依頼は承っておりません。オリジナル脚本の販売も行っておりません。</p>
     <a href="#contact" class="btn btn-primary" style="margin-top:1.4rem;display:inline-block">制作に参加・協力する →</a>
   </div>
@@ -1094,7 +1094,7 @@
   <p class="section-label reveal">Join Us</p>
   <h2 class="section-title reveal">JOIN<br><span class="accent">THE CREW.</span></h2>
   <div class="join-card reveal">
-    <p class="join-lead">クリエイティブに、一緒に。</p>
+    <p class="join-lead" id="join-lead-text">クリエイティブに、一緒に。</p>
     <p class="join-body">
       <span id="join-body-text">3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。</span>
     </p>
@@ -1135,7 +1135,7 @@
     <a href="#contact" class="btn btn-primary join-cta">応募・相談する →</a>
   </div>
   <div class="join-expert reveal">
-    <p class="join-expert-text">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。</p>
+    <p class="join-expert-text" id="join-expert-text">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。</p>
     <a href="#contact" class="btn btn-outline">知識をシェアする →</a>
   </div>
 </section>
@@ -1316,7 +1316,9 @@
         </div>
         <div class="a-card">
           <p class="a-card-title">About — スタジオ情報</p>
-          <div class="a-field"><label>代表</label><input type="text" id="ca-meta-rep"></div>
+          <div class="a-field"><label>名前（日本語）</label><input type="text" id="ca-meta-rep"></div>
+          <div class="a-field"><label>名前（ローマ字）</label><input type="text" id="ca-meta-name-en"></div>
+          <div class="a-field"><label>役職</label><input type="text" id="ca-meta-role"></div>
           <div class="a-field"><label>設立</label><input type="text" id="ca-meta-est"></div>
           <div class="a-field"><label>拠点</label><input type="text" id="ca-meta-loc"></div>
           <div class="a-field"><label>メンバー</label><input type="text" id="ca-meta-mem"></div>
@@ -1325,12 +1327,16 @@
         </div>
         <div class="a-card">
           <p class="a-card-title">Join Us — クルー募集文</p>
+          <div class="a-field"><label>リード文</label><input type="text" id="ca-join-lead"></div>
           <div class="a-field"><label>本文</label><textarea id="ca-join" rows="3"></textarea></div>
+          <div class="a-field"><label>有識者向けテキスト</label><textarea id="ca-join-expert" rows="2"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="join">保存する</button><span class="save-ok" id="sok-join">保存しました ✓</span></div>
         </div>
         <div class="a-card">
           <p class="a-card-title">Services — サービス説明文</p>
           <div class="a-field"><label>オリジナル脚本制作</label><textarea id="ca-svc-script" rows="3"></textarea></div>
+          <div class="a-field"><label>募集バナー タイトル</label><input type="text" id="ca-svc-recruit-title"></div>
+          <div class="a-field"><label>募集バナー 本文</label><textarea id="ca-svc-recruit-body" rows="2"></textarea></div>
           <div class="a-field"><label>3Dモデリング受注</label><textarea id="ca-svc-3d" rows="2"></textarea></div>
           <div class="a-field"><label>3Dモデル販売（BOOTH）</label><textarea id="ca-svc-booth" rows="2"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="services">保存する</button><span class="save-ok" id="sok-services">保存しました ✓</span></div>
@@ -1540,15 +1546,21 @@
   const contentDoc = doc(db, 'config', 'content');
   const CONTENT_DEFAULTS = {
     heroSub: 'オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。',
-    about1: '2005年生まれ、20歳。幼少期から映画に親しみ、気づけば「作る側」に立ちたいと思うようになっていた。映画に情熱を持つ学生が、業界とのつながりを持てる場所——そんな拠点を作りたいという想いから、3 Stone Studios を立ち上げた。',
-    about2: 'ここは、映画に情熱を持つ人たちが集まり、共に業界への扉を開く場所。スタジオ名の由来は「石の上にも三年」。どんな困難も粘り強く向き合い続け、いつか日本を代表する映画を作ることを目指している。',
+    about1: '2005年生まれ、20歳。物心ついた頃から映画が生活の中心にあった。大学に入り、同じ熱量を持つ仲間が業界とつながれる場所の少なさを感じ、自分でその場をつくろうと決めた。',
+    about2: '3 Stone Studios は、映画への情熱を持つ人たちが集まり、共に業界への扉を開く拠点だ。名前の由来は「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。',
     metaRep: '田中 琉暉',
+    metaNameEn: 'Ryuki Tanaka',
+    metaRole: '代表',
     metaEst: '2025年9月1日',
     metaLoc: '東京',
     metaMem: '2名+',
     metaMail: 'ryukitanaka3@gmail.com',
+    joinLead: 'クリエイティブに、一緒に。',
     join: '3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。',
+    joinExpert: '映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。',
     svcScriptDesc: '3 Stone Studios の核となる活動。オリジナル映画脚本の執筆・開発を行い、実際の映画として世に送り出すことを目指しています。',
+    svcRecruitTitle: 'オリジナル脚本の映画化に向けて、制作仲間を募集しています',
+    svcRecruitBody: '脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。',
     svc3dDesc: 'キャラクター・アバター・プロップ等の受注制作を承ります。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。',
     svcBoothDesc: 'BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。',
     contactSub: 'プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。',
@@ -1698,12 +1710,18 @@
     document.getElementById('ca-about1').value = c.about1;
     document.getElementById('ca-about2').value = c.about2;
     document.getElementById('ca-meta-rep').value = c.metaRep;
+    document.getElementById('ca-meta-name-en').value = c.metaNameEn;
+    document.getElementById('ca-meta-role').value = c.metaRole;
     document.getElementById('ca-meta-est').value = c.metaEst;
     document.getElementById('ca-meta-loc').value = c.metaLoc;
     document.getElementById('ca-meta-mem').value = c.metaMem;
     document.getElementById('ca-meta-mail').value = c.metaMail;
+    document.getElementById('ca-join-lead').value = c.joinLead;
     document.getElementById('ca-join').value = c.join;
+    document.getElementById('ca-join-expert').value = c.joinExpert;
     document.getElementById('ca-svc-script').value = c.svcScriptDesc;
+    document.getElementById('ca-svc-recruit-title').value = c.svcRecruitTitle;
+    document.getElementById('ca-svc-recruit-body').value = c.svcRecruitBody;
     document.getElementById('ca-svc-3d').value = c.svc3dDesc;
     document.getElementById('ca-svc-booth').value = c.svcBoothDesc;
     document.getElementById('ca-contact-sub').value = c.contactSub;
@@ -1716,9 +1734,9 @@
       const c = getContent();
       if (key === 'hero') { c.heroSub = document.getElementById('ca-hero-sub').value; }
       else if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; c.about2 = document.getElementById('ca-about2').value; }
-      else if (key === 'meta') { c.metaRep = document.getElementById('ca-meta-rep').value; c.metaEst = document.getElementById('ca-meta-est').value; c.metaLoc = document.getElementById('ca-meta-loc').value; c.metaMem = document.getElementById('ca-meta-mem').value; c.metaMail = document.getElementById('ca-meta-mail').value; }
-      else if (key === 'join') { c.join = document.getElementById('ca-join').value; }
-      else if (key === 'services') { c.svcScriptDesc = document.getElementById('ca-svc-script').value; c.svc3dDesc = document.getElementById('ca-svc-3d').value; c.svcBoothDesc = document.getElementById('ca-svc-booth').value; }
+      else if (key === 'meta') { c.metaRep = document.getElementById('ca-meta-rep').value; c.metaNameEn = document.getElementById('ca-meta-name-en').value; c.metaRole = document.getElementById('ca-meta-role').value; c.metaEst = document.getElementById('ca-meta-est').value; c.metaLoc = document.getElementById('ca-meta-loc').value; c.metaMem = document.getElementById('ca-meta-mem').value; c.metaMail = document.getElementById('ca-meta-mail').value; }
+      else if (key === 'join') { c.joinLead = document.getElementById('ca-join-lead').value; c.join = document.getElementById('ca-join').value; c.joinExpert = document.getElementById('ca-join-expert').value; }
+      else if (key === 'services') { c.svcScriptDesc = document.getElementById('ca-svc-script').value; c.svcRecruitTitle = document.getElementById('ca-svc-recruit-title').value; c.svcRecruitBody = document.getElementById('ca-svc-recruit-body').value; c.svc3dDesc = document.getElementById('ca-svc-3d').value; c.svcBoothDesc = document.getElementById('ca-svc-booth').value; }
       else if (key === 'contact') { c.contactSub = document.getElementById('ca-contact-sub').value; }
       else if (key === 'works-banner') { c.worksBannerTitle = document.getElementById('ca-works-banner-title').value; c.worksBannerBody = document.getElementById('ca-works-banner-body').value; }
       btn.disabled = true;
@@ -1749,11 +1767,17 @@
     set('about-body-1', c.about1);
     set('about-body-2', c.about2);
     set('meta-rep', c.metaRep);
+    set('meta-name-en', c.metaNameEn);
+    set('meta-role', c.metaRole);
     set('meta-est', c.metaEst);
     set('meta-loc', c.metaLoc);
     set('meta-mem', c.metaMem);
     setHref('meta-mail', c.metaMail);
+    set('join-lead-text', c.joinLead);
     set('join-body-text', c.join);
+    set('join-expert-text', c.joinExpert);
+    set('svc-recruit-title', c.svcRecruitTitle);
+    set('svc-recruit-body', c.svcRecruitBody);
     const setHTML = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
     setHTML('svc-script-desc', c.svcScriptDesc);
     setHTML('svc-3d-desc', c.svc3dDesc);
