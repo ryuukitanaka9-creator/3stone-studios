@@ -289,11 +289,18 @@
   }
   .about-name-role {
     font-size: .88rem; color: var(--green);
-    letter-spacing: .06em; margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    letter-spacing: .06em; margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
     border-bottom: 1px solid var(--border);
   }
-  .about-name-meta { display: flex; flex-direction: column; gap: .9rem; }
+  .about-mail-link {
+    font-family: 'Space Mono', monospace;
+    font-size: .72rem; color: var(--muted);
+    letter-spacing: .06em; text-decoration: none;
+    transition: color .2s;
+    margin-bottom: 2rem; display: block;
+  }
+  .about-mail-link:hover { color: var(--green); }
 
   /* 右：本文 */
   .about-motto-card {
@@ -617,20 +624,6 @@
     width: 1px; height: 2rem; background: var(--border);
   }
 
-  /* ─── ABOUT META ─── */
-  .about-meta-item { display: flex; flex-direction: column; gap: .2rem; }
-  .about-meta-label {
-    font-family: 'Space Mono', monospace;
-    font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--green);
-  }
-  .about-meta-value { font-size: .9rem; color: var(--muted-hi); }
-  .about-meta-email {
-    font-size: .9rem; color: var(--green);
-    text-decoration: none; transition: opacity .2s;
-    font-family: 'Space Mono', monospace;
-  }
-  .about-meta-email:hover { opacity: .7; }
 
   /* ─── JOIN US ─── */
   .join { padding: 10rem 3rem; background: var(--dark); }
@@ -893,7 +886,7 @@
   <h1 class="hero-title">
     <span>石の上にも<span class="accent">三年。</span></span>
   </h1>
-  <p class="hero-sub" id="hero-sub-text">映画業界を目指す大学生が運営するクリエイティブスタジオ。3Dモデリングと脚本制作を軸に活動中。</p>
+  <p class="hero-sub" id="hero-sub-text">オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。</p>
   <div class="hero-cta">
     <a href="#contact" class="btn btn-primary" id="hero-cta-1">仕事を依頼する</a>
     <a href="#services" class="btn btn-primary" id="hero-cta-2">サービスを見る</a>
@@ -958,33 +951,13 @@
         <p class="about-name-en" id="meta-name-en">Ryuki Tanaka</p>
         <p class="about-name-role" id="meta-role">代表</p>
       </div>
-      <div class="about-name-meta">
-        <div class="about-meta-item">
-          <span class="about-meta-label">設立</span>
-          <span class="about-meta-value" id="meta-est">2025年9月1日</span>
-        </div>
-        <div class="about-meta-item">
-          <span class="about-meta-label">拠点</span>
-          <span class="about-meta-value" id="meta-loc">東京</span>
-        </div>
-        <div class="about-meta-item">
-          <span class="about-meta-label">メンバー</span>
-          <span class="about-meta-value" id="meta-mem">2名+</span>
-        </div>
-        <div class="about-meta-item">
-          <span class="about-meta-label">メール</span>
-          <a href="mailto:ryukitanaka3@gmail.com" class="about-meta-email" id="meta-mail">ryukitanaka3@gmail.com</a>
-        </div>
-      </div>
+      <a href="mailto:ryukitanaka3@gmail.com" class="about-mail-link" id="meta-mail">ryukitanaka3@gmail.com</a>
     </div>
 
     <!-- 右：本文テキスト -->
     <div class="about-right">
       <p class="about-body reveal" id="about-body-1">
-        2005年生まれ、20歳。物心ついた頃から映画が生活の中心にあった。大学に入り、同じ熱量を持つ仲間が業界とつながれる場所の少なさを感じ、自分でその場をつくろうと決めた。
-      </p>
-      <p class="about-body reveal" id="about-body-2">
-        3 Stone Studios は、映画への情熱を持つ人たちが集まり、共に業界への扉を開く拠点だ。名前の由来は「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。
+        2005年生まれ、20歳。幼い頃から映画が好きで、気づけば「つくる側」への憧れを抱くようになっていた。高校生のころには脚本を書きはじめ、物語をゼロから組み上げる面白さにのめり込んでいった。大学に入り、映画への熱量を持ちながらも業界とのつながりを持てない学生が多いことを実感し、自らその場をつくろうと決意した。それが3 Stone Studios の始まりだ。「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。
       </p>
       <a href="#contact" class="btn btn-outline reveal" style="margin-top:2rem;display:inline-block">連絡する →</a>
     </div>
@@ -1311,7 +1284,6 @@
         <div class="a-card">
           <p class="a-card-title">About — スタジオ紹介文</p>
           <div class="a-field"><label>1段落目</label><textarea id="ca-about1" rows="3"></textarea></div>
-          <div class="a-field"><label>2段落目</label><textarea id="ca-about2" rows="3"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="about">保存する</button><span class="save-ok" id="sok-about">保存しました ✓</span></div>
         </div>
         <div class="a-card">
@@ -1319,9 +1291,6 @@
           <div class="a-field"><label>名前（日本語）</label><input type="text" id="ca-meta-rep"></div>
           <div class="a-field"><label>名前（ローマ字）</label><input type="text" id="ca-meta-name-en"></div>
           <div class="a-field"><label>役職</label><input type="text" id="ca-meta-role"></div>
-          <div class="a-field"><label>設立</label><input type="text" id="ca-meta-est"></div>
-          <div class="a-field"><label>拠点</label><input type="text" id="ca-meta-loc"></div>
-          <div class="a-field"><label>メンバー</label><input type="text" id="ca-meta-mem"></div>
           <div class="a-field"><label>メールアドレス</label><input type="email" id="ca-meta-mail"></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="meta">保存する</button><span class="save-ok" id="sok-meta">保存しました ✓</span></div>
         </div>
@@ -1546,15 +1515,11 @@
   const contentDoc = doc(db, 'config', 'content');
   const CONTENT_DEFAULTS = {
     heroSub: 'オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。',
-    about1: '2005年生まれ、20歳。物心ついた頃から映画が生活の中心にあった。大学に入り、同じ熱量を持つ仲間が業界とつながれる場所の少なさを感じ、自分でその場をつくろうと決めた。',
-    about2: '3 Stone Studios は、映画への情熱を持つ人たちが集まり、共に業界への扉を開く拠点だ。名前の由来は「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。',
+    about1: '2005年生まれ、20歳。幼い頃から映画が好きで、気づけば「つくる側」への憧れを抱くようになっていた。高校生のころには脚本を書きはじめ、物語をゼロから組み上げる面白さにのめり込んでいった。大学に入り、映画への熱量を持ちながらも業界とのつながりを持てない学生が多いことを実感し、自らその場をつくろうと決意した。それが3 Stone Studios の始まりだ。「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。',
+    metaMail: 'ryukitanaka3@gmail.com',
     metaRep: '田中 琉暉',
     metaNameEn: 'Ryuki Tanaka',
     metaRole: '代表',
-    metaEst: '2025年9月1日',
-    metaLoc: '東京',
-    metaMem: '2名+',
-    metaMail: 'ryukitanaka3@gmail.com',
     joinLead: 'クリエイティブに、一緒に。',
     join: '3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。',
     joinExpert: '映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。',
@@ -1708,14 +1673,10 @@
     const c = getContent();
     document.getElementById('ca-hero-sub').value = c.heroSub;
     document.getElementById('ca-about1').value = c.about1;
-    document.getElementById('ca-about2').value = c.about2;
+    document.getElementById('ca-meta-mail').value = c.metaMail;
     document.getElementById('ca-meta-rep').value = c.metaRep;
     document.getElementById('ca-meta-name-en').value = c.metaNameEn;
     document.getElementById('ca-meta-role').value = c.metaRole;
-    document.getElementById('ca-meta-est').value = c.metaEst;
-    document.getElementById('ca-meta-loc').value = c.metaLoc;
-    document.getElementById('ca-meta-mem').value = c.metaMem;
-    document.getElementById('ca-meta-mail').value = c.metaMail;
     document.getElementById('ca-join-lead').value = c.joinLead;
     document.getElementById('ca-join').value = c.join;
     document.getElementById('ca-join-expert').value = c.joinExpert;
@@ -1733,8 +1694,8 @@
       const key = btn.dataset.asave;
       const c = getContent();
       if (key === 'hero') { c.heroSub = document.getElementById('ca-hero-sub').value; }
-      else if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; c.about2 = document.getElementById('ca-about2').value; }
-      else if (key === 'meta') { c.metaRep = document.getElementById('ca-meta-rep').value; c.metaNameEn = document.getElementById('ca-meta-name-en').value; c.metaRole = document.getElementById('ca-meta-role').value; c.metaEst = document.getElementById('ca-meta-est').value; c.metaLoc = document.getElementById('ca-meta-loc').value; c.metaMem = document.getElementById('ca-meta-mem').value; c.metaMail = document.getElementById('ca-meta-mail').value; }
+      else if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; }
+      else if (key === 'meta') { c.metaMail = document.getElementById('ca-meta-mail').value; c.metaRep = document.getElementById('ca-meta-rep').value; c.metaNameEn = document.getElementById('ca-meta-name-en').value; c.metaRole = document.getElementById('ca-meta-role').value; }
       else if (key === 'join') { c.joinLead = document.getElementById('ca-join-lead').value; c.join = document.getElementById('ca-join').value; c.joinExpert = document.getElementById('ca-join-expert').value; }
       else if (key === 'services') { c.svcScriptDesc = document.getElementById('ca-svc-script').value; c.svcRecruitTitle = document.getElementById('ca-svc-recruit-title').value; c.svcRecruitBody = document.getElementById('ca-svc-recruit-body').value; c.svc3dDesc = document.getElementById('ca-svc-3d').value; c.svcBoothDesc = document.getElementById('ca-svc-booth').value; }
       else if (key === 'contact') { c.contactSub = document.getElementById('ca-contact-sub').value; }
@@ -1765,14 +1726,10 @@
     const setHref = (id, val) => { const el = document.getElementById(id); if (el) { el.textContent = val; el.href = 'mailto:' + val; } };
     set('hero-sub-text', c.heroSub);
     set('about-body-1', c.about1);
-    set('about-body-2', c.about2);
+    setHref('meta-mail', c.metaMail);
     set('meta-rep', c.metaRep);
     set('meta-name-en', c.metaNameEn);
     set('meta-role', c.metaRole);
-    set('meta-est', c.metaEst);
-    set('meta-loc', c.metaLoc);
-    set('meta-mem', c.metaMem);
-    setHref('meta-mail', c.metaMail);
     set('join-lead-text', c.joinLead);
     set('join-body-text', c.join);
     set('join-expert-text', c.joinExpert);
