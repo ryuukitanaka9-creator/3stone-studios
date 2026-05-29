@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="3 Stone Studiosは脚本執筆・3Dモデリング受注・3Dモデル販売を手がけるクリエイティブスタジオです。">
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="3 Stone Studios">
+<meta property="og:description" content="オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。">
+<meta property="og:url" content="https://3stonestudios.com">
+<meta property="og:image" content="https://raw.githubusercontent.com/ryuukitanaka9-creator/20260414/main/images/logo.png">
+<meta property="og:site_name" content="3 Stone Studios">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3 Stone Studios">
+<meta name="twitter:description" content="オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ryuukitanaka9-creator/20260414/main/images/logo.png">
 <title>3 Stone Studios</title>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -574,6 +585,23 @@
     letter-spacing: .1em; color: var(--muted);
   }
 
+  .contact-sent {
+    display: none;
+    margin-top: 2rem;
+    padding: 1.6rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green);
+    border-radius: 8px;
+  }
+  .contact-sent.show { display: block; }
+  .contact-sent-title {
+    font-family: 'Space Mono', monospace;
+    font-size: .8rem; letter-spacing: .14em; color: var(--green);
+    text-transform: uppercase; margin-bottom: .5rem;
+  }
+  .contact-sent-body { font-size: .9rem; color: var(--muted); line-height: 1.8; }
+
   /* ─── FOOTER ─── */
   footer {
     padding: 3rem;
@@ -888,7 +916,6 @@
   </h1>
   <p class="hero-sub" id="hero-sub-text">オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。</p>
   <div class="hero-cta">
-    <a href="#contact" class="btn btn-primary" id="hero-cta-1">仕事を依頼する</a>
     <a href="#services" class="btn btn-primary" id="hero-cta-2">サービスを見る</a>
     <a href="#projects" class="btn btn-primary">作品を見る</a>
   </div>
@@ -906,11 +933,6 @@
     <div class="hero-stat">
       <span class="hero-stat-value">メンバー 2名+</span>
       <span class="hero-stat-label">チーム</span>
-    </div>
-    <div class="hero-stat-divider"></div>
-    <div class="hero-stat">
-      <span class="hero-stat-value">田中琉暉</span>
-      <span class="hero-stat-label">代表 / 大学3年</span>
     </div>
   </div>
 
@@ -1005,15 +1027,6 @@
     </div>
   </div>
 
-  <!-- 募集バナー（1枚目スタイル） -->
-  <div class="service-recruit-card reveal">
-    <span class="service-icon" style="font-size:2rem;display:block;margin-bottom:1rem">🎬</span>
-    <p class="works-support-title" id="svc-recruit-title" style="font-size:1.15rem;margin-bottom:.8rem">オリジナル脚本の映画化に向けて、制作仲間を募集しています</p>
-    <p class="works-support-body" id="svc-recruit-body">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。</p>
-    <p style="font-size:.78rem;color:var(--muted-lo);margin-top:.6rem">※ 脚本の執筆依頼は承っておりません。オリジナル脚本の販売も行っておりません。</p>
-    <a href="#contact" class="btn btn-primary" style="margin-top:1.4rem;display:inline-block">制作に参加・協力する →</a>
-  </div>
-
   <!-- 財源：3D -->
   <p class="service-section-label reveal" style="margin-top:4rem">受託 / 販売</p>
   <div class="services-grid">
@@ -1035,6 +1048,12 @@
       <span class="service-icon">🛒</span>
       <h3>3Dモデル販売</h3>
       <p id="svc-booth-desc">BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。</p>
+      <div class="service-tags" style="margin-top:.8rem">
+        <span class="tag">VRChat対応</span>
+        <span class="tag">キャラクター</span>
+        <span class="tag">アクセサリー</span>
+        <span class="tag">即使用可</span>
+      </div>
       <a href="https://3stonestudios.booth.pm/" class="btn btn-outline" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem">BOOTHショップを見る →</a>
     </div>
   </div>
@@ -1055,8 +1074,8 @@
   </div>
   <div class="service-recruit-card reveal">
     <span class="service-icon" style="font-size:2rem;display:block;margin-bottom:1rem">🎬</span>
-    <p class="works-support-title" id="works-banner-title" style="font-size:1.15rem;margin-bottom:.8rem">オリジナル脚本の映画化に向けて、制作仲間を募集しています</p>
-    <p class="works-support-body" id="works-banner-body">3 Stone Studios が執筆したオリジナル脚本を、実際の映画として形にしたいと考えています。共に動いてくださる制作スタジオ・プロデューサー・スタッフの方をお待ちしています。</p>
+    <p class="works-support-title" id="svc-recruit-title-projects" style="font-size:1.15rem;margin-bottom:.8rem">オリジナル脚本の映画化に向けて、制作仲間を募集しています</p>
+    <p class="works-support-body" id="svc-recruit-body-projects">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。</p>
     <p style="font-size:.78rem;color:var(--muted-lo);margin-top:.6rem">※ 脚本の執筆依頼は承っておりません。オリジナル脚本の販売も行っておりません。</p>
     <a href="#contact" class="btn btn-primary" style="margin-top:1.4rem;display:inline-block">制作に参加・協力する →</a>
   </div>
@@ -1105,7 +1124,7 @@
         </div>
       </div>
     </div>
-    <a href="#contact" class="btn btn-primary join-cta">応募・相談する →</a>
+    <a href="#contact" class="btn btn-primary join-cta">参加を申し込む →</a>
   </div>
   <div class="join-expert reveal">
     <p class="join-expert-text" id="join-expert-text">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。</p>
@@ -1149,6 +1168,10 @@
         <span class="submit-note">通常2営業日以内にご返信します</span>
       </div>
     </form>
+    <div class="contact-sent" id="contactSent">
+      <p class="contact-sent-title">メールアプリが開きました</p>
+      <p class="contact-sent-body">内容を確認のうえ、そのまま送信してください。通常2営業日以内にご返信します。</p>
+    </div>
   </div>
 </section>
 
@@ -1276,50 +1299,49 @@
       <!-- CONTENT TAB -->
       <div class="tab-panel" id="atab-content">
         <p class="admin-panel-title">サイト内容の編集</p>
+        <!-- 1. Hero -->
         <div class="a-card">
-          <p class="a-card-title">Hero — トップ画面</p>
+          <p class="a-card-title">① Hero — トップ画面</p>
           <div class="a-field"><label>説明文</label><input type="text" id="ca-hero-sub"></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="hero">保存する</button><span class="save-ok" id="sok-hero">保存しました ✓</span></div>
         </div>
+        <!-- 2. About -->
         <div class="a-card">
-          <p class="a-card-title">About — スタジオ紹介文</p>
-          <div class="a-field"><label>1段落目</label><textarea id="ca-about1" rows="3"></textarea></div>
+          <p class="a-card-title">② About — プロフィール文</p>
+          <div class="a-field"><label>本文</label><textarea id="ca-about1" rows="4"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="about">保存する</button><span class="save-ok" id="sok-about">保存しました ✓</span></div>
         </div>
         <div class="a-card">
-          <p class="a-card-title">About — スタジオ情報</p>
+          <p class="a-card-title">② About — 名前 / 役職</p>
           <div class="a-field"><label>名前（日本語）</label><input type="text" id="ca-meta-rep"></div>
           <div class="a-field"><label>名前（ローマ字）</label><input type="text" id="ca-meta-name-en"></div>
           <div class="a-field"><label>役職</label><input type="text" id="ca-meta-role"></div>
           <div class="a-field"><label>メールアドレス</label><input type="email" id="ca-meta-mail"></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="meta">保存する</button><span class="save-ok" id="sok-meta">保存しました ✓</span></div>
         </div>
+        <!-- 3. Services -->
         <div class="a-card">
-          <p class="a-card-title">Join Us — クルー募集文</p>
+          <p class="a-card-title">③ Services — サービス説明文</p>
+          <div class="a-field"><label>オリジナル脚本制作</label><textarea id="ca-svc-script" rows="3"></textarea></div>
+          <div class="a-field"><label>募集バナー タイトル（Projects セクション）</label><input type="text" id="ca-svc-recruit-title"></div>
+          <div class="a-field"><label>募集バナー 本文（Projects セクション）</label><textarea id="ca-svc-recruit-body" rows="2"></textarea></div>
+          <div class="a-field"><label>3Dモデリング受注</label><textarea id="ca-svc-3d" rows="2"></textarea></div>
+          <div class="a-field"><label>3Dモデル販売（BOOTH）</label><textarea id="ca-svc-booth" rows="2"></textarea></div>
+          <div class="a-btn-row"><button class="a-btn-save" data-asave="services">保存する</button><span class="save-ok" id="sok-services">保存しました ✓</span></div>
+        </div>
+        <!-- 4. Join Us -->
+        <div class="a-card">
+          <p class="a-card-title">④ Join Us — クルー募集文</p>
           <div class="a-field"><label>リード文</label><input type="text" id="ca-join-lead"></div>
           <div class="a-field"><label>本文</label><textarea id="ca-join" rows="3"></textarea></div>
           <div class="a-field"><label>有識者向けテキスト</label><textarea id="ca-join-expert" rows="2"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="join">保存する</button><span class="save-ok" id="sok-join">保存しました ✓</span></div>
         </div>
+        <!-- 5. Contact -->
         <div class="a-card">
-          <p class="a-card-title">Services — サービス説明文</p>
-          <div class="a-field"><label>オリジナル脚本制作</label><textarea id="ca-svc-script" rows="3"></textarea></div>
-          <div class="a-field"><label>募集バナー タイトル</label><input type="text" id="ca-svc-recruit-title"></div>
-          <div class="a-field"><label>募集バナー 本文</label><textarea id="ca-svc-recruit-body" rows="2"></textarea></div>
-          <div class="a-field"><label>3Dモデリング受注</label><textarea id="ca-svc-3d" rows="2"></textarea></div>
-          <div class="a-field"><label>3Dモデル販売（BOOTH）</label><textarea id="ca-svc-booth" rows="2"></textarea></div>
-          <div class="a-btn-row"><button class="a-btn-save" data-asave="services">保存する</button><span class="save-ok" id="sok-services">保存しました ✓</span></div>
-        </div>
-        <div class="a-card">
-          <p class="a-card-title">Contact — サブテキスト</p>
+          <p class="a-card-title">⑤ Contact — サブテキスト</p>
           <div class="a-field"><label>説明文</label><input type="text" id="ca-contact-sub"></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="contact">保存する</button><span class="save-ok" id="sok-contact">保存しました ✓</span></div>
-        </div>
-        <div class="a-card">
-          <p class="a-card-title">Projects — サポートバナー</p>
-          <div class="a-field"><label>タイトル</label><input type="text" id="ca-works-banner-title"></div>
-          <div class="a-field"><label>本文</label><textarea id="ca-works-banner-body" rows="3"></textarea></div>
-          <div class="a-btn-row"><button class="a-btn-save" data-asave="works-banner">保存する</button><span class="save-ok" id="sok-works-banner">保存しました ✓</span></div>
         </div>
       </div>
     </div>
@@ -1525,12 +1547,10 @@
     joinExpert: '映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。',
     svcScriptDesc: '3 Stone Studios の核となる活動。オリジナル映画脚本の執筆・開発を行い、実際の映画として世に送り出すことを目指しています。',
     svcRecruitTitle: 'オリジナル脚本の映画化に向けて、制作仲間を募集しています',
-    svcRecruitBody: '脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。学生発の本気のプロジェクトです。',
+    svcRecruitBody: '脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。',
     svc3dDesc: 'キャラクター・アバター・プロップ等の受注制作を承ります。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。',
     svcBoothDesc: 'BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。',
     contactSub: 'プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。',
-    worksBannerTitle: 'オリジナル脚本の映画化に向けて、制作仲間を募集しています',
-    worksBannerBody: '3 Stone Studios が執筆したオリジナル脚本を、実際の映画として形にしたいと考えています。共に動いてくださる制作スタジオ・プロデューサー・スタッフの方をお待ちしています。',
   };
   let aLoggedIn = false;
 
@@ -1686,8 +1706,6 @@
     document.getElementById('ca-svc-3d').value = c.svc3dDesc;
     document.getElementById('ca-svc-booth').value = c.svcBoothDesc;
     document.getElementById('ca-contact-sub').value = c.contactSub;
-    document.getElementById('ca-works-banner-title').value = c.worksBannerTitle;
-    document.getElementById('ca-works-banner-body').value = c.worksBannerBody;
   }
   document.querySelectorAll('[data-asave]').forEach(btn => {
     btn.addEventListener('click', async () => {
@@ -1699,7 +1717,6 @@
       else if (key === 'join') { c.joinLead = document.getElementById('ca-join-lead').value; c.join = document.getElementById('ca-join').value; c.joinExpert = document.getElementById('ca-join-expert').value; }
       else if (key === 'services') { c.svcScriptDesc = document.getElementById('ca-svc-script').value; c.svcRecruitTitle = document.getElementById('ca-svc-recruit-title').value; c.svcRecruitBody = document.getElementById('ca-svc-recruit-body').value; c.svc3dDesc = document.getElementById('ca-svc-3d').value; c.svcBoothDesc = document.getElementById('ca-svc-booth').value; }
       else if (key === 'contact') { c.contactSub = document.getElementById('ca-contact-sub').value; }
-      else if (key === 'works-banner') { c.worksBannerTitle = document.getElementById('ca-works-banner-title').value; c.worksBannerBody = document.getElementById('ca-works-banner-body').value; }
       btn.disabled = true;
       try {
         await saveContent(c);
@@ -1733,15 +1750,13 @@
     set('join-lead-text', c.joinLead);
     set('join-body-text', c.join);
     set('join-expert-text', c.joinExpert);
-    set('svc-recruit-title', c.svcRecruitTitle);
-    set('svc-recruit-body', c.svcRecruitBody);
     const setHTML = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
     setHTML('svc-script-desc', c.svcScriptDesc);
     setHTML('svc-3d-desc', c.svc3dDesc);
     setHTML('svc-booth-desc', c.svcBoothDesc);
     set('contact-sub-text', c.contactSub);
-    set('works-banner-title', c.worksBannerTitle);
-    set('works-banner-body', c.worksBannerBody);
+    set('svc-recruit-title-projects', c.svcRecruitTitle);
+    set('svc-recruit-body-projects', c.svcRecruitBody);
   }
   loadContent();
 
@@ -1995,6 +2010,7 @@
     btn.textContent = 'メールアプリを開いています…';
     btn.classList.add('btn-sent');
     btn.disabled = true;
+    document.getElementById('contactSent').classList.add('show');
   });
 </script>
 </body>
