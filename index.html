@@ -9,12 +9,12 @@
 <meta property="og:title" content="3 Stone Studios">
 <meta property="og:description" content="オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。">
 <meta property="og:url" content="https://3stonestudios.com">
-<meta property="og:image" content="https://raw.githubusercontent.com/ryuukitanaka9-creator/20260414/main/images/logo.png">
+<meta property="og:image" content="https://3stonestudios.com/logo.png">
 <meta property="og:site_name" content="3 Stone Studios">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3 Stone Studios">
 <meta name="twitter:description" content="オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/ryuukitanaka9-creator/20260414/main/images/logo.png">
+<meta name="twitter:image" content="https://3stonestudios.com/logo.png">
 <title>3 Stone Studios</title>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -314,22 +314,6 @@
   .about-mail-link:hover { color: var(--green); }
 
   /* 右：本文 */
-  .about-motto-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--green);
-    border-radius: 8px;
-    padding: 1.5rem 2rem;
-    margin: 2rem 0 0;
-  }
-  .motto-ja {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 1.5rem; color: var(--green); letter-spacing: .08em;
-  }
-  .motto-desc {
-    font-size: .9rem; line-height: 1.8; color: var(--muted);
-    margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;
-  }
   .about-body {
     font-size: .95rem; line-height: 1.95; color: var(--muted);
     margin-bottom: 1.4rem;
@@ -860,7 +844,7 @@
     .nav-links {
       display: flex; flex-direction: column;
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: #060808;
+      background: var(--nav-mobile-bg);
       align-items: center; justify-content: center;
       gap: 2.5rem; opacity: 0; pointer-events: none;
       transition: opacity .3s; z-index: 190;
@@ -908,7 +892,7 @@
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="hero-logo-wrap">
-    <img src="https://raw.githubusercontent.com/ryuukitanaka9-creator/20260414/main/images/logo.png" alt="3 Stone Studios">
+    <img src="logo.png" alt="3 Stone Studios">
   </div>
   <p class="hero-studio-name">3<span class="dot">●</span>STONE STUDIOS</p>
   <h1 class="hero-title">
@@ -1532,7 +1516,14 @@
   loadPosts();
 
   /* ─── ADMIN ─── */
-  const ADMIN_PASS = 'On3stone0901-0917';
+  const ADMIN_PASS_HASH = '771b9a0da413c450031e88e1304f4948df178bb46e1feca9e15a8c5b3c5ec05d';
+  let aLoginAttempts = 0;
+  let aLoginLocked   = false;
+
+  async function hashPass(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
   const CONTENT_KEY = '3ss_content';
   const contentDoc = doc(db, 'config', 'content');
   const CONTENT_DEFAULTS = {
@@ -1599,14 +1590,31 @@
     renderAPostList();
     await fetchAndFillContentFields();
   }
-  function doALogin() {
-    if (document.getElementById('aPass').value === ADMIN_PASS) {
+  async function doALogin() {
+    if (aLoginLocked) return;
+    const errEl = document.getElementById('aErr');
+    const inputHash = await hashPass(document.getElementById('aPass').value);
+    if (inputHash === ADMIN_PASS_HASH) {
       aLoggedIn = true;
-      document.getElementById('aErr').style.display = 'none';
+      aLoginAttempts = 0;
+      errEl.style.display = 'none';
       document.getElementById('aPass').value = '';
       showAPanel();
     } else {
-      document.getElementById('aErr').style.display = 'block';
+      aLoginAttempts++;
+      if (aLoginAttempts >= 3) {
+        aLoginLocked = true;
+        errEl.textContent = '試行回数超過。30秒後に再試行してください。';
+        errEl.style.display = 'block';
+        setTimeout(() => {
+          aLoginLocked = false;
+          aLoginAttempts = 0;
+          errEl.textContent = 'パスワードが違います';
+        }, 30000);
+      } else {
+        errEl.textContent = `パスワードが違います（残り ${3 - aLoginAttempts} 回）`;
+        errEl.style.display = 'block';
+      }
     }
   }
 
@@ -1908,12 +1916,12 @@
         const card = document.createElement('div');
         card.className = 'ac-card';
         card.innerHTML = `
-          <span class="ac-type-badge">${ac.type || ''}</span>
+          <span class="ac-type-badge">${esc(ac.type || '')}</span>
           <div class="ac-main">
-            <p class="ac-title">${ac.title || ''}</p>
-            ${ac.desc ? `<p class="ac-desc">${ac.desc}</p>` : ''}
+            <p class="ac-title">${esc(ac.title || '')}</p>
+            ${ac.desc ? `<p class="ac-desc">${esc(ac.desc)}</p>` : ''}
           </div>
-          <p class="ac-meta">${ac.period || ''}${ac.client ? '<br>' + ac.client : ''}</p>`;
+          <p class="ac-meta">${esc(ac.period || '')}${ac.client ? '<br>' + esc(ac.client) : ''}</p>`;
         grid.appendChild(card);
       });
     } catch(e) { console.warn(e); }
@@ -1930,8 +1938,8 @@
         item.className = 'a-post-item';
         item.innerHTML = `
           <div class="a-post-info">
-            <p class="a-post-title">${ac.title}</p>
-            <p class="a-post-meta">${ac.type}　${ac.period || ''}${ac.client ? '　|　' + ac.client : ''}</p>
+            <p class="a-post-title">${esc(ac.title)}</p>
+            <p class="a-post-meta">${esc(ac.type)}　${esc(ac.period || '')}${ac.client ? '　|　' + esc(ac.client) : ''}</p>
           </div>
           <div class="a-post-actions">
             <button class="a-btn-edit" data-acid="${d.id}">編集</button>
