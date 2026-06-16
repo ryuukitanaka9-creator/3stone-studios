@@ -1131,6 +1131,7 @@
       <div class="admin-tabs">
         <button class="admin-tab active" data-atab="news">ニュース</button>
         <button class="admin-tab" data-atab="scripts">脚本作品</button>
+        <button class="admin-tab" data-atab="hero-images">ヒーロー画像</button>
         <button class="admin-tab" data-atab="content">サイト内容</button>
       </div>
       <button class="admin-close-btn" id="aPanelClose">✕ 閉じる</button>
@@ -1195,6 +1196,27 @@
         </div>
         <p class="admin-panel-title" style="font-size:1.1rem">脚本一覧</p>
         <div id="sList"></div>
+      </div>
+      <!-- HERO IMAGES TAB -->
+      <div class="tab-panel" id="atab-hero-images">
+        <p class="admin-panel-title">ヒーロー画像管理</p>
+        <div class="a-card">
+          <p class="a-card-title">画像URLを追加</p>
+          <div class="a-field">
+            <label>画像URL（Imgur・Google フォトなど）</label>
+            <input type="url" id="heroImgUrl" placeholder="https://i.imgur.com/...">
+          </div>
+          <div class="a-field">
+            <label>表示順（小さい数字が先 / 0 = ロゴの次）</label>
+            <input type="number" id="heroImgOrder" value="0" min="0">
+          </div>
+          <div class="a-btn-row">
+            <button class="a-btn-save" id="heroImgAddBtn">追加する</button>
+          </div>
+        </div>
+        <p class="admin-panel-title" style="font-size:1.1rem">現在の画像</p>
+        <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">※ 1枚目のロゴ（3ss-logo.png）は固定です</p>
+        <div id="heroImgList" class="img-preview-grid"></div>
       </div>
       <!-- CONTENT TAB -->
       <div class="tab-panel" id="atab-content">
@@ -1335,9 +1357,20 @@
   const newsCol = collection(db, 'news');
 
   /* ─── HERO SLIDER ─── */
-  const heroSlides = [{ url: '/3ss-logo.png' }];
+  const heroSlidesCol = collection(db, 'heroSlides');
+  let heroSlides = [];
   let heroCurrentIdx = 0;
   let heroAutoPlay;
+
+  async function loadHeroSlides() {
+    try {
+      const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
+      heroSlides = [{ url: '/3ss-logo.png' }, ...snap.docs.map(d => ({ id: d.id, ...d.data() }))];
+    } catch(e) {
+      heroSlides = [{ url: '/3ss-logo.png' }];
+    }
+    renderHeroSlider();
+  }
 
   function renderHeroSlider() {
     const track = document.getElementById('heroSliderTrack');
@@ -1391,7 +1424,49 @@
   document.getElementById('heroSliderPrev').addEventListener('click', () => { clearInterval(heroAutoPlay); goToHeroSlide(heroCurrentIdx - 1); startHeroAutoPlay(); });
   document.getElementById('heroSliderNext').addEventListener('click', () => { clearInterval(heroAutoPlay); goToHeroSlide(heroCurrentIdx + 1); startHeroAutoPlay(); });
 
-  renderHeroSlider();
+  loadHeroSlides();
+
+  /* ─── ADMIN HERO IMAGES ─── */
+  async function renderHeroImgList() {
+    const list = document.getElementById('heroImgList');
+    if (!list) return;
+    list.innerHTML = '';
+    try {
+      const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
+      if (snap.empty) { list.innerHTML = '<p style="color:var(--muted);font-size:.82rem">追加された画像はありません</p>'; return; }
+      snap.forEach(d => {
+        const data = d.data();
+        const item = document.createElement('div');
+        item.className = 'img-preview-item';
+        item.innerHTML = `
+          <img src="${esc(data.url)}" alt="" onerror="this.style.opacity='.3'">
+          <div class="img-preview-info">順: ${data.order ?? 0}</div>
+          <button class="img-preview-del" data-id="${d.id}">✕ 削除</button>`;
+        item.querySelector('.img-preview-del').addEventListener('click', async (e) => {
+          if (!confirm('削除しますか？')) return;
+          await deleteDoc(doc(db, 'heroSlides', e.target.dataset.id));
+          await loadHeroSlides();
+          renderHeroImgList();
+        });
+        list.appendChild(item);
+      });
+    } catch(e) { console.warn(e); }
+  }
+
+  document.getElementById('heroImgAddBtn').addEventListener('click', async () => {
+    const url = document.getElementById('heroImgUrl').value.trim();
+    if (!url) { alert('URLを入力してください'); return; }
+    const order = parseInt(document.getElementById('heroImgOrder').value) || 0;
+    const btn = document.getElementById('heroImgAddBtn');
+    btn.textContent = '追加中…'; btn.disabled = true;
+    try {
+      await addDoc(heroSlidesCol, { url, order, date: new Date().toISOString() });
+      document.getElementById('heroImgUrl').value = '';
+      await loadHeroSlides();
+      renderHeroImgList();
+    } catch(e) { alert('追加に失敗しました: ' + e.message); }
+    btn.textContent = '追加する'; btn.disabled = false;
+  });
 
 
   /* ─── NEWS ─── */
@@ -1606,6 +1681,7 @@
       tab.classList.add('active');
       document.getElementById('atab-' + tab.dataset.atab).classList.add('active');
       if (tab.dataset.atab === 'scripts') renderSList();
+      else if (tab.dataset.atab === 'hero-images') renderHeroImgList();
     });
   });
 
