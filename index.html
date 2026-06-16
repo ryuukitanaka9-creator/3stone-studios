@@ -1718,7 +1718,6 @@
       aLoginAttempts = 0;
       errEl.style.display = 'none';
       document.getElementById('aPass').value = '';
-      try { await signInAnonymously(auth); } catch(e) { console.warn('auth sign-in:', e); }
       showAPanel();
     } else {
       aLoginAttempts++;

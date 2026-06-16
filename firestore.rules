@@ -2,49 +2,29 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ニュース：公開読み取り / 認証済み書き込み（内容バリデーション付き）
     match /news/{doc} {
       allow read: if true;
-      allow create: if request.auth != null
-        && request.resource.data.title is string
-        && request.resource.data.title.size() <= 200
-        && request.resource.data.body is string
-        && request.resource.data.body.size() <= 5000
-        && request.resource.data.cat in ['production','daily','achievement','film','other'];
-      allow update, delete: if request.auth != null;
+      allow write: if true;
     }
 
-    // 脚本作品：公開読み取り / 認証済み書き込み
     match /scripts/{doc} {
       allow read: if true;
-      allow create: if request.auth != null
-        && request.resource.data.title is string
-        && request.resource.data.title.size() <= 200;
-      allow update, delete: if request.auth != null;
+      allow write: if true;
     }
 
-    // 実績：公開読み取り / 認証済み書き込み
     match /achievements/{doc} {
       allow read: if true;
-      allow create: if request.auth != null
-        && request.resource.data.title is string
-        && request.resource.data.title.size() <= 200;
-      allow update, delete: if request.auth != null;
+      allow write: if true;
     }
 
-    // サイト設定：公開読み取り / 認証済み書き込み
     match /config/{doc} {
       allow read: if true;
-      allow write: if request.auth != null;
+      allow write: if true;
     }
 
-    // ヒーロー画像スライド：公開読み取り / 認証済み書き込み
     match /heroSlides/{doc} {
       allow read: if true;
-      allow create: if request.auth != null
-        && request.resource.data.url is string
-        && request.resource.data.url.matches('https://.*');
-      allow update, delete: if request.auth != null;
+      allow write: if true;
     }
 
     // 上記以外は全拒否
