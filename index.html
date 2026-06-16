@@ -180,8 +180,8 @@
   .section-title {
     font-family: 'Dela Gothic One', sans-serif;
     font-size: clamp(3rem, 7vw, 6.5rem);
-    line-height: 1; margin-bottom: 2rem;
-    letter-spacing: -.01em;
+    line-height: 1.08; margin-bottom: 2rem;
+    letter-spacing: .02em;
   }
   .accent { color: var(--green); }
 
@@ -579,8 +579,8 @@
     letter-spacing: .15em; text-transform: uppercase;
     color: var(--black); padding: .2em .8em; border-radius: 999px;
   }
-  .news-cat.cat-production { background: var(--green); }
   .news-cat.cat-daily      { background: var(--green-dark); }
+  .news-cat.cat-achievement { background: var(--green); }
   .news-cat.cat-film       { background: #2D6EAA; }
   .news-cat.cat-other      { background: #6B6B6B; }
   .news-date {
@@ -765,38 +765,6 @@
   }
   .slider-dot.active { background: var(--green); transform: scale(1.4); }
 
-  /* ─── BOOTH SLIDER ─── */
-  .booth-slider-outer {
-    position: relative; width: 100%; overflow: hidden;
-    border-radius: 8px; border: 1px solid var(--border);
-    margin: 1.5rem 0; aspect-ratio: 4/3;
-    background: var(--green-faint);
-  }
-  .booth-slider-track {
-    display: flex; width: 100%; height: 100%;
-    transition: transform .5s ease;
-  }
-  .booth-slide { min-width: 100%; height: 100%; overflow: hidden; }
-  .booth-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .booth-slider-nav {
-    display: flex; align-items: center; justify-content: center;
-    gap: .8rem; margin-bottom: .5rem;
-  }
-  .booth-slider-arrow {
-    background: transparent; border: 1px solid var(--border);
-    color: var(--muted-hi); width: 30px; height: 30px;
-    border-radius: 50%; font-size: .75rem; cursor: none;
-    transition: all .2s; display: flex; align-items: center; justify-content: center;
-  }
-  .booth-slider-arrow:hover { background: var(--green); color: var(--black); border-color: var(--green); }
-  .booth-slider-dots { display: flex; gap: .4rem; }
-  .booth-slider-dot {
-    width: 5px; height: 5px; border-radius: 50%;
-    background: var(--muted-lo); border: none; padding: 0;
-    cursor: none; transition: background .2s;
-  }
-  .booth-slider-dot.active { background: var(--green); }
-
   /* ─── ABOUT STATS ─── */
   .about-stats {
     display: flex; gap: 2.5rem; flex-wrap: wrap;
@@ -957,11 +925,10 @@
   <h2 class="section-title reveal">NEWS &amp;<br><span class="accent">UPDATES</span></h2>
   <div class="news-filter reveal">
     <button class="news-filter-btn active" data-cat="all">All</button>
-    <button class="news-filter-btn" data-cat="production">制作</button>
     <button class="news-filter-btn" data-cat="daily">日常</button>
+    <button class="news-filter-btn" data-cat="achievement">実績</button>
     <button class="news-filter-btn" data-cat="film">映画</button>
     <button class="news-filter-btn" data-cat="other">その他</button>
-    <button class="news-filter-btn" data-cat="achievement">実績</button>
   </div>
   <div class="news-grid" id="newsGrid">
     <p class="news-empty" id="newsEmpty">まだ投稿がありません。</p>
@@ -1008,17 +975,6 @@
         <span class="tag">キャラクター</span>
         <span class="tag">アクセサリー</span>
         <span class="tag">即使用可</span>
-      </div>
-      <!-- BOOTH商品スライダー -->
-      <div id="boothSliderWrap" style="display:none">
-        <div class="booth-slider-outer">
-          <div id="boothSliderTrack" class="booth-slider-track"></div>
-        </div>
-        <div class="booth-slider-nav">
-          <button class="booth-slider-arrow" id="boothSliderPrev">&#8592;</button>
-          <div id="boothSliderDots" class="booth-slider-dots"></div>
-          <button class="booth-slider-arrow" id="boothSliderNext">&#8594;</button>
-        </div>
       </div>
       <a href="https://3stonestudios.booth.pm/" class="btn btn-primary" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem">BOOTHショップを見る →</a>
     </div>
@@ -1197,7 +1153,6 @@
         <button class="admin-tab" data-atab="achievements">実績</button>
         <button class="admin-tab" data-atab="content">サイト内容</button>
         <button class="admin-tab" data-atab="hero-images">ヒーロー画像</button>
-        <button class="admin-tab" data-atab="booth-images">BOOTH画像</button>
       </div>
       <button class="admin-close-btn" id="aPanelClose">✕ 閉じる</button>
     </div>
@@ -1212,8 +1167,8 @@
           <div class="a-field">
             <label>カテゴリ</label>
             <select id="aPostCat">
-              <option value="production">制作</option>
               <option value="daily">日常</option>
+              <option value="achievement">実績</option>
               <option value="film">映画</option>
               <option value="other">その他</option>
             </select>
@@ -1308,27 +1263,6 @@
         </div>
         <p class="admin-panel-title" style="font-size:1.1rem">現在の画像</p>
         <div id="heroImgList" class="img-preview-grid"></div>
-      </div>
-      <!-- BOOTH IMAGES TAB -->
-      <div class="tab-panel" id="atab-booth-images">
-        <p class="admin-panel-title">BOOTH商品画像管理</p>
-        <div class="a-card">
-          <p class="a-card-title">画像をアップロード</p>
-          <div class="a-field">
-            <label>画像ファイル（JPG / PNG）</label>
-            <input type="file" id="boothImgFile" accept="image/*">
-          </div>
-          <div class="a-field">
-            <label>表示順（小さい数字が先）</label>
-            <input type="number" id="boothImgOrder" value="0" min="0">
-          </div>
-          <div class="a-btn-row">
-            <button class="a-btn-save" id="boothImgUploadBtn">アップロード</button>
-          </div>
-          <p class="a-upload-progress" id="boothImgProgress">アップロード中…</p>
-        </div>
-        <p class="admin-panel-title" style="font-size:1.1rem">現在の画像</p>
-        <div id="boothImgList" class="img-preview-grid"></div>
       </div>
       <!-- CONTENT TAB -->
       <div class="tab-panel" id="atab-content">
@@ -1533,76 +1467,24 @@
 
   loadHeroSlides();
 
-  /* ─── BOOTH SLIDER ─── */
-  const boothSlidesCol = collection(db, 'boothSlides');
-  let boothSlides = [];
-  let boothCurrentIdx = 0;
-  let boothAutoPlay;
-
-  async function loadBoothSlides() {
-    try {
-      const snap = await getDocs(query(boothSlidesCol, orderBy('order')));
-      boothSlides = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    } catch(e) { console.warn('booth slides load failed', e); }
-    renderBoothSlider();
-  }
-
-  function renderBoothSlider() {
-    const wrap = document.getElementById('boothSliderWrap');
-    const track = document.getElementById('boothSliderTrack');
-    const dotsWrap = document.getElementById('boothSliderDots');
-    track.innerHTML = '';
-    dotsWrap.innerHTML = '';
-    if (!boothSlides.length) { wrap.style.display = 'none'; return; }
-    wrap.style.display = '';
-    boothSlides.forEach((slide, i) => {
-      const el = document.createElement('div');
-      el.className = 'booth-slide';
-      el.innerHTML = `<img src="${slide.url}" alt="">`;
-      track.appendChild(el);
-      const dot = document.createElement('button');
-      dot.className = 'booth-slider-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => { clearInterval(boothAutoPlay); goToBoothSlide(i); startBoothAutoPlay(); });
-      dot.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      dot.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-      dotsWrap.appendChild(dot);
-    });
-    boothCurrentIdx = 0;
-    updateBoothSlider();
-    startBoothAutoPlay();
-  }
-
-  function updateBoothSlider() {
-    const track = document.getElementById('boothSliderTrack');
-    track.style.transform = `translateX(-${boothCurrentIdx * 100}%)`;
-    document.querySelectorAll('#boothSliderDots .booth-slider-dot').forEach((d, i) => d.classList.toggle('active', i === boothCurrentIdx));
-  }
-
-  function goToBoothSlide(idx) {
-    boothCurrentIdx = ((idx % boothSlides.length) + boothSlides.length) % boothSlides.length;
-    updateBoothSlider();
-  }
-
-  function startBoothAutoPlay() {
-    clearInterval(boothAutoPlay);
-    if (boothSlides.length > 1) boothAutoPlay = setInterval(() => goToBoothSlide(boothCurrentIdx + 1), 4000);
-  }
-
-  document.getElementById('boothSliderPrev').addEventListener('click', () => { clearInterval(boothAutoPlay); goToBoothSlide(boothCurrentIdx - 1); startBoothAutoPlay(); });
-  document.getElementById('boothSliderNext').addEventListener('click', () => { clearInterval(boothAutoPlay); goToBoothSlide(boothCurrentIdx + 1); startBoothAutoPlay(); });
-
-  loadBoothSlides();
-
   /* ─── IMAGE UPLOAD HELPER ─── */
   async function uploadSlideImage(file, folder, order) {
-    const fileName = `${folder}/${Date.now()}_${file.name}`;
+    const safeName = file.name.replace(/[^\w.\-]/g, '_');
+    const fileName = `${folder}/${Date.now()}_${safeName}`;
     const fileRef = sRef(storage, fileName);
+    const metadata = { contentType: file.type };
     return new Promise((resolve, reject) => {
-      const task = uploadBytesResumable(fileRef, file);
-      task.on('state_changed', null, reject, async () => {
-        const url = await getDownloadURL(fileRef);
-        resolve({ url, storagePath: fileName });
-      });
+      const task = uploadBytesResumable(fileRef, file, metadata);
+      task.on('state_changed',
+        null,
+        (err) => reject(err),
+        async () => {
+          try {
+            const url = await getDownloadURL(fileRef);
+            resolve({ url, storagePath: fileName });
+          } catch(e) { reject(e); }
+        }
+      );
     });
   }
 
@@ -1652,57 +1534,16 @@
       document.getElementById('heroImgFile').value = '';
       await loadHeroSlides();
       renderHeroImgList();
-    } catch(e) { alert('アップロードに失敗しました: ' + e.message); }
+    } catch(e) {
+      console.error('hero upload error', e);
+      alert('アップロードに失敗しました。\nFirebase Storage のルールを確認してください。\n\nエラー: ' + (e.message || e.code || e));
+    }
     prog.classList.remove('show'); btn.disabled = false;
   });
 
-  /* ─── ADMIN BOOTH IMAGES ─── */
-  async function renderBoothImgList() {
-    const list = document.getElementById('boothImgList');
-    list.innerHTML = '';
-    try {
-      const snap = await getDocs(query(boothSlidesCol, orderBy('order')));
-      if (snap.empty) { list.innerHTML = '<p style="color:var(--muted);font-size:.82rem">画像がありません</p>'; return; }
-      snap.forEach(d => {
-        const data = d.data();
-        const item = document.createElement('div');
-        item.className = 'img-preview-item';
-        item.innerHTML = `
-          <img src="${data.url}" alt="">
-          <div class="img-preview-info">順: ${data.order ?? 0}</div>
-          <button class="img-preview-del" data-id="${d.id}" data-path="${data.storagePath || ''}">✕</button>`;
-        item.querySelector('.img-preview-del').addEventListener('click', async (e) => {
-          if (!confirm('削除しますか？')) return;
-          const { id, path } = { id: e.target.dataset.id, path: e.target.dataset.path };
-          await deleteSlideImage(path);
-          await deleteDoc(doc(db, 'boothSlides', id));
-          await loadBoothSlides();
-          renderBoothImgList();
-        });
-        list.appendChild(item);
-      });
-    } catch(e) { console.warn(e); }
-  }
-
-  document.getElementById('boothImgUploadBtn').addEventListener('click', async () => {
-    const file = document.getElementById('boothImgFile').files[0];
-    if (!file) { alert('画像ファイルを選択してください'); return; }
-    const order = parseInt(document.getElementById('boothImgOrder').value) || 0;
-    const prog = document.getElementById('boothImgProgress');
-    const btn = document.getElementById('boothImgUploadBtn');
-    prog.classList.add('show'); btn.disabled = true;
-    try {
-      const { url, storagePath } = await uploadSlideImage(file, 'booth-slides', order);
-      await addDoc(boothSlidesCol, { url, storagePath, order, date: new Date().toISOString() });
-      document.getElementById('boothImgFile').value = '';
-      await loadBoothSlides();
-      renderBoothImgList();
-    } catch(e) { alert('アップロードに失敗しました: ' + e.message); }
-    prog.classList.remove('show'); btn.disabled = false;
-  });
 
   /* ─── NEWS ─── */
-  const CAT_LABELS = { production:'制作', daily:'日常', film:'映画', other:'その他' };
+  const CAT_LABELS = { daily:'日常', achievement:'実績', film:'映画', other:'その他' };
   let newsFilter = 'all';
   let allPosts = [];
 
