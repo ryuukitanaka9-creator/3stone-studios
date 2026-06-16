@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="3 Stone Studiosは脚本執筆・3Dモデリング受注・3Dモデル販売を手がけるクリエイティブスタジオです。">
+<meta name="description" content="3 Stone Studiosは3Dモデル販売・3Dモデリング受注・オリジナル映画脚本制作を手がける、学生発のクリエイティブスタジオです。">
 <!-- OGP -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="3 Stone Studios">
-<meta property="og:description" content="オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。">
+<meta property="og:description" content="3Dモデル販売・3Dモデリング受注・オリジナル映画脚本制作を手がける、学生発のクリエイティブスタジオ。">
 <meta property="og:url" content="https://3stonestudios.com">
 <meta property="og:image" content="https://3stonestudios.com/logo.png">
 <meta property="og:site_name" content="3 Stone Studios">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3 Stone Studios">
-<meta name="twitter:description" content="オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。">
+<meta name="twitter:description" content="3Dモデル販売・3Dモデリング受注・オリジナル映画脚本制作を手がける、学生発のクリエイティブスタジオ。">
 <meta name="twitter:image" content="https://3stonestudios.com/logo.png">
 <title>3 Stone Studios</title>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -119,93 +119,6 @@
   .hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .hamburger.active span:nth-child(2) { opacity: 0; }
   .hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    justify-content: flex-start; align-items: center;
-    text-align: center;
-    padding: 6rem 3rem 5rem;
-    position: relative; overflow: hidden;
-  }
-  .hero-glow {
-    position: absolute;
-    width: 700px; height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--green-soft) 0%, transparent 65%);
-    top: 50%; left: -100px;
-    transform: translateY(-50%);
-    z-index: 0;
-    animation: pulse 6s ease-in-out infinite alternate;
-  }
-  @keyframes pulse { from { opacity: .7; } to { opacity: 1; } }
-
-  .hero-logo-wrap {
-    position: relative; z-index: 1;
-    margin-bottom: 0.6rem;
-    opacity: 0; animation: fadeIn 1.2s .2s forwards;
-  }
-  .hero-logo-wrap img {
-    width: clamp(280px, 41vw, 525px); height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 80px var(--green-glow-shadow));
-    animation: floatLogo 5s ease-in-out infinite;
-  }
-  @keyframes floatLogo {
-    0%,100% { transform: translateY(0); }
-    50%      { transform: translateY(-16px); }
-  }
-
-  .hero-studio-name {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: clamp(1rem, 2.84vw, 2.27rem);
-    letter-spacing: 0.14em;
-    color: var(--white);
-    position: relative; z-index: 1;
-    opacity: 0; animation: fadeIn 1s .8s forwards;
-    margin-bottom: 9rem;
-    white-space: nowrap;
-    display: flex; align-items: center; gap: 0.25em; justify-content: center;
-  }
-  .hero-title {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: clamp(2.4rem, 7vw, 6rem);
-    line-height: 1;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    position: relative; z-index: 1;
-    opacity: 0; animation: fadeIn 1s 1s forwards;
-    margin-bottom: 1.6rem;
-  }
-  .hero-sub {
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
-    line-height: 1.85;
-    max-width: 420px;
-    color: var(--muted-hi);
-    position: relative; z-index: 1;
-    opacity: 0; animation: fadeIn 1s 1.4s forwards;
-    margin: 0 auto 2.5rem;
-  }
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-    position: relative; z-index: 1;
-    opacity: 0; animation: fadeIn 1s 1.6s forwards;
-  }
-  .hero-scroll {
-    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: .5rem;
-    z-index: 1; opacity: 0; animation: fadeIn 1s 2s forwards;
-    font-family: 'Space Mono', monospace; font-size: .55rem;
-    letter-spacing: .3em; text-transform: uppercase; color: var(--muted-lo);
-  }
-  .scroll-line {
-    width: 1px; height: 44px;
-    background: linear-gradient(to bottom, var(--green-glow-shadow), transparent);
-    animation: scrollPulse 2.5s infinite;
-  }
-  @keyframes scrollPulse { 0%,100%{opacity:.2} 50%{opacity:.8} }
-  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
   /* ─── BUTTONS ─── */
   .btn {
@@ -475,9 +388,7 @@
   }
 
   /* ─── WORK TBD CARDS ─── */
-  .work-card--tbd { opacity: .5; pointer-events: none; }
-  .work-title--tbd { color: var(--muted); font-size: 2rem; letter-spacing: .2em; }
-  .work-badge--tbd { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+
 
   .work-file-btn {
     display: inline-flex; align-items: center; gap: .5em;
@@ -612,31 +523,6 @@
   }
   .footer-links a:hover { color: var(--green); }
 
-  /* ─── HERO STATS ─── */
-  .hero-stats {
-    display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center;
-    position: relative; z-index: 1;
-    margin-top: 1rem; margin-bottom: 3rem;
-    padding: 1.5rem 2.5rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--green-faint);
-    backdrop-filter: blur(8px);
-  }
-  .hero-stat { display: flex; flex-direction: column; align-items: center; gap: .2rem; }
-  .hero-stat-value {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: .95rem; color: var(--white); letter-spacing: .05em;
-  }
-  .hero-stat-label {
-    font-family: 'Space Mono', monospace;
-    font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; color: var(--green);
-  }
-  .hero-stat-divider {
-    width: 1px; height: 2rem; background: var(--border);
-  }
-
-
   /* ─── JOIN US ─── */
   .join { padding: 10rem 3rem; background: var(--dark); }
   .join-card {
@@ -658,20 +544,6 @@
   }
   .join-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
   .join-cta { margin-top: 2rem; display: inline-block; }
-  .join-learn {
-    margin-top: 2rem; padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-  .join-learn-title {
-    font-family: 'Space Mono', monospace;
-    font-size: .62rem; letter-spacing: .25em; text-transform: uppercase;
-    color: var(--green); margin-bottom: 1.2rem;
-  }
-  .join-learn-grid { display: flex; flex-direction: column; gap: 1.2rem; }
-  .join-learn-item { display: flex; gap: 1rem; align-items: flex-start; }
-  .join-learn-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: .1rem; }
-  .join-learn-name { font-weight: 700; font-size: .95rem; margin-bottom: .3rem; }
-  .join-learn-desc { font-size: .85rem; line-height: 1.7; color: var(--muted); }
   .join-expert {
     margin-top: 1.5rem;
     padding: 1.5rem 2rem;
@@ -832,6 +704,146 @@
   }
   .sns-link:hover { color: var(--green); }
 
+  /* ─── NAV RIGHT ─── */
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .nav-booth-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--black); background: var(--green);
+    padding: .4em .9em; border-radius: 2px;
+    text-decoration: none; white-space: nowrap;
+    transition: opacity .2s;
+  }
+  .nav-booth-btn:hover { opacity: .8; }
+  .nav-sns-icon {
+    color: var(--muted); display: flex; align-items: center;
+    transition: color .2s; text-decoration: none;
+  }
+  .nav-sns-icon:hover { color: var(--green); }
+  .nav-mobile-only { display: none; }
+
+  /* ─── HERO SLIDER ─── */
+  .hero-slider-section {
+    position: relative; width: 100%; height: 100vh;
+    overflow: hidden; background: var(--black);
+  }
+  .hero-slider-track { position: relative; width: 100%; height: 100%; }
+  .hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0; transition: opacity .9s ease;
+  }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-slider-empty {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--muted-lo);
+  }
+  .slider-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    z-index: 10; background: rgba(6,8,8,0.55);
+    border: 1px solid var(--border); color: var(--white);
+    width: 48px; height: 48px; border-radius: 50%;
+    font-size: 1.1rem; cursor: none;
+    transition: background .2s, color .2s, border-color .2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .slider-arrow:hover { background: var(--green); color: var(--black); border-color: var(--green); }
+  .slider-prev { left: 2rem; }
+  .slider-next { right: 2rem; }
+  .slider-dots {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; gap: .5rem; z-index: 10;
+  }
+  .slider-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(240,245,236,0.3);
+    border: none; padding: 0; cursor: none;
+    transition: background .2s, transform .2s;
+  }
+  .slider-dot.active { background: var(--green); transform: scale(1.4); }
+
+  /* ─── BOOTH SLIDER ─── */
+  .booth-slider-outer {
+    position: relative; width: 100%; overflow: hidden;
+    border-radius: 8px; border: 1px solid var(--border);
+    margin: 1.5rem 0; aspect-ratio: 4/3;
+    background: var(--green-faint);
+  }
+  .booth-slider-track {
+    display: flex; width: 100%; height: 100%;
+    transition: transform .5s ease;
+  }
+  .booth-slide { min-width: 100%; height: 100%; overflow: hidden; }
+  .booth-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .booth-slider-nav {
+    display: flex; align-items: center; justify-content: center;
+    gap: .8rem; margin-bottom: .5rem;
+  }
+  .booth-slider-arrow {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--muted-hi); width: 30px; height: 30px;
+    border-radius: 50%; font-size: .75rem; cursor: none;
+    transition: all .2s; display: flex; align-items: center; justify-content: center;
+  }
+  .booth-slider-arrow:hover { background: var(--green); color: var(--black); border-color: var(--green); }
+  .booth-slider-dots { display: flex; gap: .4rem; }
+  .booth-slider-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--muted-lo); border: none; padding: 0;
+    cursor: none; transition: background .2s;
+  }
+  .booth-slider-dot.active { background: var(--green); }
+
+  /* ─── ABOUT STATS ─── */
+  .about-stats {
+    display: flex; gap: 2.5rem; flex-wrap: wrap;
+    margin-top: 2rem; padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .about-stat { display: flex; flex-direction: column; gap: .3rem; }
+  .about-stat-value {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: .95rem; color: var(--white); letter-spacing: .04em;
+  }
+  .about-stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; color: var(--green);
+  }
+
+  /* ─── ADMIN IMAGE MANAGEMENT ─── */
+  .img-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: .8rem; margin-top: 1rem;
+  }
+  .img-preview-item {
+    position: relative; border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden; background: var(--card);
+  }
+  .img-preview-item img {
+    width: 100%; aspect-ratio: 1; object-fit: cover; display: block;
+  }
+  .img-preview-info {
+    padding: .4rem .5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .58rem; letter-spacing: .04em; color: var(--muted);
+  }
+  .img-preview-del {
+    position: absolute; top: .3rem; right: .3rem;
+    background: rgba(255,107,107,.9); color: white; border: none;
+    width: 22px; height: 22px; border-radius: 50%; font-size: .7rem;
+    cursor: none; display: flex; align-items: center; justify-content: center;
+  }
+  .a-upload-progress {
+    font-family: 'Space Mono', monospace; font-size: .72rem;
+    letter-spacing: .08em; color: var(--green); margin-top: .5rem;
+    display: none;
+  }
+  .a-upload-progress.show { display: block; }
+
   /* ─── SCROLL REVEAL ─── */
   .reveal { opacity: 0; transform: translateY(36px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
@@ -841,6 +853,8 @@
     nav { padding: 1.5rem; }
     nav.scrolled { padding: 1rem 1.5rem; }
     .hamburger { display: flex; }
+    .nav-booth-btn, .nav-sns-icon { display: none; }
+    .nav-mobile-only { display: list-item; }
     .nav-links {
       display: flex; flex-direction: column;
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -851,7 +865,7 @@
     }
     .nav-links.open { opacity: 1; pointer-events: all; }
     .nav-links a { font-size: 1.1rem; letter-spacing: 0.22em; }
-    .hero, .about, .services, .works,
+    .about, .services, .works,
     .news, .contact, .join { padding-left: 1.5rem; padding-right: 1.5rem; }
     .about, .services, .works, .news, .contact, .join { padding-top: 6rem; padding-bottom: 6rem; }
     .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -863,8 +877,9 @@
     .form-row { grid-template-columns: 1fr; }
     footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
     .footer-links { flex-wrap: wrap; gap: 1rem; }
-    .hero-stats { padding: 1.2rem 1.5rem; gap: 1.2rem; }
-    .hero-stat-divider { display: none; }
+    .slider-arrow { width: 36px; height: 36px; font-size: .9rem; }
+    .slider-prev { left: 1rem; }
+    .slider-next { right: 1rem; }
   }
 </style>
 </head>
@@ -876,100 +891,65 @@
 <nav id="nav">
   <a href="#" class="nav-logo">3<span class="dot">●</span>STONE STUDIOS</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about">Profile</a></li>
     <li><a href="#news">News</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">Profile</a></li>
     <li><a href="#join">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li class="nav-mobile-only"><a href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">BOOTH</a></li>
+    <li class="nav-mobile-only">
+      <a href="https://www.instagram.com/3stonestudios" target="_blank" rel="noopener">Instagram</a>
+    </li>
+    <li class="nav-mobile-only">
+      <a href="https://x.com/3stonestudioz" target="_blank" rel="noopener">X</a>
+    </li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="メニューを開く">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <a href="https://3stonestudios.booth.pm/" class="nav-booth-btn" target="_blank" rel="noopener">BOOTH</a>
+    <a href="https://www.instagram.com/3stonestudios" class="nav-sns-icon" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://x.com/3stonestudioz" class="nav-sns-icon" target="_blank" rel="noopener" aria-label="X">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-<!-- ─── HERO ─── -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-logo-wrap">
-    <img src="logo.png" alt="3 Stone Studios">
-  </div>
-  <p class="hero-studio-name">3<span class="dot">●</span>STONE STUDIOS</p>
-  <h1 class="hero-title">
-    <span>石の上にも<span class="accent">三年。</span></span>
-  </h1>
-  <p class="hero-sub" id="hero-sub-text">オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。</p>
-  <div class="hero-cta">
-    <a href="#services" class="btn btn-primary" id="hero-cta-2">サービスを見る</a>
-    <a href="#projects" class="btn btn-primary">作品を見る</a>
-  </div>
-  <div class="hero-stats reveal">
-    <div class="hero-stat">
-      <span class="hero-stat-value">2025.09.01</span>
-      <span class="hero-stat-label">設立</span>
-    </div>
-    <div class="hero-stat-divider"></div>
-    <div class="hero-stat">
-      <span class="hero-stat-value">東京</span>
-      <span class="hero-stat-label">拠点</span>
-    </div>
-    <div class="hero-stat-divider"></div>
-    <div class="hero-stat">
-      <span class="hero-stat-value">メンバー 2名+</span>
-      <span class="hero-stat-label">チーム</span>
+<!-- ─── HERO SLIDER ─── -->
+<section class="hero-slider-section" id="heroSliderSection">
+  <div class="hero-slider-track" id="heroSliderTrack">
+    <div class="hero-slider-empty" id="heroSliderEmpty">
+      <span>管理画面から画像を追加してください</span>
     </div>
   </div>
-
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
+  <button class="slider-arrow slider-prev" id="heroSliderPrev" aria-label="前へ" style="display:none">&#8592;</button>
+  <button class="slider-arrow slider-next" id="heroSliderNext" aria-label="次へ" style="display:none">&#8594;</button>
+  <div class="slider-dots" id="heroSliderDots"></div>
 </section>
 
 <!-- ─── MARQUEE ─── -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span>FILM SCRIPT</span><span class="marquee-dot">✦</span>
     <span>3D MODELING</span><span class="marquee-dot">✦</span>
+    <span>BOOTH SHOP</span><span class="marquee-dot">✦</span>
+    <span>ORIGINAL MODELS</span><span class="marquee-dot">✦</span>
+    <span>FILM SCRIPT</span><span class="marquee-dot">✦</span>
     <span>CHARACTER DESIGN</span><span class="marquee-dot">✦</span>
-    <span>WORLD BUILDING</span><span class="marquee-dot">✦</span>
     <span>VISUAL STORYTELLING</span><span class="marquee-dot">✦</span>
     <span>石の上にも３年</span><span class="marquee-dot">✦</span>
-    <span>FILM SCRIPT</span><span class="marquee-dot">✦</span>
     <span>3D MODELING</span><span class="marquee-dot">✦</span>
+    <span>BOOTH SHOP</span><span class="marquee-dot">✦</span>
+    <span>ORIGINAL MODELS</span><span class="marquee-dot">✦</span>
+    <span>FILM SCRIPT</span><span class="marquee-dot">✦</span>
     <span>CHARACTER DESIGN</span><span class="marquee-dot">✦</span>
-    <span>WORLD BUILDING</span><span class="marquee-dot">✦</span>
     <span>VISUAL STORYTELLING</span><span class="marquee-dot">✦</span>
     <span>石の上にも３年</span><span class="marquee-dot">✦</span>
   </div>
 </div>
-
-<!-- ─── ABOUT ─── -->
-<section class="about" id="about">
-  <p class="section-label reveal">Profile</p>
-  <h2 class="section-title reveal">OUR<br><span class="accent">PROFILE</span></h2>
-  <div class="about-inner">
-
-    <!-- 左：名前ブロック -->
-    <div class="about-left reveal">
-      <div class="about-name-block">
-        <p class="about-name-ja" id="meta-rep">田中 琉暉</p>
-        <p class="about-name-en" id="meta-name-en">Ryuki Tanaka</p>
-        <p class="about-name-role" id="meta-role">代表</p>
-      </div>
-      <a href="mailto:ryukitanaka3@gmail.com" class="about-mail-link" id="meta-mail">ryukitanaka3@gmail.com</a>
-    </div>
-
-    <!-- 右：本文テキスト -->
-    <div class="about-right">
-      <p class="about-body reveal" id="about-body-1">
-        2005年生まれ、20歳。幼い頃から映画が好きで、気づけば「つくる側」への憧れを抱くようになっていた。高校生のころには脚本を書きはじめ、物語をゼロから組み上げる面白さにのめり込んでいった。大学に入り、映画への熱量を持ちながらも業界とのつながりを持てない学生が多いことを実感し、自らその場をつくろうと決意した。それが3 Stone Studios の始まりだ。「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。
-      </p>
-      <a href="#contact" class="btn btn-outline reveal" style="margin-top:2rem;display:inline-block">連絡する →</a>
-    </div>
-
-  </div>
-</section>
 
 <!-- ─── NEWS ─── -->
 <section class="news" id="news">
@@ -981,9 +961,13 @@
     <button class="news-filter-btn" data-cat="daily">日常</button>
     <button class="news-filter-btn" data-cat="film">映画</button>
     <button class="news-filter-btn" data-cat="other">その他</button>
+    <button class="news-filter-btn" data-cat="achievement">実績</button>
   </div>
   <div class="news-grid" id="newsGrid">
     <p class="news-empty" id="newsEmpty">まだ投稿がありません。</p>
+  </div>
+  <div id="achievementsGrid" class="achievements-grid" style="display:none">
+    <p class="jisseki-empty" id="acEmpty">実績はまだありません。</p>
   </div>
 </section>
 
@@ -1011,11 +995,35 @@
     </div>
   </div>
 
-  <!-- 財源：3D -->
-  <p class="service-section-label reveal" style="margin-top:4rem">受託 / 販売</p>
+  <!-- 販売・受注：3D -->
+  <p class="service-section-label reveal" style="margin-top:4rem">販売 / 受託</p>
   <div class="services-grid">
     <div class="service-card reveal">
       <span class="service-num">02</span>
+      <span class="service-icon">🛒</span>
+      <h3>3Dモデル販売</h3>
+      <p id="svc-booth-desc">BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。</p>
+      <div class="service-tags">
+        <span class="tag">VRChat対応</span>
+        <span class="tag">キャラクター</span>
+        <span class="tag">アクセサリー</span>
+        <span class="tag">即使用可</span>
+      </div>
+      <!-- BOOTH商品スライダー -->
+      <div id="boothSliderWrap" style="display:none">
+        <div class="booth-slider-outer">
+          <div id="boothSliderTrack" class="booth-slider-track"></div>
+        </div>
+        <div class="booth-slider-nav">
+          <button class="booth-slider-arrow" id="boothSliderPrev">&#8592;</button>
+          <div id="boothSliderDots" class="booth-slider-dots"></div>
+          <button class="booth-slider-arrow" id="boothSliderNext">&#8594;</button>
+        </div>
+      </div>
+      <a href="https://3stonestudios.booth.pm/" class="btn btn-primary" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem">BOOTHショップを見る →</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">03</span>
       <span class="service-icon">🧊</span>
       <h3>3Dモデリング受注</h3>
       <p id="svc-3d-desc">キャラクター・アバター・プロップ等の3D受注制作を承ります。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。</p>
@@ -1027,25 +1035,8 @@
         <span class="tag">要相談</span>
       </div>
     </div>
-    <div class="service-card reveal">
-      <span class="service-num">03</span>
-      <span class="service-icon">🛒</span>
-      <h3>3Dモデル販売</h3>
-      <p id="svc-booth-desc">BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。</p>
-      <div class="service-tags" style="margin-top:.8rem">
-        <span class="tag">VRChat対応</span>
-        <span class="tag">キャラクター</span>
-        <span class="tag">アクセサリー</span>
-        <span class="tag">即使用可</span>
-      </div>
-      <a href="https://3stonestudios.booth.pm/" class="btn btn-outline" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem">BOOTHショップを見る →</a>
-    </div>
   </div>
 
-  <p class="service-section-label reveal" style="margin-top:4rem">実　績</p>
-  <div id="achievementsGrid" class="achievements-grid reveal">
-    <p class="jisseki-empty" id="acEmpty">受託・納品した実績をここに掲載予定です。</p>
-  </div>
 </section>
 
 <!-- ─── WORKS ─── -->
@@ -1062,6 +1053,47 @@
     <p class="works-support-body" id="svc-recruit-body-projects">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。</p>
     <p style="font-size:.78rem;color:var(--muted-lo);margin-top:.6rem">※ 脚本の執筆依頼は承っておりません。オリジナル脚本の販売も行っておりません。</p>
     <a href="#contact" class="btn btn-primary" style="margin-top:1.4rem;display:inline-block">制作に参加・協力する →</a>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="about" id="about">
+  <p class="section-label reveal">Profile</p>
+  <h2 class="section-title reveal">OUR<br><span class="accent">PROFILE</span></h2>
+  <div class="about-inner">
+
+    <!-- 左：名前ブロック -->
+    <div class="about-left reveal">
+      <div class="about-name-block">
+        <p class="about-name-ja" id="meta-rep">田中 琉暉</p>
+        <p class="about-name-en" id="meta-name-en">Ryuki Tanaka</p>
+        <p class="about-name-role" id="meta-role">代表</p>
+      </div>
+      <a href="mailto:ryukitanaka3@gmail.com" class="about-mail-link" id="meta-mail">ryukitanaka3@gmail.com</a>
+    </div>
+
+    <!-- 右：本文テキスト -->
+    <div class="about-right">
+      <p class="about-body reveal" id="about-body-1">
+        2005年生まれ、20歳。幼い頃から映画が好きで、気づけば「つくる側」への憧れを抱くようになっていた。高校生のころには脚本を書きはじめ、物語をゼロから組み上げる面白さにのめり込んでいった。大学に入り、映画への熱量を持ちながらも業界とのつながりを持てない学生が多いことを実感し、自らその場をつくろうと決意した。それが3 Stone Studios の始まりだ。「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。
+      </p>
+      <div class="about-stats reveal">
+        <div class="about-stat">
+          <span class="about-stat-value">2025.09.01</span>
+          <span class="about-stat-label">設立</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-value">東京</span>
+          <span class="about-stat-label">拠点</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-value">2名+</span>
+          <span class="about-stat-label">チーム</span>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn-outline reveal" style="margin-top:2rem;display:inline-block">連絡する →</a>
+    </div>
+
   </div>
 </section>
 
@@ -1082,33 +1114,7 @@
       <span class="tag">撮影</span>
       <span class="tag">その他</span>
     </div>
-    <div class="join-learn">
-      <p class="join-learn-title">参加すると学べること</p>
-      <div class="join-learn-grid">
-        <div class="join-learn-item">
-          <span class="join-learn-icon">🧊</span>
-          <div>
-            <p class="join-learn-name">Blender</p>
-            <p class="join-learn-desc">3Dモデリングの基礎から実践まで。一緒に手を動かしながら学べます。</p>
-          </div>
-        </div>
-        <div class="join-learn-item">
-          <span class="join-learn-icon">🎬</span>
-          <div>
-            <p class="join-learn-name">ハリウッド式脚本術</p>
-            <p class="join-learn-desc">シド・フィールド形式をベースに、実際に使われるフォーマットで脚本を書く方法を共有します。</p>
-          </div>
-        </div>
-        <div class="join-learn-item">
-          <span class="join-learn-icon">📝</span>
-          <div>
-            <p class="join-learn-name">日本式脚本術</p>
-            <p class="join-learn-desc">ト書きの簡潔さ・間の使い方・日本独自の情景描写など、日本映画・ドラマに根ざした脚本の書き方を一緒に学べます。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <a href="#contact" class="btn btn-primary join-cta">参加を申し込む →</a>
+    <a href="#contact" class="btn btn-primary join-cta" style="margin-top:1.5rem">参加を申し込む →</a>
   </div>
   <div class="join-expert reveal">
     <p class="join-expert-text" id="join-expert-text">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。</p>
@@ -1137,8 +1143,8 @@
         <label for="service">ご希望のサービス</label>
         <select id="service" required>
           <option value="" disabled selected>お問い合わせ内容を選択</option>
-          <option value="film-support">脚本の映画化への参加・制作協力</option>
           <option value="3d">3Dモデリング受注</option>
+          <option value="film-support">脚本の映画化への参加・制作協力</option>
           <option value="crew">クルー応募・参加希望</option>
           <option value="other">その他・ご相談</option>
         </select>
@@ -1190,6 +1196,8 @@
         <button class="admin-tab" data-atab="scripts">脚本作品</button>
         <button class="admin-tab" data-atab="achievements">実績</button>
         <button class="admin-tab" data-atab="content">サイト内容</button>
+        <button class="admin-tab" data-atab="hero-images">ヒーロー画像</button>
+        <button class="admin-tab" data-atab="booth-images">BOOTH画像</button>
       </div>
       <button class="admin-close-btn" id="aPanelClose">✕ 閉じる</button>
     </div>
@@ -1280,15 +1288,51 @@
         <p class="admin-panel-title" style="font-size:1.1rem">実績一覧</p>
         <div id="acList"></div>
       </div>
+      <!-- HERO IMAGES TAB -->
+      <div class="tab-panel" id="atab-hero-images">
+        <p class="admin-panel-title">ヒーロー画像管理</p>
+        <div class="a-card">
+          <p class="a-card-title">画像をアップロード</p>
+          <div class="a-field">
+            <label>画像ファイル（JPG / PNG）</label>
+            <input type="file" id="heroImgFile" accept="image/*">
+          </div>
+          <div class="a-field">
+            <label>表示順（小さい数字が先）</label>
+            <input type="number" id="heroImgOrder" value="0" min="0">
+          </div>
+          <div class="a-btn-row">
+            <button class="a-btn-save" id="heroImgUploadBtn">アップロード</button>
+          </div>
+          <p class="a-upload-progress" id="heroImgProgress">アップロード中…</p>
+        </div>
+        <p class="admin-panel-title" style="font-size:1.1rem">現在の画像</p>
+        <div id="heroImgList" class="img-preview-grid"></div>
+      </div>
+      <!-- BOOTH IMAGES TAB -->
+      <div class="tab-panel" id="atab-booth-images">
+        <p class="admin-panel-title">BOOTH商品画像管理</p>
+        <div class="a-card">
+          <p class="a-card-title">画像をアップロード</p>
+          <div class="a-field">
+            <label>画像ファイル（JPG / PNG）</label>
+            <input type="file" id="boothImgFile" accept="image/*">
+          </div>
+          <div class="a-field">
+            <label>表示順（小さい数字が先）</label>
+            <input type="number" id="boothImgOrder" value="0" min="0">
+          </div>
+          <div class="a-btn-row">
+            <button class="a-btn-save" id="boothImgUploadBtn">アップロード</button>
+          </div>
+          <p class="a-upload-progress" id="boothImgProgress">アップロード中…</p>
+        </div>
+        <p class="admin-panel-title" style="font-size:1.1rem">現在の画像</p>
+        <div id="boothImgList" class="img-preview-grid"></div>
+      </div>
       <!-- CONTENT TAB -->
       <div class="tab-panel" id="atab-content">
         <p class="admin-panel-title">サイト内容の編集</p>
-        <!-- 1. Hero -->
-        <div class="a-card">
-          <p class="a-card-title">① Hero — トップ画面</p>
-          <div class="a-field"><label>説明文</label><input type="text" id="ca-hero-sub"></div>
-          <div class="a-btn-row"><button class="a-btn-save" data-asave="hero">保存する</button><span class="save-ok" id="sok-hero">保存しました ✓</span></div>
-        </div>
         <!-- 2. About -->
         <div class="a-card">
           <p class="a-card-title">② About — プロフィール文</p>
@@ -1405,6 +1449,7 @@
   /* ─── FIREBASE ─── */
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js';
   import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js';
+  import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js';
 
   const firebaseConfig = {
     apiKey: "AIzaSyBjWngd-IsV2j0zTMUtbl51p3QrCq3t17s",
@@ -1417,7 +1462,244 @@
   };
   const fbApp = initializeApp(firebaseConfig);
   const db = getFirestore(fbApp);
+  const storage = getStorage(fbApp);
   const newsCol = collection(db, 'news');
+
+  /* ─── HERO SLIDER ─── */
+  const heroSlidesCol = collection(db, 'heroSlides');
+  let heroSlides = [];
+  let heroCurrentIdx = 0;
+  let heroAutoPlay;
+
+  async function loadHeroSlides() {
+    try {
+      const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
+      heroSlides = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    } catch(e) { console.warn('hero slides load failed', e); }
+    renderHeroSlider();
+  }
+
+  function renderHeroSlider() {
+    const track = document.getElementById('heroSliderTrack');
+    const dotsWrap = document.getElementById('heroSliderDots');
+    const prevBtn = document.getElementById('heroSliderPrev');
+    const nextBtn = document.getElementById('heroSliderNext');
+    const empty = document.getElementById('heroSliderEmpty');
+    track.querySelectorAll('.hero-slide').forEach(el => el.remove());
+    dotsWrap.innerHTML = '';
+    if (!heroSlides.length) {
+      empty.style.display = 'flex';
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+      return;
+    }
+    empty.style.display = 'none';
+    prevBtn.style.display = '';
+    nextBtn.style.display = '';
+    heroSlides.forEach((slide, i) => {
+      const el = document.createElement('div');
+      el.className = 'hero-slide' + (i === 0 ? ' active' : '');
+      el.innerHTML = `<img src="${slide.url}" alt="">`;
+      track.appendChild(el);
+      const dot = document.createElement('button');
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => { clearInterval(heroAutoPlay); goToHeroSlide(i); startHeroAutoPlay(); });
+      dot.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      dot.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      dotsWrap.appendChild(dot);
+    });
+    heroCurrentIdx = 0;
+    startHeroAutoPlay();
+  }
+
+  function goToHeroSlide(idx) {
+    const slides = document.querySelectorAll('#heroSliderTrack .hero-slide');
+    const dots = document.querySelectorAll('#heroSliderDots .slider-dot');
+    if (!slides.length) return;
+    slides[heroCurrentIdx]?.classList.remove('active');
+    dots[heroCurrentIdx]?.classList.remove('active');
+    heroCurrentIdx = ((idx % heroSlides.length) + heroSlides.length) % heroSlides.length;
+    slides[heroCurrentIdx]?.classList.add('active');
+    dots[heroCurrentIdx]?.classList.add('active');
+  }
+
+  function startHeroAutoPlay() {
+    clearInterval(heroAutoPlay);
+    if (heroSlides.length > 1) heroAutoPlay = setInterval(() => goToHeroSlide(heroCurrentIdx + 1), 5000);
+  }
+
+  document.getElementById('heroSliderPrev').addEventListener('click', () => { clearInterval(heroAutoPlay); goToHeroSlide(heroCurrentIdx - 1); startHeroAutoPlay(); });
+  document.getElementById('heroSliderNext').addEventListener('click', () => { clearInterval(heroAutoPlay); goToHeroSlide(heroCurrentIdx + 1); startHeroAutoPlay(); });
+
+  loadHeroSlides();
+
+  /* ─── BOOTH SLIDER ─── */
+  const boothSlidesCol = collection(db, 'boothSlides');
+  let boothSlides = [];
+  let boothCurrentIdx = 0;
+  let boothAutoPlay;
+
+  async function loadBoothSlides() {
+    try {
+      const snap = await getDocs(query(boothSlidesCol, orderBy('order')));
+      boothSlides = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    } catch(e) { console.warn('booth slides load failed', e); }
+    renderBoothSlider();
+  }
+
+  function renderBoothSlider() {
+    const wrap = document.getElementById('boothSliderWrap');
+    const track = document.getElementById('boothSliderTrack');
+    const dotsWrap = document.getElementById('boothSliderDots');
+    track.innerHTML = '';
+    dotsWrap.innerHTML = '';
+    if (!boothSlides.length) { wrap.style.display = 'none'; return; }
+    wrap.style.display = '';
+    boothSlides.forEach((slide, i) => {
+      const el = document.createElement('div');
+      el.className = 'booth-slide';
+      el.innerHTML = `<img src="${slide.url}" alt="">`;
+      track.appendChild(el);
+      const dot = document.createElement('button');
+      dot.className = 'booth-slider-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => { clearInterval(boothAutoPlay); goToBoothSlide(i); startBoothAutoPlay(); });
+      dot.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      dot.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      dotsWrap.appendChild(dot);
+    });
+    boothCurrentIdx = 0;
+    updateBoothSlider();
+    startBoothAutoPlay();
+  }
+
+  function updateBoothSlider() {
+    const track = document.getElementById('boothSliderTrack');
+    track.style.transform = `translateX(-${boothCurrentIdx * 100}%)`;
+    document.querySelectorAll('#boothSliderDots .booth-slider-dot').forEach((d, i) => d.classList.toggle('active', i === boothCurrentIdx));
+  }
+
+  function goToBoothSlide(idx) {
+    boothCurrentIdx = ((idx % boothSlides.length) + boothSlides.length) % boothSlides.length;
+    updateBoothSlider();
+  }
+
+  function startBoothAutoPlay() {
+    clearInterval(boothAutoPlay);
+    if (boothSlides.length > 1) boothAutoPlay = setInterval(() => goToBoothSlide(boothCurrentIdx + 1), 4000);
+  }
+
+  document.getElementById('boothSliderPrev').addEventListener('click', () => { clearInterval(boothAutoPlay); goToBoothSlide(boothCurrentIdx - 1); startBoothAutoPlay(); });
+  document.getElementById('boothSliderNext').addEventListener('click', () => { clearInterval(boothAutoPlay); goToBoothSlide(boothCurrentIdx + 1); startBoothAutoPlay(); });
+
+  loadBoothSlides();
+
+  /* ─── IMAGE UPLOAD HELPER ─── */
+  async function uploadSlideImage(file, folder, order) {
+    const fileName = `${folder}/${Date.now()}_${file.name}`;
+    const fileRef = sRef(storage, fileName);
+    return new Promise((resolve, reject) => {
+      const task = uploadBytesResumable(fileRef, file);
+      task.on('state_changed', null, reject, async () => {
+        const url = await getDownloadURL(fileRef);
+        resolve({ url, storagePath: fileName });
+      });
+    });
+  }
+
+  async function deleteSlideImage(storagePath) {
+    if (!storagePath) return;
+    try { await deleteObject(sRef(storage, storagePath)); } catch(e) { console.warn('storage delete:', e); }
+  }
+
+  /* ─── ADMIN HERO IMAGES ─── */
+  async function renderHeroImgList() {
+    const list = document.getElementById('heroImgList');
+    list.innerHTML = '';
+    try {
+      const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
+      if (snap.empty) { list.innerHTML = '<p style="color:var(--muted);font-size:.82rem">画像がありません</p>'; return; }
+      snap.forEach(d => {
+        const data = d.data();
+        const item = document.createElement('div');
+        item.className = 'img-preview-item';
+        item.innerHTML = `
+          <img src="${data.url}" alt="">
+          <div class="img-preview-info">順: ${data.order ?? 0}</div>
+          <button class="img-preview-del" data-id="${d.id}" data-path="${data.storagePath || ''}">✕</button>`;
+        item.querySelector('.img-preview-del').addEventListener('click', async (e) => {
+          if (!confirm('削除しますか？')) return;
+          const { id, path } = { id: e.target.dataset.id, path: e.target.dataset.path };
+          await deleteSlideImage(path);
+          await deleteDoc(doc(db, 'heroSlides', id));
+          await loadHeroSlides();
+          renderHeroImgList();
+        });
+        list.appendChild(item);
+      });
+    } catch(e) { console.warn(e); }
+  }
+
+  document.getElementById('heroImgUploadBtn').addEventListener('click', async () => {
+    const file = document.getElementById('heroImgFile').files[0];
+    if (!file) { alert('画像ファイルを選択してください'); return; }
+    const order = parseInt(document.getElementById('heroImgOrder').value) || 0;
+    const prog = document.getElementById('heroImgProgress');
+    const btn = document.getElementById('heroImgUploadBtn');
+    prog.classList.add('show'); btn.disabled = true;
+    try {
+      const { url, storagePath } = await uploadSlideImage(file, 'hero-slides', order);
+      await addDoc(heroSlidesCol, { url, storagePath, order, date: new Date().toISOString() });
+      document.getElementById('heroImgFile').value = '';
+      await loadHeroSlides();
+      renderHeroImgList();
+    } catch(e) { alert('アップロードに失敗しました: ' + e.message); }
+    prog.classList.remove('show'); btn.disabled = false;
+  });
+
+  /* ─── ADMIN BOOTH IMAGES ─── */
+  async function renderBoothImgList() {
+    const list = document.getElementById('boothImgList');
+    list.innerHTML = '';
+    try {
+      const snap = await getDocs(query(boothSlidesCol, orderBy('order')));
+      if (snap.empty) { list.innerHTML = '<p style="color:var(--muted);font-size:.82rem">画像がありません</p>'; return; }
+      snap.forEach(d => {
+        const data = d.data();
+        const item = document.createElement('div');
+        item.className = 'img-preview-item';
+        item.innerHTML = `
+          <img src="${data.url}" alt="">
+          <div class="img-preview-info">順: ${data.order ?? 0}</div>
+          <button class="img-preview-del" data-id="${d.id}" data-path="${data.storagePath || ''}">✕</button>`;
+        item.querySelector('.img-preview-del').addEventListener('click', async (e) => {
+          if (!confirm('削除しますか？')) return;
+          const { id, path } = { id: e.target.dataset.id, path: e.target.dataset.path };
+          await deleteSlideImage(path);
+          await deleteDoc(doc(db, 'boothSlides', id));
+          await loadBoothSlides();
+          renderBoothImgList();
+        });
+        list.appendChild(item);
+      });
+    } catch(e) { console.warn(e); }
+  }
+
+  document.getElementById('boothImgUploadBtn').addEventListener('click', async () => {
+    const file = document.getElementById('boothImgFile').files[0];
+    if (!file) { alert('画像ファイルを選択してください'); return; }
+    const order = parseInt(document.getElementById('boothImgOrder').value) || 0;
+    const prog = document.getElementById('boothImgProgress');
+    const btn = document.getElementById('boothImgUploadBtn');
+    prog.classList.add('show'); btn.disabled = true;
+    try {
+      const { url, storagePath } = await uploadSlideImage(file, 'booth-slides', order);
+      await addDoc(boothSlidesCol, { url, storagePath, order, date: new Date().toISOString() });
+      document.getElementById('boothImgFile').value = '';
+      await loadBoothSlides();
+      renderBoothImgList();
+    } catch(e) { alert('アップロードに失敗しました: ' + e.message); }
+    prog.classList.remove('show'); btn.disabled = false;
+  });
 
   /* ─── NEWS ─── */
   const CAT_LABELS = { production:'制作', daily:'日常', film:'映画', other:'その他' };
@@ -1447,6 +1729,16 @@
   function renderNews() {
     const grid = document.getElementById('newsGrid');
     const empty = document.getElementById('newsEmpty');
+    const acGrid = document.getElementById('achievementsGrid');
+
+    if (newsFilter === 'achievement') {
+      grid.style.display = 'none';
+      acGrid.style.display = '';
+      return;
+    }
+
+    grid.style.display = '';
+    acGrid.style.display = 'none';
     grid.querySelectorAll('.news-card, .news-load-more').forEach(el => el.remove());
     const posts = allPosts.filter(p => newsFilter === 'all' || p.cat === newsFilter);
     empty.style.display = posts.length ? 'none' : 'block';
@@ -1466,15 +1758,6 @@
       });
       grid.appendChild(btn);
     }
-    grid.querySelectorAll('.news-more:not(.news-load-more)').forEach(btn => {
-      btn.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      btn.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-      btn.addEventListener('click', () => {
-        const el = document.getElementById('nb-' + btn.dataset.id);
-        const collapsed = el.classList.toggle('collapsed');
-        btn.textContent = collapsed ? '続きを読む →' : '閉じる ↑';
-      });
-    });
   }
 
   function buildNewsCard(p) {
@@ -1527,7 +1810,6 @@
   const CONTENT_KEY = '3ss_content';
   const contentDoc = doc(db, 'config', 'content');
   const CONTENT_DEFAULTS = {
-    heroSub: 'オリジナル脚本の映画化を目指す、学生発のクリエイティブスタジオ。',
     about1: '2005年生まれ、20歳。幼い頃から映画が好きで、気づけば「つくる側」への憧れを抱くようになっていた。高校生のころには脚本を書きはじめ、物語をゼロから組み上げる面白さにのめり込んでいった。大学に入り、映画への熱量を持ちながらも業界とのつながりを持てない学生が多いことを実感し、自らその場をつくろうと決意した。それが3 Stone Studios の始まりだ。「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。',
     metaMail: 'ryukitanaka3@gmail.com',
     metaRep: '田中 琉暉',
@@ -1632,6 +1914,8 @@
       document.getElementById('atab-' + tab.dataset.atab).classList.add('active');
       if (tab.dataset.atab === 'scripts') renderSList();
       else if (tab.dataset.atab === 'achievements') renderAcList();
+      else if (tab.dataset.atab === 'hero-images') renderHeroImgList();
+      else if (tab.dataset.atab === 'booth-images') renderBoothImgList();
     });
   });
 
@@ -1699,7 +1983,6 @@
   // CONTENT EDIT
   function loadContentFields() {
     const c = getContent();
-    document.getElementById('ca-hero-sub').value = c.heroSub;
     document.getElementById('ca-about1').value = c.about1;
     document.getElementById('ca-meta-mail').value = c.metaMail;
     document.getElementById('ca-meta-rep').value = c.metaRep;
@@ -1719,8 +2002,7 @@
     btn.addEventListener('click', async () => {
       const key = btn.dataset.asave;
       const c = getContent();
-      if (key === 'hero') { c.heroSub = document.getElementById('ca-hero-sub').value; }
-      else if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; }
+      if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; }
       else if (key === 'meta') { c.metaMail = document.getElementById('ca-meta-mail').value; c.metaRep = document.getElementById('ca-meta-rep').value; c.metaNameEn = document.getElementById('ca-meta-name-en').value; c.metaRole = document.getElementById('ca-meta-role').value; }
       else if (key === 'join') { c.joinLead = document.getElementById('ca-join-lead').value; c.join = document.getElementById('ca-join').value; c.joinExpert = document.getElementById('ca-join-expert').value; }
       else if (key === 'services') { c.svcScriptDesc = document.getElementById('ca-svc-script').value; c.svcRecruitTitle = document.getElementById('ca-svc-recruit-title').value; c.svcRecruitBody = document.getElementById('ca-svc-recruit-body').value; c.svc3dDesc = document.getElementById('ca-svc-3d').value; c.svcBoothDesc = document.getElementById('ca-svc-booth').value; }
@@ -1749,7 +2031,6 @@
     const c = getContent();
     const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
     const setHref = (id, val) => { const el = document.getElementById(id); if (el) { el.textContent = val; el.href = 'mailto:' + val; } };
-    set('hero-sub-text', c.heroSub);
     set('about-body-1', c.about1);
     setHref('meta-mail', c.metaMail);
     set('meta-rep', c.metaRep);
@@ -1798,15 +2079,6 @@
     if (aLoggedIn && document.getElementById('atab-scripts')?.classList.contains('active')) renderSList();
   }
 
-  const TBD_CARD = `
-    <div class="work-card work-card--tbd reveal">
-      <div class="work-card-body">
-        <p class="work-type">脚本</p>
-        <h3 class="work-title work-title--tbd">TBD</h3>
-        <span class="work-badge work-badge--tbd">準備中</span>
-      </div>
-    </div>`;
-
   function renderScriptsGrid() {
     const grid = document.getElementById('worksGrid');
     const cards = allScripts.map(s => `
@@ -1820,8 +2092,7 @@
           ${s.pdfUrl ? `<a href="${s.pdfUrl}" class="work-file-btn" target="_blank" rel="noopener">📄 脚本PDFを開く</a>` : ''}
         </div>
       </div>`);
-    const pad = Math.max(0, 3 - cards.length);
-    grid.innerHTML = cards.join('') + TBD_CARD.repeat(pad);
+    grid.innerHTML = cards.join('');
     document.querySelectorAll('#worksGrid .reveal').forEach(el => observer.observe(el));
   }
 
