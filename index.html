@@ -1471,16 +1471,23 @@
 
   /* ─── IMAGE UPLOAD HELPER ─── */
   async function uploadSlideImage(file, folder, order) {
+    if (!auth.currentUser) {
+      try { await signInAnonymously(auth); } catch(e) { throw new Error('認証に失敗しました: ' + e.message); }
+    }
     const safeName = file.name.replace(/[^\w.\-]/g, '_');
     const fileName = `${folder}/${Date.now()}_${safeName}`;
     const fileRef = sRef(storage, fileName);
     const metadata = { contentType: file.type };
     return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        reject(new Error('タイムアウト（30秒）。Firebase Storage のルール・CORS を確認してください。'));
+      }, 30000);
       const task = uploadBytesResumable(fileRef, file, metadata);
       task.on('state_changed',
         null,
-        (err) => reject(err),
+        (err) => { clearTimeout(timer); reject(err); },
         async () => {
+          clearTimeout(timer);
           try {
             const url = await getDownloadURL(fileRef);
             resolve({ url, storagePath: fileName });
@@ -1724,7 +1731,7 @@
       aLoginAttempts = 0;
       errEl.style.display = 'none';
       document.getElementById('aPass').value = '';
-      signInAnonymously(auth).catch(e => console.warn('auth sign-in:', e));
+      try { await signInAnonymously(auth); } catch(e) { console.warn('auth sign-in:', e); }
       showAPanel();
     } else {
       aLoginAttempts++;
