@@ -1,4 +1,7 @@
 {
+  "firestore": {
+    "rules": "firestore.rules"
+  },
   "storage": {
     "rules": "storage.rules"
   },
@@ -8,6 +11,7 @@
       "firebase.json",
       ".firebaserc",
       "storage.rules",
+      "firestore.rules",
       "cors.json",
       "**/.*"
     ]
