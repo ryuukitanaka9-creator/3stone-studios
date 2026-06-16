@@ -1384,6 +1384,7 @@
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js';
   import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js';
   import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js';
+  import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js';
 
   const firebaseConfig = {
     apiKey: "AIzaSyBjWngd-IsV2j0zTMUtbl51p3QrCq3t17s",
@@ -1397,6 +1398,7 @@
   const fbApp = initializeApp(firebaseConfig);
   const db = getFirestore(fbApp);
   const storage = getStorage(fbApp);
+  const auth = getAuth(fbApp);
   const newsCol = collection(db, 'news');
 
   /* ─── HERO SLIDER ─── */
@@ -1722,6 +1724,7 @@
       aLoginAttempts = 0;
       errEl.style.display = 'none';
       document.getElementById('aPass').value = '';
+      signInAnonymously(auth).catch(e => console.warn('auth sign-in:', e));
       showAPanel();
     } else {
       aLoginAttempts++;
