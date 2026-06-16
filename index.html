@@ -1131,7 +1131,6 @@
       <div class="admin-tabs">
         <button class="admin-tab active" data-atab="news">ニュース</button>
         <button class="admin-tab" data-atab="scripts">脚本作品</button>
-        <button class="admin-tab" data-atab="achievements">実績</button>
         <button class="admin-tab" data-atab="content">サイト内容</button>
         <button class="admin-tab" data-atab="hero-images">ヒーロー画像</button>
       </div>
@@ -1197,33 +1196,6 @@
         </div>
         <p class="admin-panel-title" style="font-size:1.1rem">脚本一覧</p>
         <div id="sList"></div>
-      </div>
-      <!-- ACHIEVEMENTS TAB -->
-      <div class="tab-panel" id="atab-achievements">
-        <p class="admin-panel-title">実績管理</p>
-        <div class="a-card">
-          <p class="a-card-title" id="acFormTitle">新しい実績を追加</p>
-          <input type="hidden" id="acEditId">
-          <div class="a-field"><label>案件名</label><input type="text" id="acTitle" placeholder="例: 短編映画「〇〇」脚本制作"></div>
-          <div class="a-field">
-            <label>種別</label>
-            <select id="acType">
-              <option value="脚本制作">脚本制作</option>
-              <option value="3Dモデリング">3Dモデリング</option>
-              <option value="アニメーション">アニメーション</option>
-              <option value="その他">その他</option>
-            </select>
-          </div>
-          <div class="a-field"><label>概要</label><textarea id="acDesc" rows="3" placeholder="どんな案件だったか…"></textarea></div>
-          <div class="a-field"><label>納品時期（例: 2026年6月）</label><input type="text" id="acPeriod" placeholder="2026年6月"></div>
-          <div class="a-field"><label>クライアント名（任意・非公開も可）</label><input type="text" id="acClient" placeholder="非公開 / 個人クライアント など"></div>
-          <div class="a-btn-row">
-            <button class="a-btn-save" id="acSaveBtn">保存する</button>
-            <button class="a-btn-cancel" id="acResetBtn">キャンセル</button>
-          </div>
-        </div>
-        <p class="admin-panel-title" style="font-size:1.1rem">実績一覧</p>
-        <div id="acList"></div>
       </div>
       <!-- HERO IMAGES TAB -->
       <div class="tab-panel" id="atab-hero-images">
@@ -1752,7 +1724,6 @@
       tab.classList.add('active');
       document.getElementById('atab-' + tab.dataset.atab).classList.add('active');
       if (tab.dataset.atab === 'scripts') renderSList();
-      else if (tab.dataset.atab === 'achievements') renderAcList();
       else if (tab.dataset.atab === 'hero-images') renderHeroImgList();
     });
   });
@@ -2038,79 +2009,6 @@
     } catch(e) { console.warn(e); }
   }
 
-  function renderAcList() {
-    const list = document.getElementById('acList');
-    if (!list) return;
-    list.innerHTML = '';
-    getDocs(query(achievementsCol, orderBy('date', 'desc'))).then(snap => {
-      snap.forEach(d => {
-        const ac = d.data();
-        const item = document.createElement('div');
-        item.className = 'a-post-item';
-        item.innerHTML = `
-          <div class="a-post-info">
-            <p class="a-post-title">${esc(ac.title)}</p>
-            <p class="a-post-meta">${esc(ac.type)}　${esc(ac.period || '')}${ac.client ? '　|　' + esc(ac.client) : ''}</p>
-          </div>
-          <div class="a-post-actions">
-            <button class="a-btn-edit" data-acid="${d.id}">編集</button>
-            <button class="a-btn-del" data-acid="${d.id}">削除</button>
-          </div>`;
-        item.querySelector('.a-btn-del').addEventListener('click', async () => {
-          if (!confirm('削除しますか？')) return;
-          await deleteDoc(doc(db, 'achievements', d.id));
-          loadAchievements(); renderAcList();
-        });
-        item.querySelector('.a-btn-edit').addEventListener('click', async () => {
-          document.getElementById('acEditId').value = d.id;
-          document.getElementById('acTitle').value  = ac.title || '';
-          document.getElementById('acType').value   = ac.type  || '脚本制作';
-          document.getElementById('acDesc').value   = ac.desc  || '';
-          document.getElementById('acPeriod').value = ac.period|| '';
-          document.getElementById('acClient').value = ac.client|| '';
-          document.getElementById('acFormTitle').textContent = '実績を編集';
-          document.getElementById('adminOverlay').scrollTop = 0;
-        });
-        list.appendChild(item);
-      });
-    });
-  }
-
-  function resetAcForm() {
-    document.getElementById('acEditId').value = '';
-    document.getElementById('acTitle').value  = '';
-    document.getElementById('acType').value   = '脚本制作';
-    document.getElementById('acDesc').value   = '';
-    document.getElementById('acPeriod').value = '';
-    document.getElementById('acClient').value = '';
-    document.getElementById('acFormTitle').textContent = '新しい実績を追加';
-  }
-
-  document.getElementById('acSaveBtn').addEventListener('click', async () => {
-    const title  = document.getElementById('acTitle').value.trim();
-    if (!title) { alert('案件名を入力してください'); return; }
-    const data = {
-      title,
-      type:   document.getElementById('acType').value,
-      desc:   document.getElementById('acDesc').value.trim(),
-      period: document.getElementById('acPeriod').value.trim(),
-      client: document.getElementById('acClient').value.trim(),
-    };
-    const editId = document.getElementById('acEditId').value;
-    const btn = document.getElementById('acSaveBtn');
-    btn.textContent = '保存中…'; btn.disabled = true;
-    try {
-      if (editId) {
-        await updateDoc(doc(db, 'achievements', editId), data);
-      } else {
-        await addDoc(achievementsCol, { ...data, date: new Date().toISOString() });
-      }
-      resetAcForm(); loadAchievements(); renderAcList();
-    } catch(e) { alert('保存に失敗しました: ' + e.message); }
-    btn.textContent = '保存する'; btn.disabled = false;
-  });
-
-  document.getElementById('acResetBtn').addEventListener('click', resetAcForm);
 
   loadScripts();
   loadAchievements();
