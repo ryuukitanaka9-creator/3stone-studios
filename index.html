@@ -387,9 +387,6 @@
     margin-left: .5rem;
   }
 
-  /* ─── WORK TBD CARDS ─── */
-
-
   .work-file-btn {
     display: inline-flex; align-items: center; gap: .5em;
     margin-top: 1.2rem; padding: .5em 1.1em;
@@ -579,7 +576,8 @@
     letter-spacing: .15em; text-transform: uppercase;
     color: var(--black); padding: .2em .8em; border-radius: 999px;
   }
-  .news-cat.cat-daily      { background: var(--green-dark); }
+  .news-cat.cat-production  { background: #3a7a5a; }
+  .news-cat.cat-daily       { background: var(--green-dark); }
   .news-cat.cat-achievement { background: var(--green); }
   .news-cat.cat-film       { background: #2D6EAA; }
   .news-cat.cat-other      { background: #6B6B6B; }
@@ -925,6 +923,7 @@
   <h2 class="section-title reveal">NEWS &amp;<br><span class="accent">UPDATES</span></h2>
   <div class="news-filter reveal">
     <button class="news-filter-btn active" data-cat="all">All</button>
+    <button class="news-filter-btn" data-cat="production">制作</button>
     <button class="news-filter-btn" data-cat="daily">日常</button>
     <button class="news-filter-btn" data-cat="achievement">実績</button>
     <button class="news-filter-btn" data-cat="film">映画</button>
@@ -1167,6 +1166,7 @@
           <div class="a-field">
             <label>カテゴリ</label>
             <select id="aPostCat">
+              <option value="production">制作</option>
               <option value="daily">日常</option>
               <option value="achievement">実績</option>
               <option value="film">映画</option>
@@ -1545,7 +1545,7 @@
 
 
   /* ─── NEWS ─── */
-  const CAT_LABELS = { daily:'日常', achievement:'実績', film:'映画', other:'その他' };
+  const CAT_LABELS = { production:'制作', daily:'日常', achievement:'実績', film:'映画', other:'その他' };
   let newsFilter = 'all';
   let allPosts = [];
 
@@ -1759,7 +1759,6 @@
       if (tab.dataset.atab === 'scripts') renderSList();
       else if (tab.dataset.atab === 'achievements') renderAcList();
       else if (tab.dataset.atab === 'hero-images') renderHeroImgList();
-      else if (tab.dataset.atab === 'booth-images') renderBoothImgList();
     });
   });
 
