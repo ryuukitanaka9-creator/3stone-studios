@@ -9,12 +9,12 @@
 <meta property="og:title" content="3 Stone Studios">
 <meta property="og:description" content="3Dモデル販売・3Dモデリング受注・オリジナル映画脚本制作を手がける、学生発のクリエイティブスタジオ。">
 <meta property="og:url" content="https://3stonestudios.com">
-<meta property="og:image" content="https://3stonestudios.com/3ss-logo.png">
+<meta property="og:image" content="https://3stonestudios.com/3ss-logo.jpg">
 <meta property="og:site_name" content="3 Stone Studios">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3 Stone Studios">
 <meta name="twitter:description" content="3Dモデル販売・3Dモデリング受注・オリジナル映画脚本制作を手がける、学生発のクリエイティブスタジオ。">
-<meta name="twitter:image" content="https://3stonestudios.com/3ss-logo.png">
+<meta name="twitter:image" content="https://3stonestudios.com/3ss-logo.jpg">
 <title>3 Stone Studios</title>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -1215,7 +1215,7 @@
           </div>
         </div>
         <p class="admin-panel-title" style="font-size:1.1rem">現在の画像</p>
-        <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">※ 1枚目のロゴ（3ss-logo.png）は固定です</p>
+        <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">※ 1枚目のロゴ（3ss-logo.jpg）は固定です</p>
         <div id="heroImgList" class="img-preview-grid"></div>
       </div>
       <!-- CONTENT TAB -->
@@ -1365,9 +1365,9 @@
   async function loadHeroSlides() {
     try {
       const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
-      heroSlides = [{ url: '/3ss-logo.png' }, ...snap.docs.map(d => ({ id: d.id, ...d.data() }))];
+      heroSlides = [{ url: '/3ss-logo.jpg' }, ...snap.docs.map(d => ({ id: d.id, ...d.data() }))];
     } catch(e) {
-      heroSlides = [{ url: '/3ss-logo.png' }];
+      heroSlides = [{ url: '/3ss-logo.jpg' }];
     }
     renderHeroSlider();
   }
