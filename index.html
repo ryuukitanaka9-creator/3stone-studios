@@ -1132,7 +1132,6 @@
         <button class="admin-tab active" data-atab="news">ニュース</button>
         <button class="admin-tab" data-atab="scripts">脚本作品</button>
         <button class="admin-tab" data-atab="content">サイト内容</button>
-        <button class="admin-tab" data-atab="hero-images">ヒーロー画像</button>
       </div>
       <button class="admin-close-btn" id="aPanelClose">✕ 閉じる</button>
     </div>
@@ -1196,27 +1195,6 @@
         </div>
         <p class="admin-panel-title" style="font-size:1.1rem">脚本一覧</p>
         <div id="sList"></div>
-      </div>
-      <!-- HERO IMAGES TAB -->
-      <div class="tab-panel" id="atab-hero-images">
-        <p class="admin-panel-title">ヒーロー画像管理</p>
-        <div class="a-card">
-          <p class="a-card-title">画像をアップロード</p>
-          <div class="a-field">
-            <label>画像ファイル（JPG / PNG）</label>
-            <input type="file" id="heroImgFile" accept="image/*">
-          </div>
-          <div class="a-field">
-            <label>表示順（小さい数字が先）</label>
-            <input type="number" id="heroImgOrder" value="0" min="0">
-          </div>
-          <div class="a-btn-row">
-            <button class="a-btn-save" id="heroImgUploadBtn">アップロード</button>
-          </div>
-          <p class="a-upload-progress" id="heroImgProgress">アップロード中…</p>
-        </div>
-        <p class="admin-panel-title" style="font-size:1.1rem">現在の画像</p>
-        <div id="heroImgList" class="img-preview-grid"></div>
       </div>
       <!-- CONTENT TAB -->
       <div class="tab-panel" id="atab-content">
@@ -1337,8 +1315,6 @@
   /* ─── FIREBASE ─── */
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js';
   import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js';
-  import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js';
-  import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js';
   import { initializeAppCheck, ReCaptchaV3Provider } from 'https://www.gstatic.com/firebasejs/12.12.1/firebase-app-check.js';
 
   const firebaseConfig = {
@@ -1352,8 +1328,6 @@
   };
   const fbApp = initializeApp(firebaseConfig);
   const db = getFirestore(fbApp);
-  const storage = getStorage(fbApp);
-  const auth = getAuth(fbApp);
   initializeAppCheck(fbApp, {
     provider: new ReCaptchaV3Provider('6LcS_yEtAAAAAAYuXubpbOnl2loyTLFmBEkS2xVE'),
     isTokenAutoRefreshEnabled: true
@@ -1361,20 +1335,9 @@
   const newsCol = collection(db, 'news');
 
   /* ─── HERO SLIDER ─── */
-  const heroSlidesCol = collection(db, 'heroSlides');
-  let heroSlides = [];
+  const heroSlides = [{ url: '/3ss-logo.png' }];
   let heroCurrentIdx = 0;
   let heroAutoPlay;
-
-  async function loadHeroSlides() {
-    try {
-      const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
-      heroSlides = [{ url: '/3ss-logo.png', _static: true }, ...snap.docs.map(d => ({ id: d.id, ...d.data() }))];
-    } catch(e) {
-      heroSlides = [{ url: '/3ss-logo.png', _static: true }];
-    }
-    renderHeroSlider();
-  }
 
   function renderHeroSlider() {
     const track = document.getElementById('heroSliderTrack');
@@ -1428,88 +1391,7 @@
   document.getElementById('heroSliderPrev').addEventListener('click', () => { clearInterval(heroAutoPlay); goToHeroSlide(heroCurrentIdx - 1); startHeroAutoPlay(); });
   document.getElementById('heroSliderNext').addEventListener('click', () => { clearInterval(heroAutoPlay); goToHeroSlide(heroCurrentIdx + 1); startHeroAutoPlay(); });
 
-  loadHeroSlides();
-
-  /* ─── IMAGE UPLOAD HELPER ─── */
-  async function uploadSlideImage(file, folder, order) {
-    if (!auth.currentUser) {
-      try { await signInAnonymously(auth); } catch(e) { throw new Error('認証に失敗しました: ' + e.message); }
-    }
-    const safeName = file.name.replace(/[^\w.\-]/g, '_');
-    const fileName = `${folder}/${Date.now()}_${safeName}`;
-    const fileRef = sRef(storage, fileName);
-    const metadata = { contentType: file.type };
-    return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => {
-        reject(new Error('タイムアウト（30秒）。Firebase Storage のルール・CORS を確認してください。'));
-      }, 30000);
-      const task = uploadBytesResumable(fileRef, file, metadata);
-      task.on('state_changed',
-        null,
-        (err) => { clearTimeout(timer); reject(err); },
-        async () => {
-          clearTimeout(timer);
-          try {
-            const url = await getDownloadURL(fileRef);
-            resolve({ url, storagePath: fileName });
-          } catch(e) { reject(e); }
-        }
-      );
-    });
-  }
-
-  async function deleteSlideImage(storagePath) {
-    if (!storagePath) return;
-    try { await deleteObject(sRef(storage, storagePath)); } catch(e) { console.warn('storage delete:', e); }
-  }
-
-  /* ─── ADMIN HERO IMAGES ─── */
-  async function renderHeroImgList() {
-    const list = document.getElementById('heroImgList');
-    list.innerHTML = '';
-    try {
-      const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
-      if (snap.empty) { list.innerHTML = '<p style="color:var(--muted);font-size:.82rem">画像がありません</p>'; return; }
-      snap.forEach(d => {
-        const data = d.data();
-        const item = document.createElement('div');
-        item.className = 'img-preview-item';
-        item.innerHTML = `
-          <img src="${data.url}" alt="">
-          <div class="img-preview-info">順: ${data.order ?? 0}</div>
-          <button class="img-preview-del" data-id="${d.id}" data-path="${data.storagePath || ''}">✕</button>`;
-        item.querySelector('.img-preview-del').addEventListener('click', async (e) => {
-          if (!confirm('削除しますか？')) return;
-          const { id, path } = { id: e.target.dataset.id, path: e.target.dataset.path };
-          await deleteSlideImage(path);
-          await deleteDoc(doc(db, 'heroSlides', id));
-          await loadHeroSlides();
-          renderHeroImgList();
-        });
-        list.appendChild(item);
-      });
-    } catch(e) { console.warn(e); }
-  }
-
-  document.getElementById('heroImgUploadBtn').addEventListener('click', async () => {
-    const file = document.getElementById('heroImgFile').files[0];
-    if (!file) { alert('画像ファイルを選択してください'); return; }
-    const order = parseInt(document.getElementById('heroImgOrder').value) || 0;
-    const prog = document.getElementById('heroImgProgress');
-    const btn = document.getElementById('heroImgUploadBtn');
-    prog.classList.add('show'); btn.disabled = true;
-    try {
-      const { url, storagePath } = await uploadSlideImage(file, 'hero-slides', order);
-      await addDoc(heroSlidesCol, { url, storagePath, order, date: new Date().toISOString() });
-      document.getElementById('heroImgFile').value = '';
-      await loadHeroSlides();
-      renderHeroImgList();
-    } catch(e) {
-      console.error('hero upload error', e);
-      alert('アップロードに失敗しました。\nFirebase Storage のルールを確認してください。\n\nエラー: ' + (e.message || e.code || e));
-    }
-    prog.classList.remove('show'); btn.disabled = false;
-  });
+  renderHeroSlider();
 
 
   /* ─── NEWS ─── */
@@ -1724,7 +1606,6 @@
       tab.classList.add('active');
       document.getElementById('atab-' + tab.dataset.atab).classList.add('active');
       if (tab.dataset.atab === 'scripts') renderSList();
-      else if (tab.dataset.atab === 'hero-images') renderHeroImgList();
     });
   });
 

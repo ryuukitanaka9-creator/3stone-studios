@@ -2,17 +2,12 @@
   "firestore": {
     "rules": "firestore.rules"
   },
-  "storage": {
-    "rules": "storage.rules"
-  },
   "hosting": {
     "public": ".",
     "ignore": [
       "firebase.json",
       ".firebaserc",
-      "storage.rules",
       "firestore.rules",
-      "cors.json",
       "**/.*"
     ]
   }
