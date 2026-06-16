@@ -1397,8 +1397,10 @@
   async function loadHeroSlides() {
     try {
       const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
-      heroSlides = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    } catch(e) { console.warn('hero slides load failed', e); }
+      heroSlides = [{ url: '/3ss-logo.png', _static: true }, ...snap.docs.map(d => ({ id: d.id, ...d.data() }))];
+    } catch(e) {
+      heroSlides = [{ url: '/3ss-logo.png', _static: true }];
+    }
     renderHeroSlider();
   }
 
