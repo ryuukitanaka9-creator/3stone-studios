@@ -1786,6 +1786,9 @@
       }
       await loadPosts();
       resetAPostForm();
+    } catch(e) {
+      console.error('news save error', e);
+      alert('保存に失敗しました。Firestore のルールを確認してください。\n\nエラー: ' + (e.message || e.code || e));
     } finally {
       btn.disabled = false;
     }
@@ -1917,13 +1920,8 @@
     try {
       const snap = await getDocs(query(scriptsCol, orderBy('order')));
       allScripts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      if (allScripts.length === 0) {
-        const ref = await addDoc(scriptsCol, { ...YOMI_SEED, date: new Date().toISOString() });
-        allScripts = [{ id: ref.id, ...YOMI_SEED }];
-      }
     } catch(e) {
       console.warn('scripts load failed', e);
-      if (!allScripts.length) allScripts = [{ id: '_seed', ...YOMI_SEED }];
     }
     renderScriptsGrid();
     if (aLoggedIn && document.getElementById('atab-scripts')?.classList.contains('active')) renderSList();
@@ -1931,6 +1929,10 @@
 
   function renderScriptsGrid() {
     const grid = document.getElementById('worksGrid');
+    if (!allScripts.length) {
+      grid.innerHTML = '<p style="color:var(--muted);font-size:.9rem;padding:2rem 0">作品はまだありません。</p>';
+      return;
+    }
     const cards = allScripts.map(s => `
       <div class="work-card reveal">
         <div class="work-card-body">
