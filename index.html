@@ -16,6 +16,11 @@
 <meta name="twitter:description" content="3Dモデル販売・3Dモデリング受注・オリジナル映画脚本制作を手がける、学生発のクリエイティブスタジオ。">
 <meta name="twitter:image" content="https://3stonestudios.com/3ss-logo.jpg">
 <title>3 Stone Studios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com">
+<link rel="preconnect" href="https://firestore.googleapis.com">
+<link rel="preload" as="image" href="/3ss-logo.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -298,9 +303,7 @@
   }
 
   .jisseki-empty {
-    font-family: 'Space Mono', monospace;
-    font-size: .78rem; letter-spacing: .1em;
-    color: var(--muted); padding: 2rem 0;
+    color: var(--muted); font-size: .9rem; line-height: 1.8; padding: 2rem 0;
   }
 
   /* ─── ACHIEVEMENTS ─── */
@@ -397,15 +400,6 @@
     transition: background .2s, color .2s;
   }
   .work-file-btn:hover { background: var(--green); color: var(--black); }
-  .upload-progress {
-    font-size: .78rem; color: var(--muted); margin-top: .4rem; display: none;
-  }
-  .upload-progress.show { display: block; }
-  .a-field input[type="file"] {
-    background: transparent; border: 1px dashed var(--border);
-    color: var(--muted-hi); padding: .5rem; border-radius: 2px;
-    width: 100%; cursor: pointer;
-  }
   /* ─── WORKS SUPPORT ─── */
   .works-support-title {
     font-family: 'Dela Gothic One', sans-serif;
@@ -709,7 +703,7 @@
   /* ─── HERO SLIDER ─── */
   .hero-slider-section {
     position: relative; width: 100%; height: 100vh;
-    overflow: hidden; background: var(--black);
+    overflow: hidden; background: #0d0d0d;
   }
   .hero-slider-track { position: relative; width: 100%; height: 100%; }
   .hero-slide {
@@ -789,13 +783,6 @@
     width: 22px; height: 22px; border-radius: 50%; font-size: .7rem;
     cursor: none; display: flex; align-items: center; justify-content: center;
   }
-  .a-upload-progress {
-    font-family: 'Space Mono', monospace; font-size: .72rem;
-    letter-spacing: .08em; color: var(--green); margin-top: .5rem;
-    display: none;
-  }
-  .a-upload-progress.show { display: block; }
-
   /* ─── SCROLL REVEAL ─── */
   .reveal { opacity: 0; transform: translateY(36px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
@@ -873,7 +860,7 @@
 <!-- ─── HERO SLIDER ─── -->
 <section class="hero-slider-section" id="heroSliderSection">
   <div class="hero-slider-track" id="heroSliderTrack">
-    <div class="hero-slider-empty" id="heroSliderEmpty">
+    <div class="hero-slider-empty" id="heroSliderEmpty" style="display:none">
       <span>管理画面から画像を追加してください</span>
     </div>
   </div>
@@ -918,7 +905,7 @@
     <p class="news-empty" id="newsEmpty">まだ投稿がありません。</p>
   </div>
   <div id="achievementsGrid" class="achievements-grid" style="display:none">
-    <p class="jisseki-empty" id="acEmpty">実績はまだありません。</p>
+    <p class="jisseki-empty" id="acEmpty">まだ投稿がありません。</p>
   </div>
 </section>
 
@@ -1395,7 +1382,7 @@
     heroSlides.forEach((slide, i) => {
       const el = document.createElement('div');
       el.className = 'hero-slide' + (i === 0 ? ' active' : '');
-      el.innerHTML = `<img src="${slide.url}" alt="">`;
+      el.innerHTML = `<img src="${slide.url}" alt="" ${i === 0 ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"'}>`;
       track.appendChild(el);
       const dot = document.createElement('button');
       dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
