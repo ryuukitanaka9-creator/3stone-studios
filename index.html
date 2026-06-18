@@ -789,6 +789,8 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
+    .hero-slider-section { height: auto; aspect-ratio: 1612 / 975; }
+    .hero-slide img { object-fit: cover; }
     nav { padding: 1.5rem; }
     nav.scrolled { padding: 1rem 1.5rem; }
     .hamburger { display: flex; }
@@ -1353,11 +1355,12 @@
   let heroAutoPlay;
 
   async function loadHeroSlides() {
+    const TEST_SLIDES = [{ url: '/3ss-logo.jpg' }, { url: '/3ss-logo.jpg' }, { url: '/3ss-logo.jpg' }];
     try {
       const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
-      heroSlides = [{ url: '/3ss-logo.jpg' }, ...snap.docs.map(d => ({ id: d.id, ...d.data() }))];
+      heroSlides = [...TEST_SLIDES, ...snap.docs.map(d => ({ id: d.id, ...d.data() }))];
     } catch(e) {
-      heroSlides = [{ url: '/3ss-logo.jpg' }];
+      heroSlides = TEST_SLIDES;
     }
     renderHeroSlider();
   }
