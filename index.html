@@ -1355,7 +1355,7 @@
   let heroAutoPlay;
 
   async function loadHeroSlides() {
-    const TEST_SLIDES = [{ url: '/3ss-logo.jpg' }, { url: '/3ss-logo.jpg' }, { url: '/3ss-logo.jpg' }];
+    const TEST_SLIDES = [{ url: '/3ss-logo.jpg' }, { url: '/kafu-ibunroku-logo.jpg' }, { url: '/3ss-logo.jpg' }];
     try {
       const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
       heroSlides = [...TEST_SLIDES, ...snap.docs.map(d => ({ id: d.id, ...d.data() }))];
