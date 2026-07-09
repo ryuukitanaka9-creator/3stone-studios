@@ -1390,7 +1390,7 @@
     heroSlides.forEach((slide, i) => {
       const el = document.createElement('div');
       el.className = 'hero-slide' + (i === 0 ? ' active' : '');
-      el.innerHTML = `<img src="${slide.url}" alt="" ${i === 0 ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"'}>`;
+      el.innerHTML = `<img src="${escUrl(slide.url)}" alt="" ${i === 0 ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"'}>`;
       track.appendChild(el);
       const dot = document.createElement('button');
       dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
@@ -1480,7 +1480,8 @@
     const d = new Date(iso);
     return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
   }
-  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+  function escUrl(s) { return /^(https?:\/\/|\/)/i.test(s || '') ? esc(s) : ''; }
 
   async function loadPosts() {
     const q = query(newsCol, orderBy('date', 'desc'));
@@ -1855,7 +1856,7 @@
           <span class="work-badge">✦ ${esc(s.status)}</span><span class="work-badge--original">◈ Original</span>
           ${s.synopsis ? `<p class="work-synopsis">${esc(s.synopsis)}</p>` : ''}
           ${s.tags && s.tags.length ? `<div class="work-genre-tags">${s.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
-          ${s.pdfUrl ? `<a href="${s.pdfUrl}" class="work-file-btn" target="_blank" rel="noopener">📄 脚本PDFを開く</a>` : ''}
+          ${s.pdfUrl ? `<a href="${escUrl(s.pdfUrl)}" class="work-file-btn" target="_blank" rel="noopener">📄 脚本PDFを開く</a>` : ''}
         </div>
       </div>`);
     grid.innerHTML = cards.join('');
