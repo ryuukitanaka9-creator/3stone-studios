@@ -16,6 +16,9 @@
 <meta name="twitter:description" content="VRChat向け3Dモデルの制作・販売をメインに、3Dモデリング受注・オリジナル映画脚本制作も手がける、学生発のクリエイティブスタジオ。">
 <meta name="twitter:image" content="https://3stonestudios.com/3ss-logo.jpg">
 <title>3 Stone Studios</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.gstatic.com">
@@ -1356,7 +1359,7 @@
   let heroAutoPlay;
 
   async function loadHeroSlides() {
-    const TEST_SLIDES = [{ url: '/3ss-logo.jpg' }, { url: '/kafu-ibunroku-logo.jpg' }, { url: '/booth-ad.png' }];
+    const TEST_SLIDES = [{ url: '/3ss-logo.jpg' }, { url: '/kafu-ibunroku-logo.jpg' }, { url: '/booth-ad.jpg' }];
     try {
       const snap = await getDocs(query(heroSlidesCol, orderBy('order')));
       heroSlides = [...TEST_SLIDES, ...snap.docs.map(d => ({ id: d.id, ...d.data() }))];
