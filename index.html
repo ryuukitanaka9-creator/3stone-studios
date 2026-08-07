@@ -305,42 +305,6 @@
     display: inline-block; margin-bottom: 1.5rem;
   }
 
-  .jisseki-empty {
-    color: var(--muted); font-size: .9rem; line-height: 1.8; padding: 2rem 0;
-  }
-
-  /* ─── ACHIEVEMENTS ─── */
-  .achievements-grid { display: flex; flex-direction: column; gap: .6rem; max-width: 820px; }
-  .ac-card {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 1.5rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--green);
-    border-radius: 6px;
-    padding: 1.2rem 1.8rem;
-    transition: border-color .3s, background .3s;
-  }
-  .ac-card:hover { background: var(--green-faint); border-color: var(--green); }
-  .ac-type-badge {
-    font-family: 'Space Mono', monospace;
-    font-size: .58rem; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--black); background: var(--green);
-    padding: .3em .8em; border-radius: 3px;
-    white-space: nowrap;
-  }
-  .ac-main { display: flex; flex-direction: column; gap: .25rem; }
-  .ac-title { font-size: .95rem; font-weight: 700; color: var(--white); line-height: 1.4; }
-  .ac-desc  { font-size: .82rem; line-height: 1.7; color: var(--muted); }
-  .ac-meta  {
-    font-family: 'Space Mono', monospace;
-    font-size: .6rem; letter-spacing: .08em; color: var(--muted-lo);
-    white-space: nowrap; text-align: right;
-  }
-
-
   /* ─── WORKS ─── */
   .works { padding: 10rem 3rem; background: rgba(255,255,255,0.01); }
   .works-grid {
@@ -913,9 +877,6 @@
   </div>
   <div class="news-grid" id="newsGrid">
     <p class="news-empty" id="newsEmpty">まだ投稿がありません。</p>
-  </div>
-  <div id="achievementsGrid" class="achievements-grid" style="display:none">
-    <p class="jisseki-empty" id="acEmpty">まだ投稿がありません。</p>
   </div>
 </section>
 
@@ -1495,16 +1456,8 @@
   function renderNews() {
     const grid = document.getElementById('newsGrid');
     const empty = document.getElementById('newsEmpty');
-    const acGrid = document.getElementById('achievementsGrid');
-
-    if (newsFilter === 'achievement') {
-      grid.style.display = 'none';
-      acGrid.style.display = '';
-      return;
-    }
 
     grid.style.display = '';
-    acGrid.style.display = 'none';
     grid.querySelectorAll('.news-card, .news-load-more').forEach(el => el.remove());
     const posts = allPosts.filter(p => newsFilter === 'all' || p.cat === newsFilter);
     empty.style.display = posts.length ? 'none' : 'block';
@@ -1937,36 +1890,7 @@
   });
   document.getElementById('sResetBtn').addEventListener('click', resetSForm);
 
-  // ─── ACHIEVEMENTS ───────────────────────────────
-  const achievementsCol = collection(db, 'achievements');
-
-  async function loadAchievements() {
-    const grid = document.getElementById('achievementsGrid');
-    const empty = document.getElementById('acEmpty');
-    try {
-      const snap = await getDocs(query(achievementsCol, orderBy('date', 'desc')));
-      grid.querySelectorAll('.ac-card').forEach(el => el.remove());
-      if (snap.empty) { if (empty) empty.style.display = 'block'; return; }
-      if (empty) empty.style.display = 'none';
-      snap.forEach(d => {
-        const ac = d.data();
-        const card = document.createElement('div');
-        card.className = 'ac-card';
-        card.innerHTML = `
-          <span class="ac-type-badge">${esc(ac.type || '')}</span>
-          <div class="ac-main">
-            <p class="ac-title">${esc(ac.title || '')}</p>
-            ${ac.desc ? `<p class="ac-desc">${esc(ac.desc)}</p>` : ''}
-          </div>
-          <p class="ac-meta">${esc(ac.period || '')}${ac.client ? '<br>' + esc(ac.client) : ''}</p>`;
-        grid.appendChild(card);
-      });
-    } catch(e) { console.warn(e); }
-  }
-
-
   loadScripts();
-  loadAchievements();
 
   document.getElementById('contactForm').addEventListener('submit', e => {
     e.preventDefault();
