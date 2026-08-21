@@ -31,7 +31,6 @@
     --green-dark: #4A9A18;
     --green-glow: #A8FF5A;
     --black:      #060808;
-    --dark:       #0D1208;
     --card:       #111A0A;
     --white:      #F0F5EC;
     --muted:      rgba(240,245,236,0.55);
@@ -39,8 +38,6 @@
     --muted-lo:   rgba(240,245,236,0.25);
     --border:     rgba(110,199,45,0.18);
     --green-faint:rgba(110,199,45,0.07);
-    --green-soft: rgba(110,199,45,0.1);
-    --green-trace:rgba(110,199,45,0.03);
     --green-glow-shadow: rgba(110,199,45,0.5);
     --nav-bg:     rgba(6,8,8,0.92);
     --nav-mobile-bg: rgba(6,8,8,0.97);
@@ -163,7 +160,7 @@
   .marquee-track {
     display: inline-block;
     animation: marquee 22s linear infinite;
-    font-family: 'Dela Gothic One', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
     font-size: 1.5rem; letter-spacing: .1em; color: var(--black);
   }
   .marquee-track span { margin: 0 1.5rem; }
@@ -171,120 +168,44 @@
   @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
   /* ─── SHARED ─── */
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: .65rem; letter-spacing: .4em;
-    text-transform: uppercase; color: var(--green);
-    display: flex; align-items: center; gap: 1rem;
-    margin-bottom: 1.4rem;
-  }
-  .section-label::before {
-    content: '';
-    display: inline-block;
-    width: 32px; height: 1px;
-    background: var(--green);
-    flex-shrink: 0;
-  }
   .section-title {
-    font-family: 'Dela Gothic One', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
     font-size: clamp(2.8rem, 5.5vw, 5rem);
     line-height: 1.15; margin-bottom: 2rem;
-    letter-spacing: .06em;
-  }
-  .accent { color: var(--green); }
-
-  /* ─── ABOUT ─── */
-  .about { padding: 10rem 3rem; }
-  .about-inner {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 6rem;
-    margin-top: 4rem;
-    align-items: start;
+    letter-spacing: .02em;
   }
 
-  /* 左：名前ブロック */
-  .about-name-block {
-    position: static;
+  /* ─── SHARED SPLIT LAYOUT (left nav / right list) ─── */
+  .split-layout {
+    display: grid; grid-template-columns: 180px 1fr; gap: 3rem;
+    align-items: start; margin-top: 3rem;
   }
-  .about-name-ja {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 2rem; color: var(--white);
-    letter-spacing: .04em; line-height: 1.1;
-    margin-bottom: .3rem;
+  .split-nav {
+    display: flex; flex-direction: column; gap: .2rem;
+    padding-top: 1.75rem; position: static;
   }
-  .about-name-en {
-    font-family: 'Space Mono', monospace;
-    font-size: .7rem; letter-spacing: .18em;
-    color: var(--muted); text-transform: uppercase;
-    margin-bottom: 1rem;
+  .split-nav-item {
+    font-family: 'Noto Sans JP', sans-serif; font-size: .78rem;
+    text-align: left; padding: .55em .2em .55em .9em;
+    border: none; border-left: 2px solid transparent; background: transparent;
+    color: var(--muted); text-decoration: none; display: block;
+    cursor: none; transition: all .2s;
   }
-  .about-name-role {
-    font-size: .88rem; color: var(--green);
-    letter-spacing: .06em; margin-bottom: 1.2rem;
-    padding-bottom: 1.2rem;
-    border-bottom: 1px solid var(--border);
+  .split-nav-item:hover { color: var(--white); }
+  .split-nav-item.active {
+    color: var(--green); border-left-color: var(--green); background: var(--green-faint);
   }
-  .about-mail-link {
-    font-family: 'Space Mono', monospace;
-    font-size: .72rem; color: var(--muted);
-    letter-spacing: .06em; text-decoration: none;
-    transition: color .2s;
-    margin-bottom: 2rem; display: block;
-  }
-  .about-mail-link:hover { color: var(--green); }
-
-  /* 右：本文 */
-  .about-body {
-    font-size: .95rem; line-height: 1.95; color: var(--muted);
-    margin-bottom: 1.4rem;
+  .split-list { display: flex; flex-direction: column; max-width: 760px; }
+  .split-row { border-bottom: 1px dotted var(--border); padding: 2.2rem 0; }
+  .split-row:last-child { border-bottom: none; }
+  .split-title {
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+    font-size: clamp(1.3rem, 1.8vw, 1.7rem); color: var(--white);
+    margin-bottom: .8rem; letter-spacing: .01em;
   }
 
   /* ─── SERVICES ─── */
-  .services { padding: 10rem 3rem; }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem; margin-top: 3rem;
-  }
-  .service-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-top: 2px solid var(--green-dark);
-    border-radius: 12px;
-    padding: 3.5rem 2.8rem;
-    position: relative; overflow: hidden;
-    transition: transform .3s, border-color .3s;
-  }
-  .service-card:hover { transform: translateY(-6px); border-color: var(--green); }
-  .service-card::after {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--green-dark), var(--green), var(--green-glow));
-    border-radius: 12px 12px 0 0;
-    opacity: 0; transition: opacity .3s;
-  }
-  .service-card:hover::after { opacity: 1; }
-  .service-num {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 5rem; line-height: 1;
-    color: var(--green-faint);
-    position: absolute; top: 1rem; right: 1.5rem;
-  }
-  .service-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
-  .service-card h3 {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 2rem; color: var(--green); margin-bottom: 1rem; letter-spacing: .03em;
-  }
-  .service-card p { font-size: .9rem; line-height: 1.75; color: var(--muted); margin-bottom: 2rem; }
-  .service-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
-  .tag {
-    font-family: 'Space Mono', monospace;
-    font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
-    padding: .3em .8em; border-radius: 4px;
-    border: 1px solid var(--border);
-    color: var(--green); background: var(--green-faint);
-  }
+  .services { padding: clamp(6rem, 5.22rem + 2.61vw, 7.5rem) clamp(1.5rem, 0.72rem + 2.61vw, 3rem); }
 
   /* ─── SERVICE PRODUCT GALLERY ─── */
   .service-product-grid {
@@ -306,82 +227,26 @@
   .service-product-item img {
     width: 100%; height: 100%; object-fit: contain; display: block;
   }
-  @media (max-width: 700px) {
-    .service-product-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  /* ─── SERVICE RECRUIT CARD ─── */
-  .service-recruit-card {
-    margin-top: 2rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--green);
-    border-radius: 12px;
-    padding: 2.5rem 3rem;
-  }
-
-  /* ─── SERVICE SECTION LABEL ─── */
-  .service-section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: .65rem; letter-spacing: .3em; text-transform: uppercase;
-    color: var(--green); border: 1px solid var(--green);
-    padding: .25em .8em; border-radius: 2px;
-    display: inline-block; margin-bottom: 1.5rem;
-  }
 
   /* ─── WORKS ─── */
-  .works { padding: 10rem 3rem; background: rgba(255,255,255,0.01); }
-  .works-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem; margin-top: 3rem;
-  }
-  .work-card {
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    background: var(--card);
-    transition: transform .3s, border-color .3s;
-  }
-  .work-card:hover { transform: translateY(-5px); border-color: var(--green); }
-  .work-card-body { padding: 2rem; }
-  .work-type {
-    font-family: 'Space Mono', monospace;
-    font-size: .62rem; letter-spacing: .2em;
-    text-transform: uppercase; color: var(--green); margin-bottom: .8rem;
-  }
-  .work-title {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.4rem, 1.8vw, 1.8rem); line-height: 1.5;
-    letter-spacing: .01em; color: var(--white); margin-bottom: 1rem;
-  }
+  .works { padding: clamp(6rem, 5.22rem + 2.61vw, 7.5rem) clamp(1.5rem, 0.72rem + 2.61vw, 3rem); }
   .work-synopsis {
     font-size: .85rem; line-height: 1.8; color: var(--muted);
     margin-top: 1rem; margin-bottom: 1.2rem;
   }
-  .work-genre-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
-
-  .work-badge {
-    display: inline-flex; align-items: center; gap: .4em;
-    font-family: 'Space Mono', monospace;
-    font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
-    color: var(--black); background: var(--green);
-    padding: .35em 1em; border-radius: 999px;
+  .work-media-row { display: flex; gap: 2rem; align-items: flex-start; }
+  .work-media-img {
+    width: 280px; flex-shrink: 0; border-radius: 8px;
+    object-fit: cover; aspect-ratio: 4 / 3;
+    display: block; transition: opacity .2s;
   }
-
-  /* ─── ORIGINAL BADGE ─── */
-  .work-badge--original {
-    background: transparent;
-    color: var(--green);
-    border: 1px solid var(--green);
-    font-family: 'Space Mono', monospace;
-    font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
-    padding: .3em .9em; border-radius: 999px;
-    display: inline-flex; align-items: center; gap: .3em;
-    margin-left: .5rem;
+  .work-media-col { flex-shrink: 0; width: 280px; }
+  .work-media-img-link { display: block; cursor: none; }
+  .work-media-img-link:hover .work-media-img { opacity: .8; }
+  .work-media-note {
+    font-size: .65rem; color: var(--muted-lo); margin-top: .5rem; text-align: center;
   }
-
+  .work-media-body { flex: 1; min-width: 0; }
   .work-file-btn {
     display: inline-flex; align-items: center; gap: .5em;
     margin-top: 1.2rem; padding: .5em 1.1em;
@@ -393,8 +258,8 @@
   .work-file-btn:hover { background: var(--green); color: var(--black); }
   /* ─── WORKS SUPPORT ─── */
   .works-support-title {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 1.1rem; color: var(--green);
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+    font-size: 1.1rem; color: var(--white);
     margin-bottom: .6rem; letter-spacing: .02em;
   }
   .works-support-body {
@@ -404,24 +269,16 @@
 
 
   /* ─── CONTACT ─── */
-  .contact { padding: 10rem 3rem; position: relative; overflow: hidden; }
-  .contact-bg-text {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: clamp(5rem, 18vw, 16rem);
-    line-height: .85; color: var(--green-trace);
-    position: absolute; right: -2rem; top: 50%;
-    transform: translateY(-50%); white-space: nowrap; user-select: none;
-  }
-  .contact-inner { max-width: 700px; position: relative; z-index: 1; }
+  .contact { padding: clamp(6rem, 5.22rem + 2.61vw, 7.5rem) clamp(1.5rem, 0.72rem + 2.61vw, 3rem) 2.5rem; }
+  .contact-inner { max-width: 700px; }
   .contact h2 {
-    font-family: 'Dela Gothic One', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
     font-size: clamp(2.8rem, 5.5vw, 5rem);
-    line-height: 1.15; margin-bottom: 1.5rem;
-    letter-spacing: .04em;
+    line-height: 1.15; margin-bottom: 0;
+    letter-spacing: .01em;
   }
-  .contact h2 em { color: var(--green); font-style: normal; }
-  .contact-sub { color: var(--muted); line-height: 1.75; margin-top: 1rem; font-size: .95rem; }
-  .contact-form { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact .split-layout { position: relative; z-index: 1; }
+  .contact-form { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
   .form-group { display: flex; flex-direction: column; gap: .4rem; }
   .form-group label {
@@ -459,10 +316,26 @@
   .contact-sent.show { display: block; }
   .contact-sent-title {
     font-family: 'Space Mono', monospace;
-    font-size: .8rem; letter-spacing: .14em; color: var(--green);
+    font-size: .8rem; letter-spacing: .14em; color: var(--white);
     text-transform: uppercase; margin-bottom: .5rem;
   }
   .contact-sent-body { font-size: .9rem; color: var(--muted); line-height: 1.8; }
+  .meta-strip {
+    max-width: 760px;
+    margin-top: 4rem; margin-bottom: 0; padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    position: relative; z-index: 1;
+  }
+  .meta-strip-label {
+    font-family: 'Space Mono', monospace; font-size: .65rem;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: .8rem;
+  }
+  .meta-strip-items {
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    font-size: .75rem; color: var(--muted);
+    font-family: 'Space Mono', monospace; letter-spacing: .04em;
+  }
 
   /* ─── FOOTER ─── */
   footer {
@@ -491,55 +364,36 @@
   .footer-links a:hover { color: var(--green); }
 
   /* ─── JOIN US ─── */
-  .join { padding: 10rem 3rem; background: var(--dark); }
-  .join-card {
-    margin-top: 3rem;
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--green);
-    border-radius: 12px;
-    background: var(--card);
-    padding: 3rem;
-  }
+  .join { padding: clamp(6rem, 5.22rem + 2.61vw, 7.5rem) clamp(1.5rem, 0.72rem + 2.61vw, 3rem); }
   .join-lead {
-    font-family: 'Dela Gothic One', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
     font-size: clamp(1.4rem, 3vw, 2rem);
-    color: var(--green); margin-bottom: 1.2rem;
+    color: var(--white); margin-bottom: 1.2rem;
   }
   .join-body {
     font-size: .95rem; line-height: 1.85; color: var(--muted);
     margin-bottom: 1.8rem;
   }
-  .join-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
   .join-cta { margin-top: 2rem; display: inline-block; }
-  .join-expert {
-    margin-top: 1.5rem;
-    padding: 1.5rem 2rem;
-    border: 1px dashed var(--border);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 1.5rem; flex-wrap: wrap;
+  .join-steps {
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    margin-top: 2rem; padding-top: 1.8rem;
+    border-top: 1px solid var(--border);
   }
+  .join-step { display: flex; align-items: flex-start; gap: .7rem; flex: 1 1 180px; }
+  .join-step-num {
+    font-family: 'Space Mono', monospace; font-size: .75rem; font-weight: 700;
+    color: var(--black); background: var(--green);
+    width: 1.6rem; height: 1.6rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .join-step-text { font-size: .82rem; line-height: 1.6; color: var(--muted); }
+  .join-step-text strong { display: block; color: var(--white); font-size: .88rem; margin-bottom: .2rem; }
   .join-expert-text { font-size: .9rem; line-height: 1.75; color: var(--muted); }
 
   /* ─── NEWS ─── */
-  .news { padding: 10rem 3rem; background: var(--dark); }
-  .news-filter {
-    display: flex; gap: .5rem; flex-wrap: wrap; margin: 2rem 0 3rem;
-  }
-  .news-filter-btn {
-    font-family: 'Space Mono', monospace; font-size: .6rem;
-    letter-spacing: .15em; text-transform: uppercase;
-    padding: .4em 1.1em; border-radius: 999px;
-    border: 1px solid var(--border); background: transparent;
-    color: var(--muted); cursor: none; transition: all .2s;
-  }
-  .news-filter-btn:hover, .news-filter-btn.active {
-    background: var(--green); color: var(--black); border-color: var(--green);
-  }
-  .news-grid { display: flex; flex-direction: column; max-width: 760px; }
-  .news-card {
-    border-bottom: 1px solid var(--border); padding: 2.2rem 0; cursor: default;
-  }
+  .news { padding: clamp(6rem, 5.22rem + 2.61vw, 7.5rem) clamp(1.5rem, 0.72rem + 2.61vw, 3rem); }
   .news-meta { display: flex; align-items: center; gap: .8rem; margin-bottom: .7rem; flex-wrap: wrap; }
   .news-cat {
     font-family: 'Space Mono', monospace; font-size: .55rem;
@@ -607,9 +461,9 @@
   .admin-body { max-width: 820px; }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
-  .admin-panel-title { font-family: 'Dela Gothic One', sans-serif; font-size: 1.8rem; color: var(--green); margin-bottom: 2rem; }
+  .admin-panel-title { font-family: 'Noto Sans JP', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--green); margin-bottom: 2rem; }
   .admin-login-box { max-width: 400px; }
-  .admin-login-box h2 { font-family: 'Dela Gothic One', sans-serif; font-size: 1.4rem; margin-bottom: .5rem; }
+  .admin-login-box h2 { font-family: 'Noto Sans JP', sans-serif; font-weight: 900; font-size: 1.4rem; margin-bottom: .5rem; }
   .admin-login-box p { font-size: .85rem; color: var(--muted); margin-bottom: 1.5rem; }
   .admin-err { color: #ff6b6b; font-size: .82rem; margin-bottom: .8rem; display: none; }
   .a-field { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.1rem; }
@@ -639,7 +493,7 @@
   }
   .a-btn-cancel:hover { color: var(--white); }
   .a-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2rem; margin-bottom: 1.5rem; }
-  .a-card-title { font-family: 'Dela Gothic One', sans-serif; font-size: 1.3rem; color: var(--green); margin-bottom: 1.5rem; }
+  .a-card-title { font-family: 'Noto Sans JP', sans-serif; font-weight: 900; font-size: 1.3rem; color: var(--white); margin-bottom: 1.5rem; }
   .a-post-item {
     display: flex; align-items: center; justify-content: space-between;
     gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
@@ -734,22 +588,6 @@
   }
   .slider-dot.active { background: var(--green); transform: scale(1.4); }
 
-  /* ─── ABOUT STATS ─── */
-  .about-stats {
-    display: flex; gap: 2.5rem; flex-wrap: wrap;
-    margin-top: 2rem; padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-  .about-stat { display: flex; flex-direction: column; gap: .3rem; }
-  .about-stat-value {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: .95rem; color: var(--white); letter-spacing: .04em;
-  }
-  .about-stat-label {
-    font-family: 'Space Mono', monospace;
-    font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; color: var(--green);
-  }
-
   /* ─── ADMIN IMAGE MANAGEMENT ─── */
   .img-preview-grid {
     display: grid;
@@ -780,6 +618,10 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
+    .split-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .split-nav { flex-direction: row; flex-wrap: wrap; padding-top: 0; gap: .4rem; }
+    .split-nav-item { border-left: none; border-bottom: 2px solid transparent; padding: .4em .8em; }
+    .split-nav-item.active, .split-nav-item:hover { border-bottom-color: var(--green); }
     .hero-slider-section { height: auto; aspect-ratio: 1612 / 975; }
     .hero-slide img { object-fit: cover; }
     nav { padding: 1.5rem; }
@@ -797,12 +639,6 @@
     }
     .nav-links.open { opacity: 1; pointer-events: all; }
     .nav-links a { font-size: 1.1rem; letter-spacing: 0.22em; }
-    .about, .services, .works,
-    .news, .contact, .join { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .about, .services, .works, .news, .contact, .join { padding-top: 6rem; padding-bottom: 6rem; }
-    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-name-block { position: static; }
-    .services-grid { grid-template-columns: 1fr; }
     .section-title { font-size: clamp(2.6rem, 10vw, 4rem); }
     .admin-overlay { padding: 1.5rem; }
     .form-row { grid-template-columns: 1fr; }
@@ -812,10 +648,12 @@
     .slider-prev { left: 1rem; }
     .slider-next { right: 1rem; }
     .slider-dot { width: 9px; height: 9px; }
-    .works-grid { grid-template-columns: 1fr; }
-    .work-card-body { padding: 1.5rem; }
-    .news-card { padding: 1.8rem 0; }
+    .split-row { padding: 1.8rem 0; }
     .marquee-track { font-size: 1.2rem; }
+    .service-product-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-media-row { flex-direction: column; }
+    .work-media-col { width: 100%; }
+    .work-media-img { width: 100%; aspect-ratio: 16 / 9; }
   }
 </style>
 </head>
@@ -830,7 +668,6 @@
     <li><a href="#news">News</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">Profile</a></li>
     <li><a href="#join">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
     <li class="nav-mobile-only"><a href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">BOOTH</a></li>
@@ -889,87 +726,55 @@
 
 <!-- ─── NEWS ─── -->
 <section class="news" id="news">
-  <p class="section-label reveal">News</p>
-  <h2 class="section-title reveal">NEWS &amp;<br><span class="accent">UPDATES</span></h2>
-  <div class="news-filter reveal">
-    <button class="news-filter-btn active" data-cat="all">All</button>
-    <button class="news-filter-btn" data-cat="production">制作</button>
-    <button class="news-filter-btn" data-cat="daily">日常</button>
-    <button class="news-filter-btn" data-cat="achievement">実績</button>
-    <button class="news-filter-btn" data-cat="film">映画</button>
-    <button class="news-filter-btn" data-cat="other">その他</button>
-  </div>
-  <div class="news-grid" id="newsGrid">
-    <p class="news-empty" id="newsEmpty">まだ投稿がありません。</p>
+  <h2 class="section-title reveal">NEWS &amp; UPDATES</h2>
+  <div class="split-layout reveal">
+    <div class="split-nav">
+      <button class="split-nav-item active" data-cat="all">すべて</button>
+      <button class="split-nav-item" data-cat="production">制作</button>
+      <button class="split-nav-item" data-cat="daily">日常</button>
+      <button class="split-nav-item" data-cat="achievement">実績</button>
+      <button class="split-nav-item" data-cat="film">映画</button>
+      <button class="split-nav-item" data-cat="other">その他</button>
+    </div>
+    <div class="split-list" id="newsGrid">
+      <p class="news-empty" id="newsEmpty">まだ投稿がありません。</p>
+    </div>
   </div>
 </section>
 
 <!-- ─── SERVICES ─── -->
 <section class="services" id="services">
-  <p class="section-label reveal">Services</p>
-  <h2 class="section-title reveal">OUR<br><span class="accent">SERVICES</span></h2>
+  <h2 class="section-title reveal">SERVICES</h2>
 
-  <!-- メイン：VRChat向け3Dモデル販売 -->
-  <p class="service-section-label reveal">メイン事業</p>
-  <div class="services-grid">
-    <div class="service-card reveal" style="border-top-color:var(--green)">
-      <span class="service-num">01</span>
-      <span class="service-icon">🛒</span>
-      <h3>3Dモデル販売</h3>
-      <p id="svc-booth-desc">BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。</p>
-      <div class="service-tags">
-        <span class="tag">VRChat対応</span>
-        <span class="tag">キャラクター</span>
-        <span class="tag">アクセサリー</span>
-        <span class="tag">即使用可</span>
-      </div>
-      <div class="service-product-grid">
-        <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
-          <img src="/product-cyber-hud-vision.jpg" alt="Cyber HUD Vision" loading="lazy">
-        </a>
-        <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
-          <img src="/product-cyber-hud-vision-2.jpg" alt="Cyber HUD Vision II" loading="lazy">
-        </a>
-        <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
-          <img src="/product-cyber-headphone.jpg" alt="Cyber Headphone" loading="lazy">
-        </a>
-        <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
-          <img src="/product-cyber-sword.jpg" alt="3SS Cyber Sword" loading="lazy">
-        </a>
-      </div>
-      <a href="https://3stonestudios.booth.pm/" class="btn btn-primary" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem">BOOTHショップを見る →</a>
+  <div class="split-layout reveal">
+    <div class="split-nav">
+      <a class="split-nav-item" href="#svc-booth">3Dモデル販売</a>
+      <a class="split-nav-item" href="#svc-3d">3Dモデリング受注</a>
     </div>
-  </div>
-
-  <!-- その他の活動 -->
-  <p class="service-section-label reveal" style="margin-top:4rem">その他の活動</p>
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <span class="service-num">02</span>
-      <span class="service-icon">🧊</span>
-      <h3>3Dモデリング受注</h3>
-      <p id="svc-3d-desc">キャラクター・アバター・プロップ等の3D受注制作を承ります。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。</p>
-      <div class="service-tags">
-        <span class="tag">キャラクター</span>
-        <span class="tag">アバター</span>
-        <span class="tag">プロップ</span>
-        <span class="tag">Blender</span>
-        <span class="tag">要相談</span>
+    <div class="split-list">
+      <div class="split-row" id="svc-booth">
+        <h3 class="split-title">3Dモデル販売</h3>
+        <p id="svc-booth-desc">BOOTHをはじめとした各種プラットフォームで、購入してすぐに使える3Dモデルを販売しています。VRChat向けのアクセサリー・装飾品を中心に、既存アバターにそのまま組み込める即戦力アイテムを継続的に制作。改変のしやすさや軽量性にもこだわり、購入後すぐにワールドで使える完成度を意識しています。</p>
+        <div class="service-product-grid">
+          <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
+            <img src="/product-cyber-hud-vision.jpg" alt="Cyber HUD Vision" loading="lazy">
+          </a>
+          <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
+            <img src="/product-cyber-hud-vision-2.jpg" alt="Cyber HUD Vision II" loading="lazy">
+          </a>
+          <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
+            <img src="/product-cyber-headphone.jpg" alt="Cyber Headphone" loading="lazy">
+          </a>
+          <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
+            <img src="/product-cyber-sword.jpg" alt="3SS Cyber Sword" loading="lazy">
+          </a>
+        </div>
+        <a href="https://3stonestudios.booth.pm/" class="btn btn-primary" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem">BOOTHショップを見る →</a>
       </div>
-    </div>
-    <div class="service-card reveal">
-      <span class="service-num">03</span>
-      <span class="service-icon">🎬</span>
-      <h3>オリジナル脚本制作</h3>
-      <p id="svc-script-desc">オリジナル映画脚本の執筆・開発を行い、実際の映画として世に送り出すことを目指しています。脚本が完成したら、共に映画化へ動いてくれる仲間・スタジオを探しています。</p>
-      <div class="service-tags">
-        <span class="tag">短編映画</span>
-        <span class="tag">中編映画</span>
-        <span class="tag">オリジナル脚本</span>
-        <span class="tag">ハリウッド式</span>
-        <span class="tag">日本式脚本</span>
+      <div class="split-row" id="svc-3d">
+        <h3 class="split-title">3Dモデリング受注</h3>
+        <p id="svc-3d-desc">キャラクター・アバター・プロップなど、幅広いジャンルの3D受注制作を承っています。使用ソフトは <strong>Blender</strong>。参考画像や簡単な雰囲気の説明だけでもお気軽にご相談ください。ラフの提案からモデリング、テクスチャ、必要に応じたリギングまで一貫して対応し、用途に合わせた仕上げ（ゲーム用・VRChat用など）にも柔軟に対応します。</p>
       </div>
-      <a href="#projects" class="btn btn-outline" style="display:inline-block;margin-top:1.5rem">作品を見る →</a>
     </div>
   </div>
 
@@ -977,89 +782,78 @@
 
 <!-- ─── WORKS ─── -->
 <section class="works" id="projects">
-  <p class="section-label reveal">Projects</p>
-  <h2 class="section-title reveal">OUR<br><span class="accent">PROJECTS</span></h2>
+  <h2 class="section-title reveal">PROJECTS</h2>
 
-  <div class="works-grid" id="worksGrid">
-    <p style="color:var(--muted);font-size:.9rem;padding:2rem 0">読み込み中…</p>
-  </div>
-  <div class="service-recruit-card reveal">
-    <span class="service-icon" style="font-size:2rem;display:block;margin-bottom:1rem">🎬</span>
-    <p class="works-support-title" id="svc-recruit-title-projects" style="font-size:1.15rem;margin-bottom:.8rem">オリジナル脚本の映画化に向けて、制作仲間を募集しています</p>
-    <p class="works-support-body" id="svc-recruit-body-projects">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。</p>
-    <p style="font-size:.78rem;color:var(--muted-lo);margin-top:.6rem">※ 脚本の執筆依頼は承っておりません。オリジナル脚本の販売も行っておりません。</p>
-    <a href="#contact" class="btn btn-primary" style="margin-top:1.4rem;display:inline-block">制作に参加・協力する →</a>
+  <div class="split-layout reveal">
+    <div class="split-nav">
+      <a class="split-nav-item" href="#svc-script">オリジナル脚本制作</a>
+    </div>
+    <div class="split-list">
+      <div class="split-row" id="svc-script">
+        <h3 class="split-title">オリジナル脚本制作</h3>
+        <p id="svc-script-desc">オリジナル映画脚本の執筆・開発を行い、実際の映画として世に送り出すことを目指して活動しています。短編・中編を中心に、ハリウッド式・日本式それぞれの脚本術を取り入れながら物語を組み立てるのが特徴です。脚本が完成したら、共に映画化へ動いてくれる制作スタジオ・プロデューサー・関係者の方を探しています。</p>
+      </div>
+      <div id="worksGrid">
+        <p style="color:var(--muted);font-size:.9rem;padding:2rem 0">読み込み中…</p>
+      </div>
+      <div class="split-row">
+        <p class="works-support-title" id="svc-recruit-title-projects">オリジナル脚本の映画化に向けて、制作仲間を募集しています</p>
+        <p class="works-support-body" id="svc-recruit-body-projects">脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。撮影・キャスティング・資金面など、映画化に向けて必要となる工程全般でご協力いただける方を歓迎します。まずは脚本を読んでいただくところからでも構いません。</p>
+        <p style="font-size:.78rem;color:var(--muted);margin-top:.6rem">※ 脚本の執筆依頼は承っておりません。オリジナル脚本の販売も行っておりません。</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:1.2rem;display:inline-block">参加・協力する →</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ─── ABOUT ─── -->
-<section class="about" id="about">
-  <p class="section-label reveal">Profile</p>
-  <h2 class="section-title reveal">OUR<br><span class="accent">PROFILE</span></h2>
-  <div class="about-inner">
-
-    <!-- 左：名前ブロック -->
-    <div class="about-left reveal">
-      <div class="about-name-block">
-        <p class="about-name-ja" id="meta-rep">田中 琉暉</p>
-        <p class="about-name-en" id="meta-name-en">Ryuki Tanaka</p>
-        <p class="about-name-role" id="meta-role">代表</p>
-      </div>
-      <a href="mailto:ryukitanaka3@gmail.com" class="about-mail-link" id="meta-mail">ryukitanaka3@gmail.com</a>
-    </div>
-
-    <!-- 右：本文テキスト -->
-    <div class="about-right">
-      <p class="about-body reveal" id="about-body-1">
-        2005年生まれ、20歳。幼い頃から映画が好きで、気づけば「つくる側」への憧れを抱くようになっていた。高校生のころには脚本を書きはじめ、物語をゼロから組み上げる面白さにのめり込んでいった。大学に入り、映画への熱量を持ちながらも業界とのつながりを持てない学生が多いことを実感し、自らその場をつくろうと決意した。それが3 Stone Studios の始まりだ。「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。
-      </p>
-      <div class="about-stats reveal">
-        <div class="about-stat">
-          <span class="about-stat-value">2025.09.01</span>
-          <span class="about-stat-label">設立</span>
-        </div>
-        <div class="about-stat">
-          <span class="about-stat-value">東京</span>
-          <span class="about-stat-label">拠点</span>
-        </div>
-      </div>
-      <a href="#contact" class="btn btn-outline reveal" style="margin-top:2rem;display:inline-block">連絡する →</a>
-    </div>
-
-  </div>
-</section>
 
 <!-- ─── JOIN US ─── -->
 <section class="join" id="join">
-  <p class="section-label reveal">Join Us</p>
-  <h2 class="section-title reveal">JOIN<br><span class="accent">THE CREW.</span></h2>
-  <div class="join-card reveal">
-    <p class="join-lead" id="join-lead-text">クリエイティブに、一緒に。</p>
-    <p class="join-body">
-      <span id="join-body-text">3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。</span>
-    </p>
-    <div class="join-tags">
-      <span class="tag">脚本</span>
-      <span class="tag">3Dモデリング</span>
-      <span class="tag">映像編集</span>
-      <span class="tag">音楽・音響</span>
-      <span class="tag">撮影</span>
-      <span class="tag">その他</span>
+  <h2 class="section-title reveal">JOIN THE CREW.</h2>
+  <div class="split-layout reveal">
+    <div class="split-nav" style="padding-top:0">
+      <span class="split-nav-item" style="color:var(--muted);cursor:default">募集分野</span>
+      <span class="split-nav-item">脚本</span>
+      <span class="split-nav-item">3Dモデリング</span>
+      <span class="split-nav-item">映像編集</span>
+      <span class="split-nav-item">音楽・音響</span>
+      <span class="split-nav-item">撮影</span>
+      <span class="split-nav-item">その他</span>
     </div>
-    <a href="#contact" class="btn btn-primary join-cta" style="margin-top:1.5rem">参加を申し込む →</a>
-  </div>
-  <div class="join-expert reveal">
-    <p class="join-expert-text" id="join-expert-text">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。</p>
-    <a href="#contact" class="btn btn-outline">知識をシェアする →</a>
+    <div class="split-list">
+      <div class="split-row">
+        <p class="join-lead" id="join-lead-text">クリエイティブに、一緒に。</p>
+        <p class="join-body">
+          <span id="join-body-text">3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。フルタイムでの参加はもちろん、空いた時間だけの手伝いや、単発のアドバイスだけでも大歓迎です。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。</span>
+        </p>
+        <div class="join-steps">
+          <div class="join-step">
+            <span class="join-step-num">1</span>
+            <span class="join-step-text"><strong>ご連絡</strong>下のフォームから気軽にご連絡ください</span>
+          </div>
+          <div class="join-step">
+            <span class="join-step-num">2</span>
+            <span class="join-step-text"><strong>お話</strong>興味・得意分野について簡単にすり合わせ</span>
+          </div>
+          <div class="join-step">
+            <span class="join-step-num">3</span>
+            <span class="join-step-text"><strong>参加</strong>できる範囲・タイミングから無理なく合流</span>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary join-cta" style="margin-top:1.5rem">参加を申し込む →</a>
+      </div>
+      <div class="split-row">
+        <p class="join-expert-text" id="join-expert-text">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。学生中心の小さなチームだからこそ、経験者からのアドバイスがそのまま作品の質に直結します。一緒に学びながら、良い作品を作っていきたいと思っています。</p>
+        <a href="#contact" class="btn btn-outline" style="margin-top:1rem">知識をシェアする →</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ─── CONTACT ─── -->
 <section class="contact" id="contact">
-  <div class="contact-bg-text">CONTACT</div>
   <div class="contact-inner">
-    <h2 class="reveal">LET'S<br><em>CREATE</em><br>TOGETHER.</h2>
-    <p class="contact-sub reveal" id="contact-sub-text">プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。</p>
+    <h2 class="reveal">LET'S CREATE TOGETHER.</h2>
     <form class="contact-form reveal" id="contactForm">
       <div class="form-row">
         <div class="form-group">
@@ -1072,7 +866,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="service">ご希望のサービス</label>
+        <label for="service">お問い合わせ</label>
         <select id="service" required>
           <option value="" disabled selected>お問い合わせ内容を選択</option>
           <option value="3d">3Dモデリング受注</option>
@@ -1082,7 +876,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="message">プロジェクト概要</label>
+        <label for="message">内容</label>
         <textarea id="message" rows="5" placeholder="どんなプロジェクトか、スケジュール感、予算感など、お気軽にお書きください。" required></textarea>
       </div>
       <div class="submit-row">
@@ -1093,6 +887,14 @@
     <div class="contact-sent" id="contactSent">
       <p class="contact-sent-title">メールアプリが開きました</p>
       <p class="contact-sent-body">内容を確認のうえ、そのまま送信してください。通常2営業日以内にご返信します。</p>
+    </div>
+  </div>
+  <div class="meta-strip">
+    <p class="meta-strip-label">スタジオ情報</p>
+    <div class="meta-strip-items">
+      <span>設立 <span id="meta-founded">2025.09.01</span></span>
+      <span>拠点 <span id="meta-base">東京</span></span>
+      <span>代表 <span id="meta-rep">田中 琉暉</span></span>
     </div>
   </div>
 </section>
@@ -1175,9 +977,9 @@
               <option value="脚本">脚本</option>
             </select>
           </div>
-          <div class="a-field"><label>ステータス（バッジ）</label><input type="text" id="sStatus" placeholder="例: 脚本執筆中"></div>
+          <div class="a-field"><label>ステータス（管理画面の一覧にのみ表示）</label><input type="text" id="sStatus" placeholder="例: 脚本執筆中"></div>
           <div class="a-field"><label>あらすじ</label><textarea id="sSynopsis" rows="4" placeholder="作品のあらすじ…"></textarea></div>
-          <div class="a-field"><label>ジャンルタグ（スペース区切り）</label><input type="text" id="sTags" placeholder="例: SF ホラー 長編映画"></div>
+          <div class="a-field"><label>画像URL（任意・指定すると左に画像、右にあらすじのレイアウトになります）</label><input type="url" id="sImage" placeholder="https://... または /kafu-ibunroku-logo.jpg"></div>
           <div class="a-field"><label>表示順</label><input type="number" id="sOrder" value="0" min="0"></div>
           <div class="a-field">
             <label>脚本PDF（Google DriveのリンクURL）</label>
@@ -1210,29 +1012,21 @@
           </div>
         </div>
         <p class="admin-panel-title" style="font-size:1.1rem">現在の画像</p>
-        <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">※ 1枚目のロゴ（3ss-logo.jpg）は固定です</p>
+        <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">※ 最初の3枚（ロゴ・荷風異聞録・BOOTH広告）は固定表示で、ここでは削除できません。以下は追加分のみです。</p>
         <div id="heroImgList" class="img-preview-grid"></div>
       </div>
       <!-- CONTENT TAB -->
       <div class="tab-panel" id="atab-content">
         <p class="admin-panel-title">サイト内容の編集</p>
-        <!-- 2. About -->
+        <!-- 1. Footer -->
         <div class="a-card">
-          <p class="a-card-title">② About — プロフィール文</p>
-          <div class="a-field"><label>本文</label><textarea id="ca-about1" rows="4"></textarea></div>
-          <div class="a-btn-row"><button class="a-btn-save" data-asave="about">保存する</button><span class="save-ok" id="sok-about">保存しました ✓</span></div>
-        </div>
-        <div class="a-card">
-          <p class="a-card-title">② About — 名前 / 役職</p>
+          <p class="a-card-title">① フッター表記 — 代表者名</p>
           <div class="a-field"><label>名前（日本語）</label><input type="text" id="ca-meta-rep"></div>
-          <div class="a-field"><label>名前（ローマ字）</label><input type="text" id="ca-meta-name-en"></div>
-          <div class="a-field"><label>役職</label><input type="text" id="ca-meta-role"></div>
-          <div class="a-field"><label>メールアドレス</label><input type="email" id="ca-meta-mail"></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="meta">保存する</button><span class="save-ok" id="sok-meta">保存しました ✓</span></div>
         </div>
-        <!-- 3. Services -->
+        <!-- 2. Services -->
         <div class="a-card">
-          <p class="a-card-title">③ Services — サービス説明文</p>
+          <p class="a-card-title">② Services — サービス説明文</p>
           <div class="a-field"><label>オリジナル脚本制作</label><textarea id="ca-svc-script" rows="3"></textarea></div>
           <div class="a-field"><label>募集バナー タイトル（Projects セクション）</label><input type="text" id="ca-svc-recruit-title"></div>
           <div class="a-field"><label>募集バナー 本文（Projects セクション）</label><textarea id="ca-svc-recruit-body" rows="2"></textarea></div>
@@ -1240,19 +1034,13 @@
           <div class="a-field"><label>3Dモデル販売（BOOTH）</label><textarea id="ca-svc-booth" rows="2"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="services">保存する</button><span class="save-ok" id="sok-services">保存しました ✓</span></div>
         </div>
-        <!-- 4. Join Us -->
+        <!-- 3. Join Us -->
         <div class="a-card">
-          <p class="a-card-title">④ Join Us — クルー募集文</p>
+          <p class="a-card-title">③ Join Us — クルー募集文</p>
           <div class="a-field"><label>リード文</label><input type="text" id="ca-join-lead"></div>
           <div class="a-field"><label>本文</label><textarea id="ca-join" rows="3"></textarea></div>
           <div class="a-field"><label>有識者向けテキスト</label><textarea id="ca-join-expert" rows="2"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="join">保存する</button><span class="save-ok" id="sok-join">保存しました ✓</span></div>
-        </div>
-        <!-- 5. Contact -->
-        <div class="a-card">
-          <p class="a-card-title">⑤ Contact — サブテキスト</p>
-          <div class="a-field"><label>説明文</label><input type="text" id="ca-contact-sub"></div>
-          <div class="a-btn-row"><button class="a-btn-save" data-asave="contact">保存する</button><span class="save-ok" id="sok-contact">保存しました ✓</span></div>
         </div>
       </div>
     </div>
@@ -1265,7 +1053,6 @@
     <span class="footer-logo-text">3<span class="dot">●</span>STONE STUDIOS</span>
   </a>
   <div class="footer-links">
-    <a href="#about">Profile</a>
     <a href="#news">News</a>
     <a href="#services">Services</a>
     <a href="#projects">Projects</a>
@@ -1435,7 +1222,7 @@
         const item = document.createElement('div');
         item.className = 'img-preview-item';
         item.innerHTML = `
-          <img src="${esc(data.url)}" alt="" onerror="this.style.opacity='.3'">
+          <img src="${escUrl(data.url)}" alt="" onerror="this.style.opacity='.3'">
           <div class="img-preview-info">順: ${data.order ?? 0}</div>
           <button class="img-preview-del" data-id="${d.id}">✕ 削除</button>`;
         item.querySelector('.img-preview-del').addEventListener('click', async (e) => {
@@ -1479,7 +1266,12 @@
     return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
   }
   function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
-  function escUrl(s) { return /^(https?:\/\/|\/)/i.test(s || '') ? esc(s) : ''; }
+  function escUrl(s) {
+    s = s || '';
+    if (/^(https?:\/\/|\/)/i.test(s)) return esc(s);
+    if (s && !s.includes(':')) return esc('/' + s);
+    return '';
+  }
 
   async function loadPosts() {
     const q = query(newsCol, orderBy('date', 'desc'));
@@ -1489,29 +1281,33 @@
     if (aLoggedIn) renderAPostList();
   }
 
-  const NEWS_LIMIT = 5;
+  const NEWS_LIMIT = 3;
+  let newsExpanded = false;
 
   function renderNews() {
     const grid = document.getElementById('newsGrid');
     const empty = document.getElementById('newsEmpty');
 
     grid.style.display = '';
-    grid.querySelectorAll('.news-card, .news-load-more').forEach(el => el.remove());
+    grid.querySelectorAll('.split-row, .news-load-more').forEach(el => el.remove());
     const posts = allPosts.filter(p => newsFilter === 'all' || p.cat === newsFilter);
     empty.style.display = posts.length ? 'none' : 'block';
-    const visible = posts.slice(0, NEWS_LIMIT);
-    const hidden  = posts.slice(NEWS_LIMIT);
-    visible.forEach(p => grid.appendChild(buildNewsCard(p)));
-    if (hidden.length) {
+    posts.forEach((p, i) => {
+      const card = buildNewsCard(p);
+      if (i >= NEWS_LIMIT && !newsExpanded) card.style.display = 'none';
+      grid.appendChild(card);
+    });
+    const hiddenCount = posts.length - NEWS_LIMIT;
+    if (hiddenCount > 0) {
       const btn = document.createElement('button');
       btn.className = 'news-more news-load-more';
       btn.style.cssText = 'display:block;margin:1.5rem auto 0;padding:.6em 2em;border:1px solid var(--border);border-radius:999px;font-family:\'Space Mono\',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);background:transparent;cursor:none;transition:all .2s';
-      btn.textContent = `もっと見る（残り ${hidden.length} 件）`;
+      btn.textContent = newsExpanded ? '閉じる' : `もっと見る（残り ${hiddenCount} 件）`;
       btn.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       btn.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
       btn.addEventListener('click', () => {
-        hidden.forEach(p => grid.insertBefore(buildNewsCard(p), btn));
-        btn.remove();
+        newsExpanded = !newsExpanded;
+        renderNews();
       });
       grid.appendChild(btn);
     }
@@ -1520,7 +1316,7 @@
   function buildNewsCard(p) {
     const isLong = p.body.length > 200;
     const card = document.createElement('article');
-    card.className = 'news-card';
+    card.className = 'split-row';
     card.innerHTML = `
       <div class="news-meta">
         <span class="news-cat cat-${p.cat}">${CAT_LABELS[p.cat]}</span>
@@ -1542,12 +1338,13 @@
     return card;
   }
 
-  document.querySelectorAll('.news-filter-btn').forEach(btn => {
+  document.querySelectorAll('#news .split-nav-item').forEach(btn => {
     btn.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     btn.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     btn.addEventListener('click', () => {
       newsFilter = btn.dataset.cat;
-      document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
+      newsExpanded = false;
+      document.querySelectorAll('#news .split-nav-item').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderNews();
     });
@@ -1567,20 +1364,15 @@
   const CONTENT_KEY = '3ss_content';
   const contentDoc = doc(db, 'config', 'content');
   const CONTENT_DEFAULTS = {
-    about1: '2005年生まれ、20歳。幼い頃から映画が好きで、気づけば「つくる側」への憧れを抱くようになっていた。高校生のころには脚本を書きはじめ、物語をゼロから組み上げる面白さにのめり込んでいった。大学に入り、映画への熱量を持ちながらも業界とのつながりを持てない学生が多いことを実感し、自らその場をつくろうと決意した。それが3 Stone Studios の始まりだ。「石の上にも三年」——腰を据えて、いつか日本を代表する映画をつくる。',
-    metaMail: 'ryukitanaka3@gmail.com',
     metaRep: '田中 琉暉',
-    metaNameEn: 'Ryuki Tanaka',
-    metaRole: '代表',
     joinLead: 'クリエイティブに、一緒に。',
-    join: '3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。',
-    joinExpert: '映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。一緒に学びながら、良い作品を作りたいと思っています。',
-    svcScriptDesc: 'オリジナル映画脚本の執筆・開発を行い、実際の映画として世に送り出すことを目指しています。',
+    join: '3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。フルタイムでの参加はもちろん、空いた時間だけの手伝いや、単発のアドバイスだけでも大歓迎です。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。',
+    joinExpert: '映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。学生中心の小さなチームだからこそ、経験者からのアドバイスがそのまま作品の質に直結します。一緒に学びながら、良い作品を作っていきたいと思っています。',
+    svcScriptDesc: 'オリジナル映画脚本の執筆・開発を行い、実際の映画として世に送り出すことを目指して活動しています。短編・中編を中心に、ハリウッド式・日本式それぞれの脚本術を取り入れながら物語を組み立てるのが特徴です。脚本が完成したら、共に映画化へ動いてくれる制作スタジオ・プロデューサー・関係者の方を探しています。',
     svcRecruitTitle: 'オリジナル脚本の映画化に向けて、制作仲間を募集しています',
-    svcRecruitBody: '脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。',
-    svc3dDesc: 'キャラクター・アバター・プロップ等の受注制作を承ります。使用ソフトは <strong>Blender</strong>。参考画像や雰囲気の説明だけでも気軽にどうぞ。',
-    svcBoothDesc: 'BOOTHをはじめ、各種プラットフォームにてすぐに使える3Dモデルを販売中。VRChat向けモデルも取り揃えています。',
-    contactSub: 'プロジェクトの規模や段階は問いません。まずはお気軽にご相談ください。',
+    svcRecruitBody: '脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。撮影・キャスティング・資金面など、映画化に向けて必要となる工程全般でご協力いただける方を歓迎します。まずは脚本を読んでいただくところからでも構いません。',
+    svc3dDesc: 'キャラクター・アバター・プロップなど、幅広いジャンルの3D受注制作を承っています。使用ソフトは <strong>Blender</strong>。参考画像や簡単な雰囲気の説明だけでもお気軽にご相談ください。ラフの提案からモデリング、テクスチャ、必要に応じたリギングまで一貫して対応し、用途に合わせた仕上げ（ゲーム用・VRChat用など）にも柔軟に対応します。',
+    svcBoothDesc: 'BOOTHをはじめとした各種プラットフォームで、購入してすぐに使える3Dモデルを販売しています。VRChat向けのアクセサリー・装飾品を中心に、既存アバターにそのまま組み込める即戦力アイテムを継続的に制作。改変のしやすさや軽量性にもこだわり、購入後すぐにワールドで使える完成度を意識しています。',
   };
   let aLoggedIn = false;
 
@@ -1741,11 +1533,7 @@
   // CONTENT EDIT
   function loadContentFields() {
     const c = getContent();
-    document.getElementById('ca-about1').value = c.about1;
-    document.getElementById('ca-meta-mail').value = c.metaMail;
     document.getElementById('ca-meta-rep').value = c.metaRep;
-    document.getElementById('ca-meta-name-en').value = c.metaNameEn;
-    document.getElementById('ca-meta-role').value = c.metaRole;
     document.getElementById('ca-join-lead').value = c.joinLead;
     document.getElementById('ca-join').value = c.join;
     document.getElementById('ca-join-expert').value = c.joinExpert;
@@ -1754,17 +1542,14 @@
     document.getElementById('ca-svc-recruit-body').value = c.svcRecruitBody;
     document.getElementById('ca-svc-3d').value = c.svc3dDesc;
     document.getElementById('ca-svc-booth').value = c.svcBoothDesc;
-    document.getElementById('ca-contact-sub').value = c.contactSub;
   }
   document.querySelectorAll('[data-asave]').forEach(btn => {
     btn.addEventListener('click', async () => {
       const key = btn.dataset.asave;
       const c = getContent();
-      if (key === 'about') { c.about1 = document.getElementById('ca-about1').value; }
-      else if (key === 'meta') { c.metaMail = document.getElementById('ca-meta-mail').value; c.metaRep = document.getElementById('ca-meta-rep').value; c.metaNameEn = document.getElementById('ca-meta-name-en').value; c.metaRole = document.getElementById('ca-meta-role').value; }
+      if (key === 'meta') { c.metaRep = document.getElementById('ca-meta-rep').value; }
       else if (key === 'join') { c.joinLead = document.getElementById('ca-join-lead').value; c.join = document.getElementById('ca-join').value; c.joinExpert = document.getElementById('ca-join-expert').value; }
       else if (key === 'services') { c.svcScriptDesc = document.getElementById('ca-svc-script').value; c.svcRecruitTitle = document.getElementById('ca-svc-recruit-title').value; c.svcRecruitBody = document.getElementById('ca-svc-recruit-body').value; c.svc3dDesc = document.getElementById('ca-svc-3d').value; c.svcBoothDesc = document.getElementById('ca-svc-booth').value; }
-      else if (key === 'contact') { c.contactSub = document.getElementById('ca-contact-sub').value; }
       btn.disabled = true;
       try {
         await saveContent(c);
@@ -1788,12 +1573,7 @@
   function applyContent() {
     const c = getContent();
     const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-    const setHref = (id, val) => { const el = document.getElementById(id); if (el) { el.textContent = val; el.href = 'mailto:' + val; } };
-    set('about-body-1', c.about1);
-    setHref('meta-mail', c.metaMail);
     set('meta-rep', c.metaRep);
-    set('meta-name-en', c.metaNameEn);
-    set('meta-role', c.metaRole);
     set('join-lead-text', c.joinLead);
     set('join-body-text', c.join);
     set('join-expert-text', c.joinExpert);
@@ -1801,7 +1581,6 @@
     setHTML('svc-script-desc', c.svcScriptDesc);
     setHTML('svc-3d-desc', c.svc3dDesc);
     setHTML('svc-booth-desc', c.svcBoothDesc);
-    set('contact-sub-text', c.contactSub);
     set('svc-recruit-title-projects', c.svcRecruitTitle);
     set('svc-recruit-body-projects', c.svcRecruitBody);
   }
@@ -1811,15 +1590,6 @@
   /* ─── SCRIPT WORKS ─── */
   const scriptsCol = collection(db, 'scripts');
   let allScripts = [];
-
-  const YOMI_SEED = {
-    title: 'YOMI',
-    type: '長編映画 脚本',
-    status: '脚本執筆中',
-    synopsis: '高校生の久坂秋は、寂れた旧神社で謎の研究員を目撃する。その夜を境に、町では死体遺棄事件、大量の鳥の死骸、発電所事故が相次ぎ、秋は幼馴染たちと共に町の地下に隠された"黄泉へ繋がる門"の存在へ近づいていく。',
-    tags: ['神話', 'SF', 'ジュブナイルホラー', '長編映画'],
-    order: 0, pdfUrl: '',
-  };
 
   async function loadScripts() {
     try {
@@ -1838,17 +1608,27 @@
       grid.innerHTML = '<p style="color:var(--muted);font-size:.9rem;padding:2rem 0">作品はまだありません。</p>';
       return;
     }
-    const cards = allScripts.map(s => `
-      <div class="work-card reveal">
-        <div class="work-card-body">
-          <p class="work-type">${esc(s.type)}</p>
-          <h3 class="work-title">${esc(s.title)}</h3>
-          <span class="work-badge">✦ ${esc(s.status)}</span><span class="work-badge--original">◈ Original</span>
-          ${s.synopsis ? `<p class="work-synopsis">${esc(s.synopsis)}</p>` : ''}
-          ${s.tags && s.tags.length ? `<div class="work-genre-tags">${s.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
-          ${s.pdfUrl ? `<a href="${escUrl(s.pdfUrl)}" class="work-file-btn" target="_blank" rel="noopener">📄 脚本PDFを開く</a>` : ''}
-        </div>
-      </div>`);
+    const cards = allScripts.map(s => {
+      const body = `
+        <h3 class="split-title">${esc(s.title)}</h3>
+        ${s.synopsis ? `<p class="work-synopsis">${esc(s.synopsis)}</p>` : ''}`;
+      if (s.image && escUrl(s.image)) {
+        const img = `<img class="work-media-img" src="${escUrl(s.image)}" alt="${esc(s.title)}" loading="lazy">`;
+        const hasPdf = s.pdfUrl && escUrl(s.pdfUrl);
+        const imgBlock = hasPdf
+          ? `<div class="work-media-col">
+               <a href="${escUrl(s.pdfUrl)}" target="_blank" rel="noopener" class="work-media-img-link">${img}</a>
+               <p class="work-media-note">※ 画像をクリックすると脚本が見られます</p>
+             </div>`
+          : `<div class="work-media-col">${img}</div>`;
+        return `
+      <div class="split-row work-media-row reveal">
+        ${imgBlock}
+        <div class="work-media-body">${body}</div>
+      </div>`;
+      }
+      return `<div class="split-row reveal">${body}</div>`;
+    });
     grid.innerHTML = cards.join('');
     document.querySelectorAll('#worksGrid .reveal').forEach(el => observer.observe(el));
   }
@@ -1859,7 +1639,7 @@
     document.getElementById('sType').value = '長編映画 脚本';
     document.getElementById('sStatus').value = '';
     document.getElementById('sSynopsis').value = '';
-    document.getElementById('sTags').value = '';
+    document.getElementById('sImage').value = '';
     document.getElementById('sOrder').value = '0';
     document.getElementById('sPdfUrl').value = '';
     document.getElementById('sFormTitle').textContent = '新しい脚本を追加';
@@ -1886,7 +1666,7 @@
       document.getElementById('sType').value = s.type;
       document.getElementById('sStatus').value = s.status;
       document.getElementById('sSynopsis').value = s.synopsis || '';
-      document.getElementById('sTags').value = (s.tags || []).join(' ');
+      document.getElementById('sImage').value = s.image || '';
       document.getElementById('sOrder').value = s.order || 0;
       document.getElementById('sPdfUrl').value = s.pdfUrl || '';
       document.getElementById('sFormTitle').textContent = '脚本を編集';
@@ -1904,16 +1684,15 @@
     const type     = document.getElementById('sType').value;
     const status   = document.getElementById('sStatus').value.trim();
     const synopsis = document.getElementById('sSynopsis').value.trim();
-    const tagsRaw  = document.getElementById('sTags').value.trim();
+    const image    = document.getElementById('sImage').value.trim();
     const order    = parseInt(document.getElementById('sOrder').value) || 0;
     const editId = document.getElementById('sEditId').value;
     const pdfUrl = document.getElementById('sPdfUrl').value.trim();
     if (!title) { alert('タイトルを入力してください'); return; }
-    const tags = tagsRaw ? tagsRaw.split(/\s+/).filter(Boolean) : [];
     const btn = document.getElementById('sSaveBtn');
     btn.disabled = true;
     try {
-      const data = { title, type, status, synopsis, tags, order, pdfUrl };
+      const data = { title, type, status, synopsis, image, order, pdfUrl };
       if (editId) {
         await updateDoc(doc(db, 'scripts', editId), data);
       } else {
