@@ -286,6 +286,30 @@
     color: var(--green); background: var(--green-faint);
   }
 
+  /* ─── SERVICE PRODUCT GALLERY ─── */
+  .service-product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .service-product-item {
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #060808;
+    border: 1px solid var(--border);
+    transition: border-color .3s, transform .3s;
+  }
+  .service-product-item:hover { border-color: var(--green); transform: translateY(-3px); }
+  .service-product-item img {
+    width: 100%; height: 100%; object-fit: contain; display: block;
+  }
+  @media (max-width: 700px) {
+    .service-product-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
   /* ─── SERVICE RECRUIT CARD ─── */
   .service-recruit-card {
     margin-top: 2rem;
@@ -898,6 +922,20 @@
         <span class="tag">キャラクター</span>
         <span class="tag">アクセサリー</span>
         <span class="tag">即使用可</span>
+      </div>
+      <div class="service-product-grid">
+        <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
+          <img src="/product-cyber-hud-vision.jpg" alt="Cyber HUD Vision" loading="lazy">
+        </a>
+        <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
+          <img src="/product-cyber-hud-vision-2.jpg" alt="Cyber HUD Vision II" loading="lazy">
+        </a>
+        <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
+          <img src="/product-cyber-headphone.jpg" alt="Cyber Headphone" loading="lazy">
+        </a>
+        <a class="service-product-item" href="https://3stonestudios.booth.pm/" target="_blank" rel="noopener">
+          <img src="/product-cyber-sword.jpg" alt="3SS Cyber Sword" loading="lazy">
+        </a>
       </div>
       <a href="https://3stonestudios.booth.pm/" class="btn btn-primary" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem">BOOTHショップを見る →</a>
     </div>
