@@ -390,7 +390,6 @@
   }
   .join-step-text { font-size: .82rem; line-height: 1.6; color: var(--muted); }
   .join-step-text strong { display: block; color: var(--white); font-size: .88rem; margin-bottom: .2rem; }
-  .join-expert-text { font-size: .9rem; line-height: 1.75; color: var(--muted); }
 
   /* ─── NEWS ─── */
   .news { padding: clamp(6rem, 5.22rem + 2.61vw, 7.5rem) clamp(1.5rem, 0.72rem + 2.61vw, 3rem); }
@@ -773,7 +772,22 @@
       </div>
       <div class="split-row" id="svc-3d">
         <h3 class="split-title">3Dモデリング受注</h3>
-        <p id="svc-3d-desc">キャラクター・アバター・プロップなど、幅広いジャンルの3D受注制作を承っています。使用ソフトは <strong>Blender</strong>。参考画像や簡単な雰囲気の説明だけでもお気軽にご相談ください。ラフの提案からモデリング、テクスチャ、必要に応じたリギングまで一貫して対応し、用途に合わせた仕上げ（ゲーム用・VRChat用など）にも柔軟に対応します。</p>
+        <p id="svc-3d-desc">VRC用のモデリングはもちろん、家・ワールド用の小物、VRCに関係のないものまで、Blenderで作れるものなら何でも対応可能です。料金は内容によって変わるため要相談。参考画像や簡単な雰囲気の説明だけでもお気軽にご相談ください。ご希望のイメージ・用途に沿って制作します。</p>
+        <div class="join-steps">
+          <div class="join-step">
+            <span class="join-step-num">1</span>
+            <span class="join-step-text"><strong>ご相談</strong>VRC用アバターから家・小物まで、作りたいものをお気軽にご相談ください</span>
+          </div>
+          <div class="join-step">
+            <span class="join-step-num">2</span>
+            <span class="join-step-text"><strong>すり合わせ</strong>ご希望のイメージ・用途・ご予算感を確認しながら制作内容を決定</span>
+          </div>
+          <div class="join-step">
+            <span class="join-step-num">3</span>
+            <span class="join-step-text"><strong>制作・納品</strong>ご希望に沿った形で制作し、データを納品します</span>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary" style="margin-top:1.5rem;display:inline-block">ご相談・お問い合わせ →</a>
       </div>
     </div>
   </div>
@@ -810,42 +824,13 @@
 <!-- ─── JOIN US ─── -->
 <section class="join" id="join">
   <h2 class="section-title reveal">JOIN THE CREW.</h2>
-  <div class="split-layout reveal">
-    <div class="split-nav" style="padding-top:0">
-      <span class="split-nav-item" style="color:var(--muted);cursor:default">募集分野</span>
-      <span class="split-nav-item">脚本</span>
-      <span class="split-nav-item">3Dモデリング</span>
-      <span class="split-nav-item">映像編集</span>
-      <span class="split-nav-item">音楽・音響</span>
-      <span class="split-nav-item">撮影</span>
-      <span class="split-nav-item">その他</span>
-    </div>
-    <div class="split-list">
-      <div class="split-row">
-        <p class="join-lead" id="join-lead-text">クリエイティブに、一緒に。</p>
-        <p class="join-body">
-          <span id="join-body-text">3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。フルタイムでの参加はもちろん、空いた時間だけの手伝いや、単発のアドバイスだけでも大歓迎です。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。</span>
-        </p>
-        <div class="join-steps">
-          <div class="join-step">
-            <span class="join-step-num">1</span>
-            <span class="join-step-text"><strong>ご連絡</strong>下のフォームから気軽にご連絡ください</span>
-          </div>
-          <div class="join-step">
-            <span class="join-step-num">2</span>
-            <span class="join-step-text"><strong>お話</strong>興味・得意分野について簡単にすり合わせ</span>
-          </div>
-          <div class="join-step">
-            <span class="join-step-num">3</span>
-            <span class="join-step-text"><strong>参加</strong>できる範囲・タイミングから無理なく合流</span>
-          </div>
-        </div>
-        <a href="#contact" class="btn btn-primary join-cta" style="margin-top:1.5rem">参加を申し込む →</a>
-      </div>
-      <div class="split-row">
-        <p class="join-expert-text" id="join-expert-text">映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。学生中心の小さなチームだからこそ、経験者からのアドバイスがそのまま作品の質に直結します。一緒に学びながら、良い作品を作っていきたいと思っています。</p>
-        <a href="#contact" class="btn btn-outline" style="margin-top:1rem">知識をシェアする →</a>
-      </div>
+  <div class="split-list reveal" style="margin-top:3rem">
+    <div class="split-row">
+      <p class="join-lead" id="join-lead-text">クリエイティブに、一緒に。</p>
+      <p class="join-body">
+        <span id="join-body-text">Blenderの経験がある方、脚本制作の経験がある方、そして一緒に何かを作りたいという気持ちがある方を歓迎します。まずは気軽にご連絡ください。</span>
+      </p>
+      <a href="#contact" class="btn btn-primary join-cta" style="margin-top:1.5rem">参加を申し込む →</a>
     </div>
   </div>
 </section>
@@ -869,9 +854,10 @@
         <label for="service">お問い合わせ</label>
         <select id="service" required>
           <option value="" disabled selected>お問い合わせ内容を選択</option>
+          <option value="booth">3Dモデル販売について（BOOTH）</option>
           <option value="3d">3Dモデリング受注</option>
           <option value="film-support">脚本の映画化への参加・制作協力</option>
-          <option value="crew">クルー応募・参加希望</option>
+          <option value="crew">クルー参加（Blender・脚本経験者など）</option>
           <option value="other">その他・ご相談</option>
         </select>
       </div>
@@ -1039,7 +1025,6 @@
           <p class="a-card-title">③ Join Us — クルー募集文</p>
           <div class="a-field"><label>リード文</label><input type="text" id="ca-join-lead"></div>
           <div class="a-field"><label>本文</label><textarea id="ca-join" rows="3"></textarea></div>
-          <div class="a-field"><label>有識者向けテキスト</label><textarea id="ca-join-expert" rows="2"></textarea></div>
           <div class="a-btn-row"><button class="a-btn-save" data-asave="join">保存する</button><span class="save-ok" id="sok-join">保存しました ✓</span></div>
         </div>
       </div>
@@ -1366,12 +1351,11 @@
   const CONTENT_DEFAULTS = {
     metaRep: '田中 琉暉',
     joinLead: 'クリエイティブに、一緒に。',
-    join: '3 Stone Studios は、興味を持ってくださった方なら誰でも歓迎します。学生・社会人・企業問わず、脚本・3D・映像・音楽など、どんな形でも構いません。フルタイムでの参加はもちろん、空いた時間だけの手伝いや、単発のアドバイスだけでも大歓迎です。「一緒に何か作りたい」という気持ちがあれば、まずは気軽にご連絡ください。',
-    joinExpert: '映像・脚本・3Dに詳しい方へ。あなたの知識を私たちにも教えてください。学生中心の小さなチームだからこそ、経験者からのアドバイスがそのまま作品の質に直結します。一緒に学びながら、良い作品を作っていきたいと思っています。',
+    join: 'Blenderの経験がある方、脚本制作の経験がある方、そして一緒に何かを作りたいという気持ちがある方を歓迎します。まずは気軽にご連絡ください。',
     svcScriptDesc: 'オリジナル映画脚本の執筆・開発を行い、実際の映画として世に送り出すことを目指して活動しています。短編・中編を中心に、ハリウッド式・日本式それぞれの脚本術を取り入れながら物語を組み立てるのが特徴です。脚本が完成したら、共に映画化へ動いてくれる制作スタジオ・プロデューサー・関係者の方を探しています。',
     svcRecruitTitle: 'オリジナル脚本の映画化に向けて、制作仲間を募集しています',
     svcRecruitBody: '脚本完成後、実際の映画として制作するにあたり、共に動いてくださる制作スタジオ・プロデューサー・関係者の方を探しています。撮影・キャスティング・資金面など、映画化に向けて必要となる工程全般でご協力いただける方を歓迎します。まずは脚本を読んでいただくところからでも構いません。',
-    svc3dDesc: 'キャラクター・アバター・プロップなど、幅広いジャンルの3D受注制作を承っています。使用ソフトは <strong>Blender</strong>。参考画像や簡単な雰囲気の説明だけでもお気軽にご相談ください。ラフの提案からモデリング、テクスチャ、必要に応じたリギングまで一貫して対応し、用途に合わせた仕上げ（ゲーム用・VRChat用など）にも柔軟に対応します。',
+    svc3dDesc: 'VRC用のモデリングはもちろん、家・ワールド用の小物、VRCに関係のないものまで、Blenderで作れるものなら何でも対応可能です。料金は内容によって変わるため要相談。参考画像や簡単な雰囲気の説明だけでもお気軽にご相談ください。ご希望のイメージ・用途に沿って制作します。',
     svcBoothDesc: 'BOOTHをはじめとした各種プラットフォームで、購入してすぐに使える3Dモデルを販売しています。VRChat向けのアクセサリー・装飾品を中心に、既存アバターにそのまま組み込める即戦力アイテムを継続的に制作。改変のしやすさや軽量性にもこだわり、購入後すぐにワールドで使える完成度を意識しています。',
   };
   let aLoggedIn = false;
@@ -1536,7 +1520,6 @@
     document.getElementById('ca-meta-rep').value = c.metaRep;
     document.getElementById('ca-join-lead').value = c.joinLead;
     document.getElementById('ca-join').value = c.join;
-    document.getElementById('ca-join-expert').value = c.joinExpert;
     document.getElementById('ca-svc-script').value = c.svcScriptDesc;
     document.getElementById('ca-svc-recruit-title').value = c.svcRecruitTitle;
     document.getElementById('ca-svc-recruit-body').value = c.svcRecruitBody;
@@ -1548,7 +1531,7 @@
       const key = btn.dataset.asave;
       const c = getContent();
       if (key === 'meta') { c.metaRep = document.getElementById('ca-meta-rep').value; }
-      else if (key === 'join') { c.joinLead = document.getElementById('ca-join-lead').value; c.join = document.getElementById('ca-join').value; c.joinExpert = document.getElementById('ca-join-expert').value; }
+      else if (key === 'join') { c.joinLead = document.getElementById('ca-join-lead').value; c.join = document.getElementById('ca-join').value; }
       else if (key === 'services') { c.svcScriptDesc = document.getElementById('ca-svc-script').value; c.svcRecruitTitle = document.getElementById('ca-svc-recruit-title').value; c.svcRecruitBody = document.getElementById('ca-svc-recruit-body').value; c.svc3dDesc = document.getElementById('ca-svc-3d').value; c.svcBoothDesc = document.getElementById('ca-svc-booth').value; }
       btn.disabled = true;
       try {
@@ -1576,7 +1559,6 @@
     set('meta-rep', c.metaRep);
     set('join-lead-text', c.joinLead);
     set('join-body-text', c.join);
-    set('join-expert-text', c.joinExpert);
     const setHTML = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
     setHTML('svc-script-desc', c.svcScriptDesc);
     setHTML('svc-3d-desc', c.svc3dDesc);
@@ -1714,7 +1696,8 @@
     const form = e.target;
     const name    = form.querySelector('#name').value;
     const email   = form.querySelector('#email').value;
-    const service = form.querySelector('#service').value;
+    const serviceEl = form.querySelector('#service');
+    const service = serviceEl.selectedOptions[0]?.text || serviceEl.value;
     const message = form.querySelector('#message').value;
     const subject = encodeURIComponent(`【3SS お問い合わせ】${service} — ${name}`);
     const body    = encodeURIComponent(`お名前：${name}\nメール：${email}\nご用件：${service}\n\n${message}`);
